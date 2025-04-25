@@ -21,7 +21,7 @@ createInertiaApp({
   setup({ el, App, props }) {
     const RootComponent = (
       <Providers>
-        <Notifications position="top-right" limit={5} />
+        <Notifications position="top-right" />
         <App {...props} />
       </Providers>
     )

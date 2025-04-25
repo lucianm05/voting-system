@@ -19,7 +19,7 @@ importers:
         version: 2.2.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))
       '@adonisjs/inertia':
         specifier: ^3.1.0
-        version: 3.1.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(@adonisjs/vite@4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)))(edge.js@6.2.1)
+        version: 3.1.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(@adonisjs/vite@4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))))(edge.js@6.2.1)
       '@adonisjs/lucid':
         specifier: ^21.6.0
         version: 21.6.1(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@vinejs/vine@3.0.1)(luxon@3.6.1)(pg@8.14.1)
@@ -34,7 +34,7 @@ importers:
         version: 1.1.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))
       '@adonisjs/vite':
         specifier: ^4.0.0
-        version: 4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1))
+        version: 4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))
       '@inertiajs/react':
         specifier: ^2.0.8
         version: 2.0.8(react@19.1.0)
@@ -128,7 +128,7 @@ importers:
         version: 19.1.2(@types/react@19.1.2)
       '@vitejs/plugin-react':
         specifier: ^4.4.0
-        version: 4.4.0(vite@6.3.1(@types/node@22.14.1))
+        version: 4.4.0(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))
       eslint:
         specifier: ^9.20.1
         version: 9.24.0
@@ -138,6 +138,15 @@ importers:
       pino-pretty:
         specifier: ^13.0.0
         version: 13.0.0
+      postcss:
+        specifier: ^8.5.3
+        version: 8.5.3
+      postcss-preset-mantine:
+        specifier: ^1.17.0
+        version: 1.17.0(postcss@8.5.3)
+      postcss-simple-vars:
+        specifier: ^7.0.1
+        version: 7.0.1(postcss@8.5.3)
       prettier:
         specifier: ^3.5.0
         version: 3.5.3
@@ -149,7 +158,7 @@ importers:
         version: 5.7.3
       vite:
         specifier: ^6.1.0
-        version: 6.3.1(@types/node@22.14.1)
+        version: 6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))
 
 packages:
 
@@ -1567,6 +1576,10 @@ packages:
     resolution: {integrity: sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==}
     engines: {node: '>=6'}
 
+  camelcase-css@2.0.1:
+    resolution: {integrity: sha512-QOSvevhslijgYwRx6Rv7zKdMF8lbRmx+uQGx2+vDc+KI/eBnsy9kit5aj23AgGu3pa4t9AgwbnXWqS+iOY+2aA==}
+    engines: {node: '>= 6'}
+
   camelcase@8.0.0:
     resolution: {integrity: sha512-8WB3Jcas3swSvjIeA2yvCJ+Miyz5l1ZmB6HFb9R1317dt9LCQoswg/BGrmAmkWVEszSrrg4RwmO46qIm2OEnSA==}
     engines: {node: '>=16'}
@@ -1719,6 +1732,11 @@ packages:
 
   css@3.0.0:
     resolution: {integrity: sha512-DG9pFfwOrzc+hawpmqX/dHYHJG+Bsdb0klhyi1sDneOgGOXy9wQIC8hzyVp1e4NRYDBdxcylvywPkkXCHAzTyQ==}
+
+  cssesc@3.0.0:
+    resolution: {integrity: sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==}
+    engines: {node: '>=4'}
+    hasBin: true
 
   csstype@3.0.9:
     resolution: {integrity: sha512-rpw6JPxK6Rfg1zLOYCSwle2GFOOsnjmDYDaBwEcwoOg4qlsIVCN789VkBZDJAGi4T07gI4YSutR43t9Zz4Lzuw==}
@@ -2918,6 +2936,39 @@ packages:
     resolution: {integrity: sha512-Nc3IT5yHzflTfbjgqWcCPpo7DaKy4FnpB0l/zCAW0Tc7jxAiuqSxHasntB3D7887LSrA93kDJ9IXovxJYxyLCA==}
     engines: {node: '>=4'}
 
+  postcss-js@4.0.1:
+    resolution: {integrity: sha512-dDLF8pEO191hJMtlHFPRa8xsizHaM82MLfNkUHdUtVEV3tgTp5oj+8qbEqYM57SLfc74KSbw//4SeJma2LRVIw==}
+    engines: {node: ^12 || ^14 || >= 16}
+    peerDependencies:
+      postcss: ^8.4.21
+
+  postcss-mixins@9.0.4:
+    resolution: {integrity: sha512-XVq5jwQJDRu5M1XGkdpgASqLk37OqkH4JCFDXl/Dn7janOJjCTEKL+36cnRVy7bMtoBzALfO7bV7nTIsFnUWLA==}
+    engines: {node: '>=14.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+
+  postcss-nested@6.2.0:
+    resolution: {integrity: sha512-HQbt28KulC5AJzG+cZtj9kvKB93CFCdLvog1WFLf1D+xmMvPGlBstkpTEZfK5+AN9hfJocyBFCNiqyS48bpgzQ==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.2.14
+
+  postcss-preset-mantine@1.17.0:
+    resolution: {integrity: sha512-ji1PMDBUf2Vsx/HE5faMSs1+ff6qE6YRulTr4Ja+6HD3gop8rSMTCYdpN7KrdsEg079kfBKkO/PaKhG9uR0zwQ==}
+    peerDependencies:
+      postcss: '>=8.0.0'
+
+  postcss-selector-parser@6.1.2:
+    resolution: {integrity: sha512-Q8qQfPiZ+THO/3ZrOrO0cJJKfpYCagtMUkXbnEfmgUjwXg6z/WBeOyS9APBBPCTSiDV+s4SwQGu8yFsiMRIudg==}
+    engines: {node: '>=4'}
+
+  postcss-simple-vars@7.0.1:
+    resolution: {integrity: sha512-5GLLXaS8qmzHMOjVxqkk1TZPf1jMqesiI7qLhnlyERalG0sMbHIbJqrcnrpmZdKCLglHnRHoEBB61RtGTsj++A==}
+    engines: {node: '>=14.0'}
+    peerDependencies:
+      postcss: ^8.2.1
+
   postcss@8.5.3:
     resolution: {integrity: sha512-dle9A3yYxlBSrt8Fu+IpjGT8SY8hN0mlaA6GY8t0P5PjIOZemULz/E2Bnm/2dcUOena75OTNkHI76uZBNUUq3A==}
     engines: {node: ^10 || ^12 || >=14}
@@ -3389,6 +3440,12 @@ packages:
 
   stylis@4.2.0:
     resolution: {integrity: sha512-Orov6g6BB1sDfYgzWfTHDOxamtX1bE/zo104Dh9e6fqJ3PooipYyfJ0pUmrZO2wAvO8YbEyeFrkV91XTsGMSrw==}
+
+  sugarss@4.0.1:
+    resolution: {integrity: sha512-WCjS5NfuVJjkQzK10s8WOBY+hhDxxNt/N6ZaGwxFZ+wN3/lKKFSaaKUNecULcTTvE4urLcKaZFQD8vO0mOZujw==}
+    engines: {node: '>=12.0'}
+    peerDependencies:
+      postcss: ^8.3.3
 
   supports-color@10.0.0:
     resolution: {integrity: sha512-HRVVSbCCMbj7/kdWF9Q+bbckjBHLtHMEoJWlkmYzzdwhYMkjkOwubLM6t7NbWKjgKamGDrWL1++KrjUO1t9oAQ==}
@@ -3957,11 +4014,11 @@ snapshots:
       vary: 1.1.2
       youch: 3.3.4
 
-  '@adonisjs/inertia@3.1.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(@adonisjs/vite@4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)))(edge.js@6.2.1)':
+  '@adonisjs/inertia@3.1.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(@adonisjs/vite@4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))))(edge.js@6.2.1)':
     dependencies:
       '@adonisjs/core': 6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1)
       '@adonisjs/session': 7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1)
-      '@adonisjs/vite': 4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1))
+      '@adonisjs/vite': 4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))
       '@poppinss/utils': 6.9.2
       '@tuyau/utils': 0.0.7
       edge-error: 4.0.2
@@ -4050,14 +4107,14 @@ snapshots:
 
   '@adonisjs/tsconfig@1.4.0': {}
 
-  '@adonisjs/vite@4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1))':
+  '@adonisjs/vite@4.0.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/shield@8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))':
     dependencies:
       '@adonisjs/core': 6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1)
       '@poppinss/utils': 6.9.2
-      '@vavite/multibuild': 5.1.0(vite@6.3.1(@types/node@22.14.1))
+      '@vavite/multibuild': 5.1.0(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))
       edge-error: 4.0.2
-      vite: 6.3.1(@types/node@22.14.1)
-      vite-plugin-restart: 0.4.2(vite@6.3.1(@types/node@22.14.1))
+      vite: 6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))
+      vite-plugin-restart: 0.4.2(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))
     optionalDependencies:
       '@adonisjs/shield': 8.2.0(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(@adonisjs/session@7.5.1(@adonisjs/core@6.17.2(@adonisjs/assembler@7.8.2(babel-plugin-macros@3.1.0)(typescript@5.7.3))(@vinejs/vine@3.0.1)(edge.js@6.2.1))(edge.js@6.2.1))(edge.js@6.2.1)
       edge.js: 6.2.1
@@ -5051,12 +5108,12 @@ snapshots:
       '@typescript-eslint/types': 8.30.1
       eslint-visitor-keys: 4.2.0
 
-  '@vavite/multibuild@5.1.0(vite@6.3.1(@types/node@22.14.1))':
+  '@vavite/multibuild@5.1.0(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))':
     dependencies:
       '@types/node': 18.19.86
       cac: 6.7.14
       picocolors: 1.1.1
-      vite: 6.3.1(@types/node@22.14.1)
+      vite: 6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))
 
   '@vinejs/compiler@3.0.0': {}
 
@@ -5071,14 +5128,14 @@ snapshots:
       normalize-url: 8.0.1
       validator: 13.15.0
 
-  '@vitejs/plugin-react@4.4.0(vite@6.3.1(@types/node@22.14.1))':
+  '@vitejs/plugin-react@4.4.0(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)))':
     dependencies:
       '@babel/core': 7.26.10
       '@babel/plugin-transform-react-jsx-self': 7.25.9(@babel/core@7.26.10)
       '@babel/plugin-transform-react-jsx-source': 7.25.9(@babel/core@7.26.10)
       '@types/babel__core': 7.20.5
       react-refresh: 0.17.0
-      vite: 6.3.1(@types/node@22.14.1)
+      vite: 6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))
     transitivePeerDependencies:
       - supports-color
 
@@ -5205,6 +5262,8 @@ snapshots:
       get-intrinsic: 1.3.0
 
   callsites@3.1.0: {}
+
+  camelcase-css@2.0.1: {}
 
   camelcase@8.0.0: {}
 
@@ -5354,6 +5413,8 @@ snapshots:
       inherits: 2.0.4
       source-map: 0.6.1
       source-map-resolve: 0.6.0
+
+  cssesc@3.0.0: {}
 
   csstype@3.0.9: {}
 
@@ -6461,6 +6522,39 @@ snapshots:
 
   pluralize@8.0.0: {}
 
+  postcss-js@4.0.1(postcss@8.5.3):
+    dependencies:
+      camelcase-css: 2.0.1
+      postcss: 8.5.3
+
+  postcss-mixins@9.0.4(postcss@8.5.3):
+    dependencies:
+      fast-glob: 3.3.3
+      postcss: 8.5.3
+      postcss-js: 4.0.1(postcss@8.5.3)
+      postcss-simple-vars: 7.0.1(postcss@8.5.3)
+      sugarss: 4.0.1(postcss@8.5.3)
+
+  postcss-nested@6.2.0(postcss@8.5.3):
+    dependencies:
+      postcss: 8.5.3
+      postcss-selector-parser: 6.1.2
+
+  postcss-preset-mantine@1.17.0(postcss@8.5.3):
+    dependencies:
+      postcss: 8.5.3
+      postcss-mixins: 9.0.4(postcss@8.5.3)
+      postcss-nested: 6.2.0(postcss@8.5.3)
+
+  postcss-selector-parser@6.1.2:
+    dependencies:
+      cssesc: 3.0.0
+      util-deprecate: 1.0.2
+
+  postcss-simple-vars@7.0.1(postcss@8.5.3):
+    dependencies:
+      postcss: 8.5.3
+
   postcss@8.5.3:
     dependencies:
       nanoid: 3.3.11
@@ -6959,6 +7053,10 @@ snapshots:
 
   stylis@4.2.0: {}
 
+  sugarss@4.0.1(postcss@8.5.3):
+    dependencies:
+      postcss: 8.5.3
+
   supports-color@10.0.0: {}
 
   supports-color@7.2.0:
@@ -7173,12 +7271,12 @@ snapshots:
       d3-time: 3.1.0
       d3-timer: 3.0.1
 
-  vite-plugin-restart@0.4.2(vite@6.3.1(@types/node@22.14.1)):
+  vite-plugin-restart@0.4.2(vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))):
     dependencies:
       micromatch: 4.0.8
-      vite: 6.3.1(@types/node@22.14.1)
+      vite: 6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3))
 
-  vite@6.3.1(@types/node@22.14.1):
+  vite@6.3.1(@types/node@22.14.1)(sugarss@4.0.1(postcss@8.5.3)):
     dependencies:
       esbuild: 0.25.2
       fdir: 6.4.3(picomatch@4.0.2)
@@ -7189,6 +7287,7 @@ snapshots:
     optionalDependencies:
       '@types/node': 22.14.1
       fsevents: 2.3.3
+      sugarss: 4.0.1(postcss@8.5.3)
 
   which@2.0.2:
     dependencies:

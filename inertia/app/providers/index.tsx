@@ -1,8 +1,6 @@
-import { createTheme, MantineProvider } from '@mantine/core'
+import { MantineProvider } from '@mantine/core'
 import { PropsWithChildren } from 'react'
 
-const theme = createTheme({})
-
 export function Providers({ children }: PropsWithChildren) {
-  return <MantineProvider theme={theme}>{children}</MantineProvider>
+  return <MantineProvider>{children}</MantineProvider>
 }
