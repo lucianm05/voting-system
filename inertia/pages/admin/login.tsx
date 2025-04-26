@@ -1,3 +1,7 @@
-export default function AdminLogin() {
-  return null
+import { AdminLoginForm } from '~/app/features/admin/login'
+
+function AdminLogin() {
+  return <AdminLoginForm />
 }
+
+export default AdminLogin
