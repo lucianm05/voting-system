@@ -1,24 +1,34 @@
 import { Link as InertiaLink, InertiaLinkProps } from '@inertiajs/react'
-import { NavLink, NavLinkProps } from '@mantine/core'
+import { Button, ButtonProps, NavLink, NavLinkProps } from '@mantine/core'
 
-interface Props extends Omit<InertiaLinkProps, 'onChange'>, Pick<NavLinkProps, 'onChange'> {
+interface LinkProps extends Omit<InertiaLinkProps, 'onChange'>, Pick<NavLinkProps, 'onChange'> {
   label: string
 }
 
-function getHref(props: Props) {
+function getHref(props: LinkProps) {
   if (typeof props.href === 'string') return props.href
   return props.href.url
 }
 
-function getMethod(props: Props) {
+function getMethod(props: LinkProps) {
   if (typeof props.href === 'string') return 'get'
   return props.href.method
 }
 
-export function Link(props: Props) {
+export function Link(props: LinkProps) {
   return (
     <NavLink {...props} component={InertiaLink} href={getHref(props)} method={getMethod(props)}>
       {props.children}
     </NavLink>
+  )
+}
+
+interface ButtonLinkProps extends Omit<InertiaLinkProps, 'color' | 'size' | 'style'>, ButtonProps {}
+
+export function ButtonLink(props: ButtonLinkProps) {
+  return (
+    <Button component={InertiaLink} {...props}>
+      {props.children}
+    </Button>
   )
 }

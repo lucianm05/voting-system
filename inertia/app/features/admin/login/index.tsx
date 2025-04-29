@@ -1,3 +1,4 @@
+import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Card, Center, TextInput } from '@mantine/core'
 import { FormEvent } from 'react'
@@ -7,7 +8,7 @@ export function AdminLoginForm() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    post('/session')
+    post(ROUTES.session.root.absolutePath)
   }
 
   return (

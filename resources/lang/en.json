@@ -1,0 +1,35 @@
+{
+  "app_title": "Sistem de vot electoral",
+
+  "common": {
+    "add": "Adăugați",
+    "name": "Nume",
+    "description": "Descriere",
+    "date_start": "Dată de început",
+    "date_end": "Dată de sfârșit",
+    "submit": "Trimite"
+  },
+
+  "elections": {
+    "title": "Alegeri"
+  },
+
+  "new_election": {
+    "title": "Alegeri noi",
+    "description": "Adăugați un tur nou de alegeri",
+    "fields": {
+      "name": {
+        "placeholder": "2025 - Alegeri prezindențiale tur 1"
+      },
+      "description": {
+        "placeholder": "Alegerea următorului președinte al României"
+      },
+      "date_start": {
+        "placeholder": "4 Mai 2025"
+      },
+      "date_end": {
+        "placeholder": "4 Mai 2025"
+      }
+    }
+  }
+}

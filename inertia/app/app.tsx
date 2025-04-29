@@ -2,19 +2,26 @@
 /// <reference path="../../config/inertia.ts" />
 
 import '@mantine/core/styles.css'
+import '@mantine/dates/styles.css'
+import '../css/app.css'
+
+import 'dayjs/locale/en'
+import 'dayjs/locale/ro'
 
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { createInertiaApp } from '@inertiajs/react'
 import { Notifications } from '@mantine/notifications'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
 import { createRoot, hydrateRoot } from 'react-dom/client'
 import { Providers } from '~/app/providers'
-import '../css/app.css'
+import i18n from '~/i18n'
 
-const appName = import.meta.env.VITE_APP_NAME || 'AdonisJS'
+dayjs.extend(customParseFormat)
 
 createInertiaApp({
   progress: { color: '#5468FF' },
-  title: (title) => `${title} - ${appName}`,
+  title: () => i18n.t('app_title'),
   resolve: (name) => {
     return resolvePageComponent(`../pages/${name}.tsx`, import.meta.glob('../pages/**/*.tsx'))
   },

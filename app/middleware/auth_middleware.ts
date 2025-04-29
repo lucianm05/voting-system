@@ -1,3 +1,4 @@
+import { ROUTES } from '#shared/constants/routes'
 import type { Authenticators } from '@adonisjs/auth/types'
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
@@ -10,7 +11,7 @@ export default class AuthMiddleware {
   /**
    * The URL to redirect to, when authentication fails
    */
-  redirectTo = '/admin/login'
+  redirectTo = ROUTES.admin.login.absolutePath
 
   async handle(
     ctx: HttpContext,
@@ -19,9 +20,7 @@ export default class AuthMiddleware {
       guards?: (keyof Authenticators)[]
     } = {}
   ) {
-    console.log('ctx.route', ctx.route?.name)
-    if (ctx.route?.name === 'admin.login') {
-      console.log('user is attempting to log in')
+    if (ctx.route?.name === ROUTES.admin.login.alias) {
       return next()
     }
 

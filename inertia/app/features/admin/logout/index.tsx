@@ -1,3 +1,4 @@
+import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button } from '@mantine/core'
 import { FormEvent } from 'react'
@@ -11,7 +12,7 @@ export function AdminLogoutForm({ className }: Props) {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    del('/session')
+    del(ROUTES.session.root.absolutePath)
   }
 
   return (
