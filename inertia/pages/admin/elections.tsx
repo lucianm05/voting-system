@@ -1,12 +1,37 @@
+import Election from '#models/election'
 import { ROUTES } from '#shared/constants/routes'
-import { Title } from '@mantine/core'
-import { ReactNode } from 'react'
+import { Table, TableData, Title } from '@mantine/core'
+import { ReactNode, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { ButtonLink } from '~/app/components/link'
 import { AdminLayout } from '~/app/features/admin/layout'
+import { formatDate } from '~/app/functions'
 
-function AdminElections() {
+interface Props {
+  elections: Election[]
+}
+
+function AdminElections({ elections }: Props) {
   const { t } = useTranslation()
+
+  const tableData = useMemo<TableData>(() => {
+    return {
+      head: [
+        'Index',
+        t('common.name'),
+        t('common.description'),
+        t('common.date_start'),
+        t('common.date_end'),
+      ],
+      body: elections.map((election, i) => [
+        i + 1,
+        election.name,
+        election.description,
+        formatDate(election.dateStart),
+        formatDate(election.dateEnd),
+      ]),
+    }
+  }, [elections])
 
   return (
     <>
@@ -14,9 +39,13 @@ function AdminElections() {
         <Title order={1}>{t('elections.title')}</Title>
 
         <div>
-          <ButtonLink href={ROUTES.admin.newElection.absolutePath}>{t('common.add')}</ButtonLink>
+          <ButtonLink href={ROUTES.admin.newElection.index.absolutePath}>
+            {t('common.add')}
+          </ButtonLink>
         </div>
       </div>
+
+      <Table data={tableData} className="mt-6" />
     </>
   )
 }

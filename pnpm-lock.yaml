@@ -66,7 +66,7 @@ importers:
         specifier: ^6.0.22
         version: 6.0.22(@emotion/react@11.14.0(@types/react@19.1.2)(react@19.1.0))(@emotion/server@11.11.0)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)
       '@vinejs/vine':
-        specifier: ^3.0.0
+        specifier: ^3.0.1
         version: 3.0.1
       dayjs:
         specifier: ^1.11.13

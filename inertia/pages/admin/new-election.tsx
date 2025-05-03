@@ -1,13 +1,15 @@
+import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Text, TextInput, Title } from '@mantine/core'
-import { ReactNode } from 'react'
+import { notifications } from '@mantine/notifications'
+import { FormEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DateInput } from '~/app/components/date-input'
+import { DateTimePicker } from '~/app/components/date-time-picker'
 import { AdminLayout } from '~/app/features/admin/layout'
 
 function AdminNewElection() {
   const { t } = useTranslation()
-  const { data, setData } = useForm({
+  const { data, setData, post, errors } = useForm({
     name: '',
     description: '',
     dateStart: new Date(),
@@ -30,12 +32,26 @@ function AdminNewElection() {
     setData('dateEnd', value)
   }
 
+  function onSubmit(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault()
+
+    post(ROUTES.admin.newElection.store.absolutePath, {
+      onSuccess: () => {
+        notifications.show({
+          title: t('common.success'),
+          message: t('new_election.election_created_successfully'),
+          color: 'green',
+        })
+      },
+    })
+  }
+
   return (
     <>
       <Title order={1}>{t('new_election.title')}</Title>
       <Text>{t('new_election.description')}</Text>
 
-      <form className="mt-8 space-y-6 max-w-[30rem]">
+      <form onSubmit={onSubmit} className="mt-8 space-y-6 max-w-[30rem]">
         <TextInput
           label={t('common.name')}
           placeholder={t('new_election.fields.name.placeholder')}
@@ -43,6 +59,7 @@ function AdminNewElection() {
           required
           value={data.name}
           onChange={(e) => setData('name', e.target.value)}
+          error={errors.name}
         />
 
         <TextInput
@@ -52,9 +69,10 @@ function AdminNewElection() {
           required
           value={data.description}
           onChange={(e) => setData('description', e.target.value)}
+          error={errors.description}
         />
 
-        <DateInput
+        <DateTimePicker
           label={t('common.date_start')}
           placeholder={t('new_election.fields.date_start.placeholder')}
           withAsterisk
@@ -62,9 +80,10 @@ function AdminNewElection() {
           value={data.dateStart}
           onChange={onDateStartChange}
           minDate={new Date()}
+          error={errors.dateStart}
         />
 
-        <DateInput
+        <DateTimePicker
           label={t('common.date_end')}
           placeholder={t('new_election.fields.date_end.placeholder')}
           withAsterisk
@@ -72,10 +91,11 @@ function AdminNewElection() {
           value={data.dateEnd}
           onChange={onDateEndChange}
           minDate={data.dateStart}
+          error={errors.dateEnd}
         />
 
         <div className="flex justify-end">
-          <Button>{t('common.submit')}</Button>
+          <Button type="submit">{t('common.submit')}</Button>
         </div>
       </form>
     </>

@@ -24,9 +24,9 @@ router
 
 router
   .group(() => {
-    // const AdminController = () => import('#controllers/admin_controller')
+    const ElectionController = () => import('#controllers/election_controller')
 
-    router.on('/').redirect(ROUTES.admin.elections.alias)
+    router.on('/').redirect(ROUTES.admin.elections.index.alias)
 
     router
       .on(ROUTES.admin.login.relativePath)
@@ -34,14 +34,16 @@ router
       .as(ROUTES.admin.login.alias)
 
     router
-      .on(ROUTES.admin.elections.relativePath)
-      .renderInertia(ROUTES.admin.elections.view)
-      .as(ROUTES.admin.elections.alias)
+      .get(ROUTES.admin.elections.index.relativePath, [ElectionController, 'index'])
+      .as(ROUTES.admin.elections.index.alias)
 
     router
-      .on(ROUTES.admin.newElection.relativePath)
-      .renderInertia(ROUTES.admin.newElection.view)
-      .as(ROUTES.admin.newElection.alias)
+      .on(ROUTES.admin.newElection.index.relativePath)
+      .renderInertia(ROUTES.admin.newElection.index.view)
+      .as(ROUTES.admin.newElection.index.alias)
+    router
+      .post(ROUTES.admin.newElection.store.relativePath, [ElectionController, 'store'])
+      .as(ROUTES.admin.newElection.store.alias)
   })
   .prefix(ROUTES.admin.root.absolutePath)
   .use(middleware.guest())

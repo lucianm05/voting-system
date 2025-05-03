@@ -1,5 +1,6 @@
-import { DateInputProps, DateInput as MDateInput } from '@mantine/dates'
+import { DateInputProps, DateInput as MantineDateInput } from '@mantine/dates'
+import { DATE_FORMAT } from '~/app/constants'
 
 export function DateInput(props: DateInputProps) {
-  return <MDateInput valueFormat="DD MMMM YYYY" {...props} />
+  return <MantineDateInput valueFormat={DATE_FORMAT} {...props} />
 }

@@ -79,7 +79,7 @@
     "@mantine/modals": "^7.17.5",
     "@mantine/notifications": "^7.17.5",
     "@mantine/ssr": "^6.0.22",
-    "@vinejs/vine": "^3.0.0",
+    "@vinejs/vine": "^3.0.1",
     "dayjs": "^1.11.13",
     "edge.js": "^6.2.1",
     "i18next": "^25.0.2",

@@ -28,16 +28,25 @@ export const ROUTES = {
       view: 'admin/login',
     },
     elections: {
-      absolutePath: '/admin/elections',
-      relativePath: '/elections',
-      alias: 'admin.elections',
-      view: 'admin/elections',
+      index: {
+        absolutePath: '/admin/elections',
+        relativePath: '/elections',
+        alias: 'admin.elections',
+        view: 'admin/elections',
+      },
     },
     newElection: {
-      absolutePath: '/admin/new-election',
-      relativePath: '/new-election',
-      alias: 'admin.newElection',
-      view: 'admin/new-election',
+      index: {
+        absolutePath: '/admin/new-election',
+        relativePath: '/new-election',
+        alias: 'admin.newElection.index',
+        view: 'admin/new-election',
+      },
+      store: {
+        absolutePath: '/admin/new-election',
+        relativePath: '/new-election',
+        alias: 'admin.newElection.store',
+      },
     },
     candidates: {
       absolutePath: '/admin/candidates',

@@ -1,5 +1,3 @@
-import '@mantine/core/styles.css'
-
 import { createInertiaApp } from '@inertiajs/react'
 import ReactDOMServer from 'react-dom/server'
 import { Providers } from '~/app/providers'
