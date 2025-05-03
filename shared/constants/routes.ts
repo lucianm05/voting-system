@@ -31,27 +31,43 @@ export const ROUTES = {
       index: {
         absolutePath: '/admin/elections',
         relativePath: '/elections',
-        alias: 'admin.elections',
-        view: 'admin/elections',
+        alias: 'admin.elections.index',
+        view: 'admin/elections/index',
       },
-    },
-    newElection: {
-      index: {
-        absolutePath: '/admin/new-election',
-        relativePath: '/new-election',
-        alias: 'admin.newElection.index',
-        view: 'admin/new-election',
-      },
-      store: {
-        absolutePath: '/admin/new-election',
-        relativePath: '/new-election',
-        alias: 'admin.newElection.store',
+      create: {
+        index: {
+          absolutePath: '/admin/elections/create',
+          relativePath: '/elections/create',
+          alias: 'admin.elections.create.index',
+          view: 'admin/elections/create',
+        },
+        store: {
+          absolutePath: '/admin/elections/create',
+          relativePath: '/elections/create',
+          alias: 'admin.elections.create.store',
+        },
       },
     },
     candidates: {
-      absolutePath: '/admin/candidates',
-      relativePath: '/candidates',
-      alias: 'admin.candidates',
+      index: {
+        absolutePath: '/admin/candidates',
+        relativePath: '/candidates',
+        alias: 'admin.candidates.index',
+        view: 'admin/candidates/index',
+      },
+      create: {
+        index: {
+          absolutePath: '/admin/candidates/create',
+          relativePath: '/candidates/create',
+          alias: 'admin.candidates.create.index',
+          view: 'admin/candidates/create',
+        },
+        store: {
+          absolutePath: '/admin/candidates/create',
+          relativePath: '/candidates/create',
+          alias: 'admin.candidates.create.store',
+        },
+      },
     },
   },
 } as const

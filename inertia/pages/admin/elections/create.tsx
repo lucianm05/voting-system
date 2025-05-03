@@ -2,19 +2,20 @@ import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Text, TextInput, Title } from '@mantine/core'
 import { notifications } from '@mantine/notifications'
+import { Save } from 'lucide-react'
 import { FormEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DateTimePicker } from '~/app/components/date-time-picker'
+import { DateTimePicker } from '~/app/components/ui/date-time-picker'
 import { AdminLayout } from '~/app/features/admin/layout'
 
-function AdminNewElection() {
+function AdminElectionCreate() {
   const { t } = useTranslation()
-  const { data, setData, post, errors } = useForm({
-    name: '',
-    description: '',
-    dateStart: new Date(),
-    dateEnd: new Date(),
-  })
+  const { data, setData, post, errors, processing } = useForm<{
+    name: string
+    description: string
+    dateStart: Date
+    dateEnd: Date
+  }>()
 
   function onDateStartChange(value: Date | null) {
     if (!value) return
@@ -35,7 +36,7 @@ function AdminNewElection() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(ROUTES.admin.newElection.store.absolutePath, {
+    post(ROUTES.admin.elections.create.store.absolutePath, {
       onSuccess: () => {
         notifications.show({
           title: t('common.success'),
@@ -95,13 +96,15 @@ function AdminNewElection() {
         />
 
         <div className="flex justify-end">
-          <Button type="submit">{t('common.submit')}</Button>
+          <Button type="submit" leftSection={<Save size={20} />} disabled={processing}>
+            {t('common.save')}
+          </Button>
         </div>
       </form>
     </>
   )
 }
 
-AdminNewElection.layout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>
+AdminElectionCreate.layout = (page: ReactNode) => <AdminLayout>{page}</AdminLayout>
 
-export default AdminNewElection
+export default AdminElectionCreate

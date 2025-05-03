@@ -1,7 +1,9 @@
 import { Link as InertiaLink, InertiaLinkProps } from '@inertiajs/react'
 import { Button, ButtonProps, NavLink, NavLinkProps } from '@mantine/core'
 
-interface LinkProps extends Omit<InertiaLinkProps, 'onChange'>, Pick<NavLinkProps, 'onChange'> {
+interface LinkProps
+  extends Omit<InertiaLinkProps, 'onChange' | 'onClick' | 'onKeyDown' | 'color' | 'size' | 'style'>,
+    NavLinkProps {
   label: string
 }
 

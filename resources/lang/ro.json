@@ -1,5 +1,5 @@
 {
-  "app_title": "Sistem de vot electoral",
+  "app_title": "Romanian Voting",
 
   "common": {
     "add": "Adăugați",
@@ -8,7 +8,12 @@
     "date_start": "Dată de început",
     "date_end": "Dată de sfârșit",
     "submit": "Trimite",
-    "success": "Succes!"
+    "success": "Succes!",
+    "type": "Tip",
+    "election": "Tur de scrutin",
+    "independent": "Independent",
+    "party": "Partid",
+    "save": "Salvează"
   },
 
   "elections": {
@@ -33,5 +38,26 @@
       }
     },
     "election_created_successfully": "Turul de scrutin a fost adăugat!"
+  },
+
+  "candidates": {
+    "title": "Candidați"
+  },
+
+  "new_candidate": {
+    "title": "Candidat nou",
+    "description": "Adăugați un candidat nou pentru un tur de scrutin",
+    "fields": {
+      "name": {
+        "placeholder": "Popescu Ion"
+      },
+      "type": {
+        "placeholder": "Alegeți tipul candidatului"
+      },
+      "election_id": {
+        "placeholder": "Alegeți turul de scrutin"
+      }
+    },
+    "candidate_created_successfully": "Candidatul a fost adăugat!"
   }
 }

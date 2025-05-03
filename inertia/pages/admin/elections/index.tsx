@@ -1,9 +1,10 @@
 import Election from '#models/election'
 import { ROUTES } from '#shared/constants/routes'
 import { Table, TableData, Title } from '@mantine/core'
+import { Plus } from 'lucide-react'
 import { ReactNode, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ButtonLink } from '~/app/components/link'
+import { ButtonLink } from '~/app/components/ui/link'
 import { AdminLayout } from '~/app/features/admin/layout'
 import { formatDate } from '~/app/functions'
 
@@ -39,7 +40,10 @@ function AdminElections({ elections }: Props) {
         <Title order={1}>{t('elections.title')}</Title>
 
         <div>
-          <ButtonLink href={ROUTES.admin.newElection.index.absolutePath}>
+          <ButtonLink
+            href={ROUTES.admin.elections.create.index.absolutePath}
+            leftSection={<Plus size={20} />}
+          >
             {t('common.add')}
           </ButtonLink>
         </div>
