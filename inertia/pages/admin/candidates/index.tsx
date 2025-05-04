@@ -51,6 +51,7 @@ function AdminCandidates({ elections, candidates }: Props) {
 
       <Select
         label={t('candidates.select_election')}
+        placeholder={t('candidates.fields.election_id.placeholder')}
         withAsterisk
         defaultValue={electionId}
         onChange={setElectionId}

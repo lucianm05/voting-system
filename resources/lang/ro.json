@@ -13,15 +13,21 @@
     "election": "Tur de scrutin",
     "independent": "Independent",
     "party": "Partid",
-    "save": "Salvează"
+    "save": "Salvează",
+    "email": "Email",
+    "password": "Parolă",
+    "login": "Intră în cont",
+    "logout": "Ieși din cont",
+    "elections": "Tururi de scrutin",
+    "candidates": "Candidați"
   },
 
   "elections": {
-    "title": "Alegeri"
+    "title": "Tururi de scrutin"
   },
 
   "new_election": {
-    "title": "Alegeri noi",
+    "title": "Tur de scrutin nou",
     "description": "Adăugați un tur nou de scrutin",
     "fields": {
       "name": {
@@ -42,7 +48,12 @@
 
   "candidates": {
     "title": "Candidați",
-    "select_election": "Alegeți turul de scrutin"
+    "select_election": "Alegeți turul de scrutin",
+    "fields": {
+      "election_id": {
+        "placeholder": "Alegeri prezindențiale 2025"
+      }
+    }
   },
 
   "new_candidate": {

@@ -2,8 +2,10 @@ import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Card, Center, TextInput } from '@mantine/core'
 import { FormEvent } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export function AdminLoginForm() {
+  const { t } = useTranslation()
   const { data, setData, post } = useForm({ email: '', password: '' })
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
@@ -18,7 +20,7 @@ export function AdminLoginForm() {
           <TextInput
             type="email"
             name="email"
-            label="Email"
+            label={t('common.email')}
             placeholder="your@email.com"
             withAsterisk
             required
@@ -29,7 +31,7 @@ export function AdminLoginForm() {
           <TextInput
             type="password"
             name="password"
-            label="Password"
+            label={t('common.password')}
             placeholder="**********"
             withAsterisk
             required
@@ -38,7 +40,7 @@ export function AdminLoginForm() {
           />
 
           <Button w="100%" type="submit" disabled={!data.email || !data.password}>
-            Login
+            {t('common.login')}
           </Button>
         </form>
       </Card>
