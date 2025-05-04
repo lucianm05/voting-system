@@ -8,6 +8,7 @@ import { Save } from 'lucide-react'
 import { FormEvent, ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
+import { useElectionIdParam } from '~/app/hooks/use_election_id_param'
 
 interface Props {
   elections: Election[]
@@ -15,11 +16,12 @@ interface Props {
 
 function AdminCandidateCreate({ elections }: Props) {
   const { t } = useTranslation()
+  const { electionId } = useElectionIdParam()
   const { data, setData, post, errors, processing, reset } = useForm<{
     name: string
     type: string
     electionId: string
-  }>({ name: '', type: '', electionId: '' })
+  }>({ name: '', type: '', electionId: electionId || '' })
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()

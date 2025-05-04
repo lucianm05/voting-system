@@ -1,5 +1,12 @@
 import { CANDIDATE_TYPES } from '#shared/constants/candidates'
+import { SEARCH_PARAMS } from '#shared/constants/search_params'
 import vine from '@vinejs/vine'
+
+export const getCandidatesValidator = vine.compile(
+  vine.object({
+    [SEARCH_PARAMS.electionId]: vine.string().uuid().optional(),
+  })
+)
 
 export const createCandidateValidator = vine.compile(
   vine.object({

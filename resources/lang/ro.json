@@ -41,7 +41,8 @@
   },
 
   "candidates": {
-    "title": "Candidați"
+    "title": "Candidați",
+    "select_election": "Alegeți turul de scrutin"
   },
 
   "new_candidate": {
