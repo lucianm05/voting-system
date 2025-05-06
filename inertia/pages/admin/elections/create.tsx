@@ -1,12 +1,14 @@
 import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Text, TextInput, Title } from '@mantine/core'
+import { DateValue } from '@mantine/dates'
 import { notifications } from '@mantine/notifications'
 import { Save } from 'lucide-react'
 import { FormEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { DateTimePicker } from '~/app/components/ui/date-time-picker'
 import { AdminLayout } from '~/app/features/admin/layout'
+import { toLocalTimezone } from '~/app/functions'
 
 function AdminElectionCreate() {
   const { t } = useTranslation()
@@ -17,20 +19,22 @@ function AdminElectionCreate() {
     dateEnd: Date
   }>()
 
-  function onDateStartChange(value: Date | null) {
+  function onDateStartChange(value: DateValue) {
     if (!value) return
 
-    setData('dateStart', value)
+    const date = toLocalTimezone(value).toDate()
+    setData('dateStart', date)
 
-    if (data.dateEnd < value) {
-      setData('dateEnd', value)
+    if (data.dateEnd < date) {
+      setData('dateEnd', date)
     }
   }
 
-  function onDateEndChange(value: Date | null) {
+  function onDateEndChange(value: DateValue) {
     if (!value) return
 
-    setData('dateEnd', value)
+    const date = toLocalTimezone(value).toDate()
+    setData('dateEnd', date)
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {

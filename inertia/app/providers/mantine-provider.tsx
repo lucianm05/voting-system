@@ -8,7 +8,7 @@ import { DatesProvider } from '@mantine/dates'
 import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
 import { PropsWithChildren } from 'react'
-import { LOCALE, TIMEZONE } from '~/app/constants'
+import { LOCALE } from '~/app/constants'
 
 const theme = createTheme({
   spacing: {
@@ -22,7 +22,7 @@ export function MantineProvider({ children }: PropsWithChildren) {
   return (
     <MProvider theme={theme}>
       <ModalsProvider>
-        <DatesProvider settings={{ consistentWeeks: true, locale: LOCALE, timezone: TIMEZONE }}>
+        <DatesProvider settings={{ consistentWeeks: true, locale: LOCALE }}>
           <Notifications position="top-right" />
 
           {children}
