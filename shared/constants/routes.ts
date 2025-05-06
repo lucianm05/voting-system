@@ -70,4 +70,20 @@ export const ROUTES = {
       },
     },
   },
+
+  citizen: {
+    root: {
+      absolutePath: '/citizen',
+      relativePath: '/citizen',
+      alias: 'citizen',
+    },
+    authentication: {
+      index: {
+        absolutePath: '/citizen/authentication',
+        relativePath: '/authentication',
+        alias: 'citizen.authentication.index',
+        view: 'citizen/authentication/index',
+      },
+    },
+  },
 } as const

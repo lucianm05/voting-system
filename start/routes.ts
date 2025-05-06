@@ -58,3 +58,11 @@ router
   .prefix(ROUTES.admin.root.absolutePath)
   .use(middleware.guest())
   .use(middleware.auth())
+
+router
+  .group(() => {
+    router
+      .on(ROUTES.citizen.authentication.index.relativePath)
+      .renderInertia(ROUTES.citizen.authentication.index.view)
+  })
+  .prefix(ROUTES.citizen.root.absolutePath)

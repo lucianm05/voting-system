@@ -71,5 +71,12 @@
       }
     },
     "candidate_created_successfully": "Candidatul a fost adăugat!"
+  },
+
+  "citizen": {
+    "authentication": {
+      "title": "Autentificați-vă cu cartea de identitate (buletin)",
+      "description": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei web.\nCamera web va fi folosită pentru a valida identitatea dumneavoastră."
+    }
   }
 }
