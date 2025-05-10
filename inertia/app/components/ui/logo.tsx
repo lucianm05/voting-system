@@ -12,7 +12,7 @@ export function Logo({ size = 48, className }: Props) {
 
   return (
     <img
-      src="/resources/images/logo.png"
+      src="/images/logo.png"
       alt={t('app_title')}
       width={size}
       height={size}

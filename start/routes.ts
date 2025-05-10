@@ -10,7 +10,8 @@
 import { ROUTES } from '#shared/constants/routes'
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
-router.on('/').renderInertia('home')
+
+router.on('/').redirect(ROUTES.citizen.authentication.index.absolutePath)
 
 router
   .group(() => {
@@ -71,5 +72,9 @@ router
       CitizensController,
       'attemptAuthentication',
     ])
+
+    router
+      .on(ROUTES.citizen.authentication.validate.relativePath)
+      .renderInertia(ROUTES.citizen.authentication.validate.view)
   })
   .prefix(ROUTES.citizen.root.absolutePath)

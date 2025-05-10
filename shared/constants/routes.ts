@@ -89,6 +89,12 @@ export const ROUTES = {
         relativePath: '/authentication/attempt',
         alias: 'citizen.authentication.attempt',
       },
+      validate: {
+        absolutePath: '/citizen/authentication/validate',
+        relativePath: '/authentication/validate',
+        alias: 'citizen.authentication.validate',
+        view: 'citizen/authentication/validate',
+      },
     },
   },
 } as const
