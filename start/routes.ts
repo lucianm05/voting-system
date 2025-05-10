@@ -61,8 +61,15 @@ router
 
 router
   .group(() => {
+    const CitizensController = () => import('#controllers/citizens_controller')
+
     router
       .on(ROUTES.citizen.authentication.index.relativePath)
       .renderInertia(ROUTES.citizen.authentication.index.view)
+
+    router.post(ROUTES.citizen.authentication.attempt.relativePath, [
+      CitizensController,
+      'attemptAuthentication',
+    ])
   })
   .prefix(ROUTES.citizen.root.absolutePath)

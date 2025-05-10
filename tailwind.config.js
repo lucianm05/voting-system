@@ -9,11 +9,6 @@ export default {
     fontFamily: {
       sans: ['Instrument Sans', 'sans-serif'],
     },
-    colors: {
-      primary: {
-        DEFAULT: '#5A45FF',
-      },
-    },
   },
   plugins: [],
 }

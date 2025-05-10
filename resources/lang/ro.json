@@ -8,7 +8,8 @@
     "date_start": "Dată de început",
     "date_end": "Dată de sfârșit",
     "submit": "Trimite",
-    "success": "Succes!",
+    "success": "Succes",
+    "error": "Error",
     "type": "Tip",
     "election": "Tur de scrutin",
     "independent": "Independent",
@@ -19,7 +20,11 @@
     "login": "Intră în cont",
     "logout": "Ieși din cont",
     "elections": "Tururi de scrutin",
-    "candidates": "Candidați"
+    "candidates": "Candidați",
+    "drag_image_here_or_press_to_select_file": "Trageți imaginea aici sau faceți clic pentru a selecta un fișier",
+    "only_images_are_allowed": "Sunt permise doar imagini",
+    "only_one_image_allowed": "Este permisă o singură imagine",
+    "no_file_added": "Nicio fotografie atașată"
   },
 
   "elections": {
@@ -76,7 +81,8 @@
   "citizen": {
     "authentication": {
       "title": "Autentificați-vă cu cartea de identitate (buletin)",
-      "description": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei web.\nCamera web va fi folosită pentru a valida identitatea dumneavoastră."
+      "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei web.",
+      "description_2": "Camera web va fi folosită pentru a valida identitatea dumneavoastră."
     }
   }
 }
