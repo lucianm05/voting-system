@@ -1,6 +1,6 @@
 import Election from '#models/election'
 import { ROUTES } from '#shared/constants/routes'
-import { createElectionValidator } from '#validators/election'
+import { createElectionValidator } from '#validators/elections'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ElectionController {

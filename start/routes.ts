@@ -14,17 +14,17 @@ router.on('/').renderInertia('home')
 
 router
   .group(() => {
-    const SessionController = () => import('#controllers/session_controller')
+    const SessionsController = () => import('#controllers/sessions_controller')
 
-    router.post('/', [SessionController, 'store']).as(ROUTES.session.store.alias)
+    router.post('/', [SessionsController, 'store']).as(ROUTES.session.store.alias)
 
-    router.delete('/', [SessionController, 'destroy']).as(ROUTES.session.destroy.alias)
+    router.delete('/', [SessionsController, 'destroy']).as(ROUTES.session.destroy.alias)
   })
   .prefix('/session')
 
 router
   .group(() => {
-    const ElectionController = () => import('#controllers/election_controller')
+    const ElectionsController = () => import('#controllers/elections_controller')
     const CandidatesController = () => import('#controllers/candidates_controller')
 
     router.on('/').redirect(ROUTES.admin.elections.index.alias)
@@ -35,14 +35,14 @@ router
       .as(ROUTES.admin.login.alias)
 
     router
-      .get(ROUTES.admin.elections.index.relativePath, [ElectionController, 'index'])
+      .get(ROUTES.admin.elections.index.relativePath, [ElectionsController, 'index'])
       .as(ROUTES.admin.elections.index.alias)
     router
       .on(ROUTES.admin.elections.create.index.relativePath)
       .renderInertia(ROUTES.admin.elections.create.index.view)
       .as(ROUTES.admin.elections.create.index.alias)
     router
-      .post(ROUTES.admin.elections.create.store.relativePath, [ElectionController, 'store'])
+      .post(ROUTES.admin.elections.create.store.relativePath, [ElectionsController, 'store'])
       .as(ROUTES.admin.elections.create.store.alias)
 
     router
