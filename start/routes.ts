@@ -64,17 +64,11 @@ router
   .group(() => {
     const CitizensController = () => import('#controllers/citizens_controller')
 
-    router
-      .on(ROUTES.citizen.authentication.index.relativePath)
-      .renderInertia(ROUTES.citizen.authentication.index.view)
+    router.get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'index'])
 
-    router.post(ROUTES.citizen.authentication.attempt.relativePath, [
+    router.post(ROUTES.citizen.authentication.index.relativePath, [
       CitizensController,
       'attemptAuthentication',
     ])
-
-    router
-      .on(ROUTES.citizen.authentication.validate.relativePath)
-      .renderInertia(ROUTES.citizen.authentication.validate.view)
   })
   .prefix(ROUTES.citizen.root.absolutePath)

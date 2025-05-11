@@ -82,7 +82,10 @@
     "authentication": {
       "title": "Autentificați-vă cu cartea de identitate (buletin)",
       "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei web.",
-      "description_2": "Camera web va fi folosită pentru a valida identitatea dumneavoastră."
+      "description_2": "Camera web va fi folosită pentru a valida identitatea dumneavoastră.",
+      "errors": {
+        "face_not_found": "Nu a fost găsită nicio față în imaginea încărcată. Vă rugăm să încercați din nou cu o imagine clară, bine luminată, iar cartea de identitate să fie încadrată cât mai bine."
+      }
     }
   }
 }

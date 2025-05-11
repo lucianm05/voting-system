@@ -15,6 +15,6 @@ export function formatDate(date: Date | string) {
   return dayjsDate.format(DATETIME_FORMAT)
 }
 
-export function cn(...classes: (string | null | undefined)[]) {
-  return classes.filter(Boolean).join(' ')
+export function cn(...classes: unknown[]) {
+  return classes.filter((c) => Boolean(c) && typeof c === 'string').join(' ')
 }

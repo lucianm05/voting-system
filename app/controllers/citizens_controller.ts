@@ -1,21 +1,21 @@
+import { CITIZEN_AUTH_STEPS } from '#shared/constants/citizens'
 import { ROUTES } from '#shared/constants/routes'
 import { attemptAuthenticationValidator } from '#validators/citizens'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class CitizensController {
-  async attemptAuthentication({ request, response }: HttpContext) {
-    console.log('attempting authentication')
+  async index({ inertia }: HttpContext) {
+    return inertia.render(ROUTES.citizen.authentication.index.view, {
+      step: CITIZEN_AUTH_STEPS.uploadID,
+    })
+  }
+
+  async attemptAuthentication({ request, response, inertia }: HttpContext) {
     const { file } = await request.validateUsing(attemptAuthenticationValidator)
     console.log('file', file)
 
-    // try {
-    //   const imageProcessingService = new ImageProcessingService(file)
-    //   const ocrData = await imageProcessingService.OCR()
-    //   console.log('ocrData', ocrData)
-    // } catch (err) {
-    //   console.log(err)
-    // }
-
-    return response.redirect(ROUTES.citizen.authentication.validate.absolutePath)
+    return inertia.render(ROUTES.citizen.authentication.index.view, {
+      step: CITIZEN_AUTH_STEPS.validation,
+    })
   }
 }
