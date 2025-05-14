@@ -24,7 +24,8 @@
     "drag_image_here_or_press_to_select_file": "Trageți imaginea aici sau faceți clic pentru a selecta un fișier",
     "only_images_are_allowed": "Sunt permise doar imagini",
     "only_one_image_allowed": "Este permisă o singură imagine",
-    "no_file_added": "Nicio fotografie atașată"
+    "no_file_added": "Nicio fotografie atașată",
+    "start": "Începeți"
   },
 
   "elections": {
@@ -80,11 +81,25 @@
 
   "citizen": {
     "authentication": {
-      "title": "Autentificați-vă cu cartea de identitate (buletin)",
-      "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei web.",
-      "description_2": "Camera web va fi folosită pentru a valida identitatea dumneavoastră.",
+      "upload_ci": {
+        "title": "Autentificați-vă cu cartea de identitate (buletin)",
+        "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei video.",
+        "description_2": "Camera video va fi folosită pentru a valida identitatea dumneavoastră."
+      },
+      "validation": {
+        "title": "Validarea identității",
+        "description_1": "Pentru asta, trebuie să acordați permisiuni pentru accesarea camerei video a dispozitivului.",
+        "description_2": "Pe ecran vor apărea instrucțiuni pe care trebuie să le urmați."
+      },
       "errors": {
         "face_not_found": "Nu a fost găsită nicio față în imaginea încărcată. Vă rugăm să încercați din nou cu o imagine clară, bine luminată, iar cartea de identitate să fie încadrată cât mai bine."
+      },
+      "liveness_challenges": {
+        "head_right": "Întoarceți capul spre stânga",
+        "head_left": "Întoarceți capul spre dreapta",
+        "open_mouth": "Țineți gura deschisă",
+        "face_match": "Priviți spre camera video",
+        "done": "Ați fost verificat cu success!"
       }
     }
   }

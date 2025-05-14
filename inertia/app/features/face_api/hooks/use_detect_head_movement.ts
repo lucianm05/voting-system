@@ -1,6 +1,6 @@
+import { ValueOf } from '#shared/types/index'
 import { RefObject, useCallback, useState } from 'react'
 import { detectFaceWithLandmarks } from '~/app/features/face_api/functions'
-import { ValueOf } from '~/app/types'
 
 const RIGHT_THRESHOLD = 5
 const LEFT_THRESHOLD = -5
@@ -24,14 +24,16 @@ export function useDetectHeadMovement({ videoRef }: Config) {
   const [headPosition, setHeadPosition] = useState<HeadPosition | null>(null)
 
   const detectHeadMovement = useCallback(async () => {
-    if (!videoRef.current) return
+    if (!videoRef.current) {
+      return null
+    }
 
     const video = videoRef.current
     const detections = await detectFaceWithLandmarks(video)
 
     if (!detections?.landmarks) {
       setHeadPosition(null)
-      return
+      return null
     }
 
     const leftEye = detections.landmarks.getLeftEye()
@@ -42,15 +44,16 @@ export function useDetectHeadMovement({ videoRef }: Config) {
 
     if (angle < LEFT_THRESHOLD) {
       setHeadPosition(HEAD_POSITIONS.left)
-      return
+      return HEAD_POSITIONS.left
     }
 
     if (angle > RIGHT_THRESHOLD) {
       setHeadPosition(HEAD_POSITIONS.right)
-      return
+      return HEAD_POSITIONS.right
     }
 
     setHeadPosition(HEAD_POSITIONS.forward)
+    return HEAD_POSITIONS.right
   }, [])
 
   return {

@@ -14,14 +14,16 @@ export function useDetectMouthOpenness({ videoRef }: Config) {
   const [isMouthOpen, setIsMouthOpen] = useState<boolean | null>(null)
 
   const detectMouth = useCallback(async () => {
-    if (!videoRef.current) return
+    if (!videoRef.current) {
+      setIsMouthOpen(null)
+      return null
+    }
 
-    const video = videoRef.current
-    const detections = await detectFaceWithLandmarks(video)
+    const detections = await detectFaceWithLandmarks(videoRef.current)
 
     if (!detections?.landmarks) {
       setIsMouthOpen(null)
-      return
+      return null
     }
 
     // get mouth landmarks (points 48-60)
@@ -46,7 +48,10 @@ export function useDetectMouthOpenness({ videoRef }: Config) {
     // #endregion
 
     // detect mouth opening
-    setIsMouthOpen(MAR > OPEN_THRESHOLD)
+    const open = MAR > OPEN_THRESHOLD
+    setIsMouthOpen(open)
+
+    return open
   }, [])
 
   return {

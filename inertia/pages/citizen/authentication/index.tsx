@@ -1,16 +1,11 @@
-import { CITIZEN_AUTH_STEPS, CitizenAuthStep } from '#shared/constants/citizens'
+import { CITIZEN_AUTH_STEPS } from '#shared/constants/citizens'
 import { CitizenAuthenticationProvider } from '~/app/features/citizen/authentication/providers'
+import { Props } from '~/app/features/citizen/authentication/types'
 import { CitizenAuthenticationUploadID } from '~/app/features/citizen/authentication/upload-id/components'
 import { CitizenAuthenticationValidation } from '~/app/features/citizen/authentication/validation/components'
 import { FaceApiProvider } from '~/app/features/face_api/providers'
 
-interface Props {
-  step: CitizenAuthStep
-}
-
 export default function CitizenAuthentication({ step }: Props) {
-  console.log('step', step)
-
   return (
     <main className="px-4 w-full min-h-screen">
       <FaceApiProvider>

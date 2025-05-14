@@ -3,7 +3,7 @@ import * as faceapi from 'face-api.js'
 import { RefObject, useCallback, useMemo, useRef, useState } from 'react'
 import { useLogStatus } from '~/app/hooks/use_log_status'
 
-const MAX_RETRIES = 5
+const MAX_RETRIES = 10
 
 const STATUSES = {
   imageRefMissing: 'IMAGE_REF_MISSING',

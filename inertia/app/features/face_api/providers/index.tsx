@@ -1,20 +1,8 @@
-import {
-  createContext,
-  PropsWithChildren,
-  RefObject,
-  useContext,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from 'react'
+import { createContext, PropsWithChildren, useContext, useEffect, useMemo, useState } from 'react'
 import { loadFaceApi } from '~/app/features/face_api/functions'
 
 interface State {
   isLoaded: boolean
-  videoRef: RefObject<HTMLVideoElement | null>
-  imageRef: RefObject<HTMLImageElement | null>
-  // faceMatch: ReturnType<typeof useFaceMatch>
 }
 
 const FaceApiContext = createContext<State>({} as State)
@@ -24,9 +12,6 @@ const FaceApiContext = createContext<State>({} as State)
  */
 export function FaceApiProvider({ children }: PropsWithChildren) {
   const [isLoaded, setIsLoaded] = useState(false)
-
-  const videoRef = useRef<HTMLVideoElement | null>(null)
-  const imageRef = useRef<HTMLImageElement | null>(null)
 
   useEffect(() => {
     loadFaceApi()
@@ -41,7 +26,7 @@ export function FaceApiProvider({ children }: PropsWithChildren) {
   }, [])
 
   const value = useMemo(() => {
-    return { isLoaded, videoRef, imageRef }
+    return { isLoaded }
   }, [isLoaded])
 
   return <FaceApiContext.Provider value={value}>{children}</FaceApiContext.Provider>

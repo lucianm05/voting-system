@@ -172,7 +172,7 @@ importers:
         specifier: ^3.5.0
         version: 3.5.3
       tailwindcss:
-        specifier: '3'
+        specifier: ^3.4.17
         version: 3.4.17
       ts-node-maintained:
         specifier: ^10.9.5

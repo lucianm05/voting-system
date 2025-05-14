@@ -1,11 +1,11 @@
 import { IMAGE_MIME_TYPE } from '#shared/constants/files'
 import { ROUTES } from '#shared/constants/routes'
-import { Avatar, Button, Card, Center, Divider, Skeleton, Text, Title } from '@mantine/core'
+import { Avatar, Button, Center, Skeleton, Text, Title } from '@mantine/core'
 import { Dropzone, FileRejection, FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
 import { FormEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { LogoWithTitle } from '~/app/components/ui/logo'
+import { CardWithLogo } from '~/app/components/ui/card-with-logo'
 import { useCitizenAuthenticationContext } from '~/app/features/citizen/authentication/providers'
 import { useDetectFaceInImage } from '~/app/features/face_api/hooks/use_detect_face_in_image'
 import { cn } from '~/app/functions'
@@ -22,18 +22,12 @@ export function CitizenAuthenticationUploadID() {
   const detectFace = useDetectFaceInImage({ imageRef, label: 'citizen' })
 
   useEffect(() => {
-    console.group('@@@')
-    console.log('descriptor', detectFace.descriptor)
-    console.log('imageUrl', imageUrl)
-    console.groupEnd()
-
     function analyzeDescriptor() {
       if (!imageUrl || detectFace.descriptor === undefined) {
         return
       }
 
       if (detectFace.descriptor === null) {
-        // setData('file', null)
         setError('file', t('citizen.authentication.errors.face_not_found'))
         return
       }
@@ -99,21 +93,17 @@ export function CitizenAuthenticationUploadID() {
         />
       )}
 
-      <Card withBorder padding="0" shadow="sm" className="w-full max-w-[28rem]">
-        <LogoWithTitle logoSize={40} textSize="lg" className="px-8 py-4" />
-
-        <Divider />
-
-        <div className="px-8 py-4 space-y-4">
-          <div className="space-y-4">
-            <Title size="xl">{t('citizen.authentication.title')}</Title>
+      <CardWithLogo>
+        <div className="px-8 py-4 space-y-6">
+          <div className="space-y-6">
+            <Title size="xl">{t('citizen.authentication.upload_ci.title')}</Title>
             <div className="space-y-2">
-              <Text size="sm">{t('citizen.authentication.description_1')}</Text>
-              <Text size="sm">{t('citizen.authentication.description_2')}</Text>
+              <Text size="sm">{t('citizen.authentication.upload_ci.description_1')}</Text>
+              <Text size="sm">{t('citizen.authentication.upload_ci.description_2')}</Text>
             </div>
           </div>
 
-          <form onSubmit={onSubmit} className="flex items-end space-y-4 flex-col w-full">
+          <form onSubmit={onSubmit} className="flex items-end space-y-6 flex-col w-full">
             <div className="space-y-1 w-full">
               <Dropzone
                 id="id-upload"
@@ -179,7 +169,7 @@ export function CitizenAuthenticationUploadID() {
             </Button>
           </form>
         </div>
-      </Card>
+      </CardWithLogo>
     </Center>
   )
 }
