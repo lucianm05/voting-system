@@ -1,23 +1,6 @@
 export const ROUTES = {
-  session: {
-    root: {
-      absolutePath: '/session',
-      alias: 'session',
-    },
-    store: {
-      absolutePath: '/session',
-      relativePath: '/',
-      alias: 'session.store',
-    },
-    destroy: {
-      absolutePath: '/session',
-      relativePath: '/',
-      alias: 'session.destroy',
-    },
-  },
-
   admin: {
-    root: {
+    index: {
       absolutePath: '/admin',
       alias: 'admin',
     },
@@ -72,7 +55,7 @@ export const ROUTES = {
   },
 
   citizen: {
-    root: {
+    index: {
       absolutePath: '/citizen',
       relativePath: '/citizen',
       alias: 'citizen',

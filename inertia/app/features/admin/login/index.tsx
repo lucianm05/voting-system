@@ -10,7 +10,7 @@ export function AdminLoginForm() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    post(ROUTES.session.root.absolutePath)
+    post(ROUTES.admin.login.absolutePath)
   }
 
   return (

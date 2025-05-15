@@ -15,13 +15,11 @@ router.on('/').redirect(ROUTES.citizen.authentication.index.absolutePath)
 
 router
   .group(() => {
-    const SessionsController = () => import('#controllers/sessions_controller')
-
-    router.post('/', [SessionsController, 'store']).as(ROUTES.session.store.alias)
-
-    router.delete('/', [SessionsController, 'destroy']).as(ROUTES.session.destroy.alias)
+    router.on('/').renderInertia(ROUTES.admin.login.view).use(middleware.guest())
+    router.post('/', '#controllers/admins_controller.login').use(middleware.guest())
+    router.delete('/', '#controllers/admins_controller.logout').use(middleware.auth())
   })
-  .prefix('/session')
+  .prefix(ROUTES.admin.login.absolutePath)
 
 router
   .group(() => {
@@ -29,11 +27,6 @@ router
     const CandidatesController = () => import('#controllers/candidates_controller')
 
     router.on('/').redirect(ROUTES.admin.elections.index.alias)
-
-    router
-      .on(ROUTES.admin.login.relativePath)
-      .renderInertia(ROUTES.admin.login.view)
-      .as(ROUTES.admin.login.alias)
 
     router
       .get(ROUTES.admin.elections.index.relativePath, [ElectionsController, 'index'])
@@ -56,8 +49,7 @@ router
       .post(ROUTES.admin.candidates.create.store.relativePath, [CandidatesController, 'store'])
       .as(ROUTES.admin.candidates.create.store.alias)
   })
-  .prefix(ROUTES.admin.root.absolutePath)
-  .use(middleware.guest())
+  .prefix(ROUTES.admin.index.absolutePath)
   .use(middleware.auth())
 
 router
@@ -71,4 +63,4 @@ router
       'attemptAuthentication',
     ])
   })
-  .prefix(ROUTES.citizen.root.absolutePath)
+  .prefix(ROUTES.citizen.index.absolutePath)

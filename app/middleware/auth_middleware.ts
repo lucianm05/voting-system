@@ -20,11 +20,8 @@ export default class AuthMiddleware {
       guards?: (keyof Authenticators)[]
     } = {}
   ) {
-    if (ctx.route?.name === ROUTES.admin.login.alias) {
-      return next()
-    }
-
-    await ctx.auth.authenticateUsing(options.guards, { loginRoute: this.redirectTo })
+    const admin = await ctx.auth.authenticateUsing(options.guards, { loginRoute: this.redirectTo })
+    console.log('admin', admin)
     return next()
   }
 }

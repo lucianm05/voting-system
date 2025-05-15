@@ -14,7 +14,7 @@ export function AdminLogoutForm({ className }: Props) {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    del(ROUTES.session.root.absolutePath)
+    del(ROUTES.admin.login.absolutePath)
   }
 
   return (

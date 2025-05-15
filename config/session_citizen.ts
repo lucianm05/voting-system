@@ -4,19 +4,19 @@ import { defineConfig, stores } from '@adonisjs/session'
 
 const sessionConfig = defineConfig({
   enabled: true,
-  cookieName: 'rvs_as',
+  cookieName: 'rvs_cs',
 
   /**
    * When set to true, the session id cookie will be deleted
    * once the user closes the browser.
    */
-  clearWithBrowser: false,
+  clearWithBrowser: true,
 
   /**
    * Define how long to keep the session data alive without
    * any activity.
    */
-  age: '2h',
+  age: '30m',
 
   /**
    * Configuration for session cookie and the
@@ -26,7 +26,7 @@ const sessionConfig = defineConfig({
     path: '/',
     httpOnly: true,
     secure: app.inProduction,
-    sameSite: 'lax',
+    sameSite: 'strict',
   },
 
   /**

@@ -1,40 +1,25 @@
+import Admin from '#models/admin'
+import { ROUTES } from '#shared/constants/routes'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class AdminController {
-  /**
-   * Display a list of resource
-   */
   async index({ inertia }: HttpContext) {
     return inertia.render('admin/index')
   }
 
-  // /**
-  //  * Display form to create a new record
-  //  */
-  // async create({}: HttpContext) {}
+  async login({ request, response, auth }: HttpContext) {
+    const { email, password } = request.only(['email', 'password'])
 
-  // /**
-  //  * Handle form submission for the create action
-  //  */
-  // async store({ request }: HttpContext) {}
+    const admin = await Admin.verifyCredentials(email, password)
 
-  // /**
-  //  * Show individual record
-  //  */
-  // async show({ params }: HttpContext) {}
+    await auth.use('web').login(admin)
 
-  // /**
-  //  * Edit individual record
-  //  */
-  // async edit({ params }: HttpContext) {}
+    return response.redirect(ROUTES.admin.index.absolutePath)
+  }
 
-  // /**
-  //  * Handle form submission for the edit action
-  //  */
-  // async update({ params, request }: HttpContext) {}
+  async logout({ response, auth }: HttpContext) {
+    await auth.use('web').logout()
 
-  // /**
-  //  * Delete record
-  //  */
-  // async destroy({ params }: HttpContext) {}
+    return response.redirect(ROUTES.admin.login.absolutePath)
+  }
 }

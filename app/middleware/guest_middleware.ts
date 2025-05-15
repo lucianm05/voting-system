@@ -14,18 +14,16 @@ export default class GuestMiddleware {
   /**
    * The URL to redirect to when user is logged-in
    */
-  redirectTo = ROUTES.admin.root.absolutePath
+  redirectTo = ROUTES.admin.index.absolutePath
 
   async handle(
     ctx: HttpContext,
     next: NextFn,
     options: { guards?: (keyof Authenticators)[] } = {}
   ) {
-    if (ctx.route?.name === ROUTES.admin.login.alias) {
-      for (let guard of options.guards || [ctx.auth.defaultGuard]) {
-        if (await ctx.auth.use(guard).check()) {
-          return ctx.response.redirect(this.redirectTo, true)
-        }
+    for (let guard of options.guards || [ctx.auth.defaultGuard]) {
+      if (await ctx.auth.use(guard).check()) {
+        return ctx.response.redirect(this.redirectTo, true)
       }
     }
 
