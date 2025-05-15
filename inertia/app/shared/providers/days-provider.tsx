@@ -6,7 +6,7 @@ import timezone from 'dayjs/plugin/timezone'
 import utc from 'dayjs/plugin/utc'
 
 import { PropsWithChildren } from 'react'
-import { LOCALE } from '~/app/constants'
+import { LOCALE } from '~/app/shared/constants'
 
 dayjs.extend(utc)
 dayjs.extend(timezone)

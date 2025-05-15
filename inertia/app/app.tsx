@@ -4,7 +4,7 @@
 import { resolvePageComponent } from '@adonisjs/inertia/helpers'
 import { createInertiaApp } from '@inertiajs/react'
 import { createRoot, hydrateRoot } from 'react-dom/client'
-import { Providers } from '~/app/providers'
+import { Providers } from '~/app/shared/providers'
 import i18n from '~/i18n'
 
 createInertiaApp({

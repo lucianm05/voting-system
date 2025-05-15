@@ -1,5 +1,5 @@
 import dayjs from 'dayjs'
-import { DATETIME_FORMAT, TIMEZONE } from '~/app/constants'
+import { DATETIME_FORMAT, TIMEZONE } from '~/app/shared/constants'
 
 export function toLocalTimezone(date: Date | string) {
   return dayjs(date).tz(TIMEZONE)

@@ -4,7 +4,7 @@ import { useDetectHeadMovement } from '~/app/features/face_api/hooks/use_detect_
 import { useDetectMouthOpenness } from '~/app/features/face_api/hooks/use_detect_mouth_openness'
 import { useFaceMatch } from '~/app/features/face_api/hooks/use_face_match'
 import { useFaceApiContext } from '~/app/features/face_api/providers'
-import { useLogStatus } from '~/app/hooks/use_log_status'
+import { useLogStatus } from '~/app/shared/hooks/use_log_status'
 
 const NEEDED_PASSES = 3
 

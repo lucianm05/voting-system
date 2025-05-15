@@ -4,9 +4,9 @@ import { AppShell, Text } from '@mantine/core'
 import { Users, Vote } from 'lucide-react'
 import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Link } from '~/app/components/ui/link'
-import { Logo } from '~/app/components/ui/logo'
 import { AdminLogoutForm } from '~/app/features/admin/logout'
+import { Link } from '~/app/shared/ui/link'
+import { Logo } from '~/app/shared/ui/logo'
 
 export function AdminLayout({ children }: PropsWithChildren) {
   const { t } = useTranslation()

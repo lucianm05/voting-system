@@ -1,7 +1,7 @@
 import { SEARCH_PARAMS } from '#shared/constants/search_params'
 import { router } from '@inertiajs/react'
 import { useMemo } from 'react'
-import { useURL } from '~/app/hooks/use_url'
+import { useURL } from '~/app/shared/hooks/use_url'
 
 interface Config {
   visitOptions?: Parameters<typeof router.visit>[1]

@@ -5,12 +5,12 @@ import { Dropzone, FileRejection, FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
 import { FormEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
-import { CardWithLogo } from '~/app/components/ui/card-with-logo'
 import { useCitizenAuthenticationContext } from '~/app/features/citizen/authentication/providers'
 import { useDetectFaceInImage } from '~/app/features/face_api/hooks/use_detect_face_in_image'
-import { cn } from '~/app/functions'
-import { flattenFileRejections } from '~/app/functions/files'
-import { useLocalFileURL } from '~/app/hooks/use_local_file_url'
+import { cn } from '~/app/shared/functions'
+import { flattenFileRejections } from '~/app/shared/functions/files'
+import { useLocalFileURL } from '~/app/shared/hooks/use_local_file_url'
+import { CardWithLogo } from '~/app/shared/ui/card-with-logo'
 
 export function CitizenAuthenticationUploadID() {
   const { t } = useTranslation()

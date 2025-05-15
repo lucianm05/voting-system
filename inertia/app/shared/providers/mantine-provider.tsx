@@ -9,7 +9,7 @@ import { DatesProvider } from '@mantine/dates'
 import { ModalsProvider } from '@mantine/modals'
 import { Notifications } from '@mantine/notifications'
 import { PropsWithChildren } from 'react'
-import { LOCALE } from '~/app/constants'
+import { LOCALE } from '~/app/shared/constants'
 
 const theme = createTheme({
   spacing: {

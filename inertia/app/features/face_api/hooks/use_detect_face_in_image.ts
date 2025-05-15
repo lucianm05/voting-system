@@ -1,7 +1,7 @@
 import { ValueOf } from '#shared/types/index'
 import * as faceapi from 'face-api.js'
 import { RefObject, useCallback, useMemo, useRef, useState } from 'react'
-import { useLogStatus } from '~/app/hooks/use_log_status'
+import { useLogStatus } from '~/app/shared/hooks/use_log_status'
 
 const MAX_RETRIES = 10
 

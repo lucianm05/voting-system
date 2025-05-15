@@ -7,8 +7,8 @@ import { Props } from '~/app/features/citizen/authentication/types'
 import { InstructionsCard } from '~/app/features/citizen/authentication/validation/components/instructions-card'
 import { useAttemptChallenges } from '~/app/features/face_api/hooks/use_attempt_challenges'
 import { useFaceApiContext } from '~/app/features/face_api/providers'
-import { cn } from '~/app/functions'
-import { useLocalFileURL } from '~/app/hooks/use_local_file_url'
+import { cn } from '~/app/shared/functions'
+import { useLocalFileURL } from '~/app/shared/hooks/use_local_file_url'
 
 export function CitizenAuthenticationValidation() {
   const { t } = useTranslation()

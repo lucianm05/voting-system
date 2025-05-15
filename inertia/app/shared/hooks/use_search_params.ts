@@ -1,5 +1,5 @@
 import { useMemo } from 'react'
-import { useURL } from '~/app/hooks/use_url'
+import { useURL } from '~/app/shared/hooks/use_url'
 
 export function useSearchParams() {
   const url = useURL()

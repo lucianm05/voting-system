@@ -1,6 +1,6 @@
 import { createInertiaApp } from '@inertiajs/react'
 import ReactDOMServer from 'react-dom/server'
-import { Providers } from '~/app/providers'
+import { Providers } from '~/app/shared/providers'
 
 export default function render(page: any) {
   return createInertiaApp({

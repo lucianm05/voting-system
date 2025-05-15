@@ -6,9 +6,9 @@ import { notifications } from '@mantine/notifications'
 import { Save } from 'lucide-react'
 import { FormEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { DateTimePicker } from '~/app/components/ui/date-time-picker'
 import { AdminLayout } from '~/app/features/admin/layout'
-import { toLocalTimezone } from '~/app/functions'
+import { toLocalTimezone } from '~/app/shared/functions'
+import { DateTimePicker } from '~/app/shared/ui/date-time-picker'
 
 function AdminElectionCreate() {
   const { t } = useTranslation()

@@ -8,7 +8,7 @@ import { Save } from 'lucide-react'
 import { FormEvent, ReactElement } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
-import { useElectionIdParam } from '~/app/hooks/use_election_id_param'
+import { useElectionIdParam } from '~/app/shared/hooks/use_election_id_param'
 
 interface Props {
   elections: Election[]

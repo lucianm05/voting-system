@@ -1,5 +1,5 @@
 import { Card, CardProps, Divider } from '@mantine/core'
-import { LogoWithTitle } from '~/app/components/ui/logo'
+import { LogoWithTitle } from '~/app/shared/ui/logo'
 
 export function CardWithLogo({ children, ...props }: CardProps) {
   return (

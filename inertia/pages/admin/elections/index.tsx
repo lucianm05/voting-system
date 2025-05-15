@@ -4,9 +4,9 @@ import { Table, TableData, Title } from '@mantine/core'
 import { Plus } from 'lucide-react'
 import { ReactNode, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ButtonLink } from '~/app/components/ui/link'
 import { AdminLayout } from '~/app/features/admin/layout'
-import { formatDate } from '~/app/functions'
+import { formatDate } from '~/app/shared/functions'
+import { ButtonLink } from '~/app/shared/ui/link'
 
 interface Props {
   elections: Election[]

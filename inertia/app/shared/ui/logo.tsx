@@ -1,7 +1,7 @@
 import { Text, TextProps } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-import { cn } from '~/app/functions'
-import { ContainerProps, PropsWithClassName } from '~/app/types'
+import { cn } from '~/app/shared/functions'
+import { ContainerProps, PropsWithClassName } from '~/app/shared/types'
 
 interface Props extends PropsWithClassName {
   size?: number

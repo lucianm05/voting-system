@@ -2,7 +2,7 @@ import { ValueOf } from '#shared/types/index'
 import * as faceapi from 'face-api.js'
 import { RefObject, useCallback, useState } from 'react'
 import { useDetectFaceInImage } from '~/app/features/face_api/hooks/use_detect_face_in_image'
-import { useLogStatus } from '~/app/hooks/use_log_status'
+import { useLogStatus } from '~/app/shared/hooks/use_log_status'
 
 const LABEL = 'citizen'
 
