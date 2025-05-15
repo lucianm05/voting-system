@@ -1,3 +1,4 @@
+import { ROUTES } from '#shared/constants/routes'
 import { usePage } from '@inertiajs/react'
 import { Title } from '@mantine/core'
 import { useEffect, useRef } from 'react'
@@ -19,11 +20,12 @@ export function CitizenAuthenticationValidation() {
   const { challenges } = usePage<Props>().props
 
   const { isLoaded } = useFaceApiContext()
-  const { currentChallenge, start, onImageLoad, isStarted } = useAttemptChallenges({
-    imageRef,
-    videoRef,
-    challenges: challenges || [],
-  })
+  const { currentChallenge, passedAllChallenges, start, onImageLoad, isStarted } =
+    useAttemptChallenges({
+      imageRef,
+      videoRef,
+      challenges: challenges || [],
+    })
 
   const imageUrl = useLocalFileURL({ file: form.data.file })
 
@@ -52,6 +54,24 @@ export function CitizenAuthenticationValidation() {
 
     startProcess()
   }, [isLoaded, isStarted])
+
+  useEffect(() => {
+    if (!passedAllChallenges) {
+      return
+    }
+
+    function loginCitizen() {
+      form.post(ROUTES.citizen.authentication.login.absolutePath)
+    }
+
+    const timeout = setTimeout(() => {
+      loginCitizen()
+    }, 5000)
+
+    return () => {
+      clearTimeout(timeout)
+    }
+  }, [passedAllChallenges])
 
   return (
     <>

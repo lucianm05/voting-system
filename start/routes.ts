@@ -56,11 +56,24 @@ router
   .group(() => {
     const CitizensController = () => import('#controllers/citizens_controller')
 
-    router.get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'index'])
+    router
+      .get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'index'])
+      .use(middleware.guestCitizen())
 
-    router.post(ROUTES.citizen.authentication.index.relativePath, [
-      CitizensController,
-      'attemptAuthentication',
-    ])
+    router
+      .post(ROUTES.citizen.authentication.index.relativePath, [
+        CitizensController,
+        'attemptAuthentication',
+      ])
+      .use(middleware.guestCitizen())
+
+    router
+      .post(ROUTES.citizen.authentication.login.relativePath, [CitizensController, 'login'])
+      .use(middleware.guestCitizen())
+
+    router
+      .on(ROUTES.citizen.elections.relativePath)
+      .renderInertia(ROUTES.citizen.elections.view)
+      .use(middleware.citizen())
   })
   .prefix(ROUTES.citizen.index.absolutePath)

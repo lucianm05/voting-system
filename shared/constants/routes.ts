@@ -67,17 +67,37 @@ export const ROUTES = {
         alias: 'citizen.authentication.index',
         view: 'citizen/authentication/index',
       },
+      /**
+       * When the citizen is uploading the ID, they "attempt" to authenticate.
+       */
       attempt: {
         absolutePath: '/citizen/authentication/attempt',
         relativePath: '/authentication/attempt',
         alias: 'citizen.authentication.attempt',
       },
+      /**
+       * When the citizen is validating their identity based on the ID.
+       */
       validate: {
         absolutePath: '/citizen/authentication/validate',
         relativePath: '/authentication/validate',
         alias: 'citizen.authentication.validate',
         view: 'citizen/authentication/validate',
       },
+      /**
+       * When the citizen uploaded the ID and validated their identity, we mark the authentication as passed and let them through.
+       */
+      login: {
+        absolutePath: '/citizen/authentication/login',
+        relativePath: '/authentication/login',
+        alias: 'citizen.authentication.login',
+      },
+    },
+
+    elections: {
+      absolutePath: '/citizen/elections',
+      relativePath: '/elections',
+      view: 'citizen/elections/index',
     },
   },
 } as const

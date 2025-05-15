@@ -47,8 +47,6 @@ export function useAttemptChallenges({ imageRef, videoRef, challenges }: Props) 
       return
     }
 
-    console.log('attempting challenge', currentChallenge)
-
     switch (currentChallenge) {
       case LIVENESS_CHALLENGES.faceMatch: {
         const result = await faceMatch.verifyFace()
@@ -117,6 +115,7 @@ export function useAttemptChallenges({ imageRef, videoRef, challenges }: Props) 
 
   return {
     passed,
+    passedAllChallenges,
     currentChallenge,
     start,
     onImageLoad: faceMatch.onImageLoad,
