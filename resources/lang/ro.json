@@ -25,7 +25,17 @@
     "only_images_are_allowed": "Sunt permise doar imagini",
     "only_one_image_allowed": "Este permisă o singură imagine",
     "no_file_added": "Nicio fotografie atașată",
-    "start": "Începeți"
+    "start": "Începeți",
+    "election_type": "Tipul alegerilor",
+    "election_types": {
+      "local": "Locale",
+      "county": "Județene",
+      "parliamentary": "Parlamentare",
+      "presidential": "Prezidențiale",
+      "euro": "Europarlamentare"
+    },
+    "locality": "Localitate",
+    "county": "Județ"
   },
 
   "elections": {
@@ -41,6 +51,9 @@
       },
       "description": {
         "placeholder": "Alegerea următorului președinte al României"
+      },
+      "election_type": {
+        "placeholder": "Locale"
       },
       "date_start": {
         "placeholder": "4 Mai 2025"

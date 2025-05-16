@@ -21,6 +21,7 @@ export default class ElectionController {
     await Election.create({
       name: payload.name,
       description: payload.description,
+      electionType: payload.electionType,
       dateStart: payload.dateStart,
       dateEnd: payload.dateEnd,
     })

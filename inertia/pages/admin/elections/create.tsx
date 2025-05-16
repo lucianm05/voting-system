@@ -1,6 +1,7 @@
+import { ELECTION_TYPES } from '#shared/constants/elections'
 import { ROUTES } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
-import { Button, Text, TextInput, Title } from '@mantine/core'
+import { Button, Select, Text, TextInput, Title } from '@mantine/core'
 import { DateValue } from '@mantine/dates'
 import { notifications } from '@mantine/notifications'
 import { Save } from 'lucide-react'
@@ -15,6 +16,7 @@ function AdminElectionCreate() {
   const { data, setData, post, errors, processing } = useForm<{
     name: string
     description: string
+    electionType: string
     dateStart: Date
     dateEnd: Date
   }>()
@@ -77,6 +79,20 @@ function AdminElectionCreate() {
           error={errors.description}
         />
 
+        <Select
+          label={t('common.election_type')}
+          placeholder={t('new_election.fields.description.placeholder')}
+          withAsterisk
+          required
+          value={data.electionType}
+          onChange={(value) => value && setData('electionType', value)}
+          error={errors.electionType}
+          data={Object.values(ELECTION_TYPES).map((type) => ({
+            label: t(`common.election_types.${type}`),
+            value: type,
+          }))}
+        />
+
         <DateTimePicker
           label={t('common.date_start')}
           placeholder={t('new_election.fields.date_start.placeholder')}
@@ -84,7 +100,6 @@ function AdminElectionCreate() {
           required
           value={data.dateStart}
           onChange={onDateStartChange}
-          minDate={new Date()}
           error={errors.dateStart}
         />
 

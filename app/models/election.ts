@@ -1,3 +1,4 @@
+import type { ElectionType } from '#shared/constants/elections'
 import { BaseModel, beforeCreate, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
@@ -25,6 +26,9 @@ export default class Election extends BaseModel {
     prepare: (value: Date) => value.toISOString(),
   })
   declare dateEnd: Date
+
+  @column()
+  declare electionType: ElectionType
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

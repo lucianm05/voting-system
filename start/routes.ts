@@ -18,9 +18,9 @@ router
   .group(() => {
     const AdminsController = () => import('#controllers/admins_controller')
 
-    router.on('/').renderInertia(ROUTES.admin.login.view).use(middleware.guest())
-    router.post('/', [AdminsController, 'login']).use(middleware.guest())
-    router.delete('/', [AdminsController, 'logout']).use(middleware.auth())
+    router.on('/').renderInertia(ROUTES.admin.login.view).use(middleware.adminGuest())
+    router.post('/', [AdminsController, 'login']).use(middleware.adminGuest())
+    router.delete('/', [AdminsController, 'logout']).use(middleware.citizenGuest())
   })
   .prefix(ROUTES.admin.login.absolutePath)
 // #endregion
@@ -31,7 +31,7 @@ router
     const ElectionsController = () => import('#controllers/elections_controller')
     const CandidatesController = () => import('#controllers/candidates_controller')
 
-    router.on('/').redirect(ROUTES.admin.elections.index.alias)
+    router.on('/').redirect(ROUTES.admin.elections.index.absolutePath)
 
     router.get(ROUTES.admin.elections.index.relativePath, [ElectionsController, 'renderAdminIndex'])
     router
@@ -47,7 +47,7 @@ router
     router.post(ROUTES.admin.candidates.create.relativePath, [CandidatesController, 'create'])
   })
   .prefix(ROUTES.admin.index.absolutePath)
-  .use(middleware.auth())
+  .use(middleware.adminAuth())
 // #endregion
 
 // #region Citizens
@@ -57,18 +57,18 @@ router
 
     router
       .get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'renderIndex'])
-      .use(middleware.guestCitizen())
+      .use(middleware.citizenGuest())
 
     router
       .post(ROUTES.citizen.authentication.index.relativePath, [
         CitizensController,
         'renderAttemptAuthentication',
       ])
-      .use(middleware.guestCitizen())
+      .use(middleware.citizenGuest())
 
     router
       .post(ROUTES.citizen.authentication.login.relativePath, [CitizensController, 'login'])
-      .use(middleware.guestCitizen())
+      .use(middleware.citizenGuest())
 
     router.on(ROUTES.citizen.elections.relativePath).renderInertia(ROUTES.citizen.elections.view)
     // .use(middleware.citizen())
