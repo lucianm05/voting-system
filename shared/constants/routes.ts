@@ -51,7 +51,7 @@ export const ROUTES = {
         absolutePath: '/citizen/authentication',
         relativePath: '/authentication',
         alias: 'citizen.authentication.index',
-        view: 'citizen/authentication/index',
+        view: 'citizen/authentication',
       },
       /**
        * When the citizen is uploading the ID, they "attempt" to authenticate.
@@ -68,7 +68,6 @@ export const ROUTES = {
         absolutePath: '/citizen/authentication/validate',
         relativePath: '/authentication/validate',
         alias: 'citizen.authentication.validate',
-        view: 'citizen/authentication/validate',
       },
       /**
        * When the citizen uploaded the ID and validated their identity, we mark the authentication as passed and let them through.
@@ -83,7 +82,13 @@ export const ROUTES = {
     elections: {
       absolutePath: '/citizen/elections',
       relativePath: '/elections',
-      view: 'citizen/elections/index',
+      view: 'citizen/elections',
+    },
+
+    myVote: {
+      absolutePath: '/citizen/my-vote',
+      relativePath: '/my-vote',
+      view: 'citizen/my-vote',
     },
   },
 } as const

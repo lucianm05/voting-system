@@ -8,7 +8,7 @@ export default class CandidatesController {
   /**
    * Display a list of resource
    */
-  async renderIndex({ request, inertia }: HttpContext) {
+  async renderAdminIndex({ request, inertia }: HttpContext) {
     const { electionId } = await request.validateUsing(getCandidatesValidator)
 
     return inertia.render(ROUTES.admin.candidates.index.view, {

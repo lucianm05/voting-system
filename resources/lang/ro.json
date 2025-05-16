@@ -101,6 +101,10 @@
         "face_match": "Priviți spre camera video",
         "done": "Ați fost verificat cu success!"
       }
+    },
+
+    "dashboard": {
+      "verify_vote": "Verifică votul tău"
     }
   }
 }
