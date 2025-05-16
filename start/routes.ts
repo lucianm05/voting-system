@@ -15,9 +15,11 @@ router.on('/').redirect(ROUTES.citizen.authentication.index.absolutePath)
 
 router
   .group(() => {
+    const AdminsController = () => import('#controllers/admins_controller')
+
     router.on('/').renderInertia(ROUTES.admin.login.view).use(middleware.guest())
-    router.post('/', '#controllers/admins_controller.login').use(middleware.guest())
-    router.delete('/', '#controllers/admins_controller.logout').use(middleware.auth())
+    router.post('/', [AdminsController, 'login']).use(middleware.guest())
+    router.delete('/', [AdminsController, 'logout']).use(middleware.auth())
   })
   .prefix(ROUTES.admin.login.absolutePath)
 
@@ -29,25 +31,25 @@ router
     router.on('/').redirect(ROUTES.admin.elections.index.alias)
 
     router
-      .get(ROUTES.admin.elections.index.relativePath, [ElectionsController, 'index'])
+      .get(ROUTES.admin.elections.index.relativePath, [ElectionsController, 'renderAdminIndex'])
       .as(ROUTES.admin.elections.index.alias)
     router
-      .on(ROUTES.admin.elections.create.index.relativePath)
-      .renderInertia(ROUTES.admin.elections.create.index.view)
-      .as(ROUTES.admin.elections.create.index.alias)
+      .on(ROUTES.admin.elections.create.relativePath)
+      .renderInertia(ROUTES.admin.elections.create.view)
+      .as(ROUTES.admin.elections.create.alias)
     router
-      .post(ROUTES.admin.elections.create.store.relativePath, [ElectionsController, 'store'])
-      .as(ROUTES.admin.elections.create.store.alias)
+      .post(ROUTES.admin.elections.create.relativePath, [ElectionsController, 'create'])
+      .as(ROUTES.admin.elections.create.alias)
 
     router
-      .get(ROUTES.admin.candidates.index.relativePath, [CandidatesController, 'index'])
+      .get(ROUTES.admin.candidates.index.relativePath, [CandidatesController, 'renderIndex'])
       .as(ROUTES.admin.candidates.index.alias)
     router
-      .get(ROUTES.admin.candidates.create.index.relativePath, [CandidatesController, 'createIndex'])
-      .as(ROUTES.admin.candidates.create.index.alias)
+      .get(ROUTES.admin.candidates.create.relativePath, [CandidatesController, 'renderCreate'])
+      .as(ROUTES.admin.candidates.create.alias)
     router
-      .post(ROUTES.admin.candidates.create.store.relativePath, [CandidatesController, 'store'])
-      .as(ROUTES.admin.candidates.create.store.alias)
+      .post(ROUTES.admin.candidates.create.relativePath, [CandidatesController, 'create'])
+      .as(ROUTES.admin.candidates.create.alias)
   })
   .prefix(ROUTES.admin.index.absolutePath)
   .use(middleware.auth())
@@ -57,13 +59,13 @@ router
     const CitizensController = () => import('#controllers/citizens_controller')
 
     router
-      .get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'index'])
+      .get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'renderIndex'])
       .use(middleware.guestCitizen())
 
     router
       .post(ROUTES.citizen.authentication.index.relativePath, [
         CitizensController,
-        'attemptAuthentication',
+        'renderAttemptAuthentication',
       ])
       .use(middleware.guestCitizen())
 

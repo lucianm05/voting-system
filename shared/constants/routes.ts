@@ -18,17 +18,10 @@ export const ROUTES = {
         view: 'admin/elections/index',
       },
       create: {
-        index: {
-          absolutePath: '/admin/elections/create',
-          relativePath: '/elections/create',
-          alias: 'admin.elections.create.index',
-          view: 'admin/elections/create',
-        },
-        store: {
-          absolutePath: '/admin/elections/create',
-          relativePath: '/elections/create',
-          alias: 'admin.elections.create.store',
-        },
+        absolutePath: '/admin/elections/create',
+        relativePath: '/elections/create',
+        alias: 'admin.elections.create.index',
+        view: 'admin/elections/create',
       },
     },
     candidates: {
@@ -39,17 +32,10 @@ export const ROUTES = {
         view: 'admin/candidates/index',
       },
       create: {
-        index: {
-          absolutePath: '/admin/candidates/create',
-          relativePath: '/candidates/create',
-          alias: 'admin.candidates.create.index',
-          view: 'admin/candidates/create',
-        },
-        store: {
-          absolutePath: '/admin/candidates/create',
-          relativePath: '/candidates/create',
-          alias: 'admin.candidates.create.store',
-        },
+        absolutePath: '/admin/candidates/create',
+        relativePath: '/candidates/create',
+        alias: 'admin.candidates.create.index',
+        view: 'admin/candidates/create',
       },
     },
   },

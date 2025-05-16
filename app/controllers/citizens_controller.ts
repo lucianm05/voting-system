@@ -12,13 +12,13 @@ export default class CitizensController {
     this.service = new CitizensService()
   }
 
-  async index({ inertia }: HttpContext) {
+  async renderIndex({ inertia }: HttpContext) {
     return inertia.render(ROUTES.citizen.authentication.index.view, {
       step: CITIZEN_AUTH_STEPS.uploadID,
     })
   }
 
-  async attemptAuthentication({ request, inertia, session }: HttpContext) {
+  async renderAttemptAuthentication({ request, inertia, session }: HttpContext) {
     const { file } = await request.validateUsing(attemptAuthenticationValidator)
     // console.log('file', file)
     const cnp = '5010405295915'

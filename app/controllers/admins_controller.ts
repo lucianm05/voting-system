@@ -3,7 +3,7 @@ import { ROUTES } from '#shared/constants/routes'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class AdminController {
-  async index({ inertia }: HttpContext) {
+  async renderIndex({ inertia }: HttpContext) {
     return inertia.render('admin/index')
   }
 

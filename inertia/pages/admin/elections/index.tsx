@@ -41,7 +41,7 @@ function AdminElections({ elections }: Props) {
 
         <div>
           <ButtonLink
-            href={ROUTES.admin.elections.create.index.absolutePath}
+            href={ROUTES.admin.elections.create.absolutePath}
             leftSection={<Plus size={20} />}
           >
             {t('common.add')}

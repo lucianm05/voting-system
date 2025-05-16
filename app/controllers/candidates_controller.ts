@@ -8,7 +8,7 @@ export default class CandidatesController {
   /**
    * Display a list of resource
    */
-  async index({ request, inertia }: HttpContext) {
+  async renderIndex({ request, inertia }: HttpContext) {
     const { electionId } = await request.validateUsing(getCandidatesValidator)
 
     return inertia.render(ROUTES.admin.candidates.index.view, {
@@ -22,13 +22,13 @@ export default class CandidatesController {
     })
   }
 
-  async createIndex({ inertia }: HttpContext) {
-    return inertia.render(ROUTES.admin.candidates.create.index.view, {
+  async renderCreate({ inertia }: HttpContext) {
+    return inertia.render(ROUTES.admin.candidates.create.view, {
       elections: () => Election.query().orderBy('createdAt', 'asc'),
     })
   }
 
-  async store({ request, response }: HttpContext) {
+  async create({ request, response }: HttpContext) {
     const payload = await request.validateUsing(createCandidateValidator)
     const election = await Election.findOrFail(payload.electionId)
     const candidate = await Candidate.create({
@@ -38,6 +38,6 @@ export default class CandidatesController {
 
     await candidate.related('election').associate(election)
 
-    return response.redirect().toRoute(ROUTES.admin.candidates.create.index.absolutePath)
+    return response.redirect().toRoute(ROUTES.admin.candidates.create.absolutePath)
   }
 }

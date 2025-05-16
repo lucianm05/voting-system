@@ -40,7 +40,7 @@ function AdminElectionCreate() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(ROUTES.admin.elections.create.store.absolutePath, {
+    post(ROUTES.admin.elections.create.absolutePath, {
       onSuccess: () => {
         notifications.show({
           title: t('common.success'),

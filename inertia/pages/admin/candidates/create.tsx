@@ -26,7 +26,7 @@ function AdminCandidateCreate({ elections }: Props) {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(ROUTES.admin.candidates.create.store.absolutePath, {
+    post(ROUTES.admin.candidates.create.absolutePath, {
       onSuccess: () => {
         notifications.show({
           title: t('common.success'),

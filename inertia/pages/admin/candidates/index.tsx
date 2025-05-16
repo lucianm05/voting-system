@@ -41,7 +41,7 @@ function AdminCandidates({ elections, candidates }: Props) {
 
         <div>
           <ButtonLink
-            href={`${ROUTES.admin.candidates.create.index.absolutePath}?${SEARCH_PARAMS.electionId}=${electionId}`}
+            href={`${ROUTES.admin.candidates.create.absolutePath}?${SEARCH_PARAMS.electionId}=${electionId}`}
             leftSection={<Plus size={20} />}
           >
             {t('common.add')}
