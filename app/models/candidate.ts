@@ -22,6 +22,12 @@ export default class Candidate extends BaseModel {
   @belongsTo(() => Election)
   declare election: BelongsTo<typeof Election>
 
+  @column()
+  declare county: string | null
+
+  @column()
+  declare locality: string | null
+
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime
 

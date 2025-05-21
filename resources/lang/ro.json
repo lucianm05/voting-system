@@ -87,6 +87,12 @@
       },
       "election_id": {
         "placeholder": "Alegeți turul de scrutin"
+      },
+      "locality": {
+        "placeholder": "Alegeți localitatea"
+      },
+      "county": {
+        "placeholder": "Alegeți județul"
       }
     },
     "candidate_created_successfully": "Candidatul a fost adăugat!"

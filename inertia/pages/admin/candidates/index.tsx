@@ -7,7 +7,7 @@ import { Plus } from 'lucide-react'
 import { ReactElement, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
-import { useElectionIdParam } from '~/app/shared/hooks/use_election_id_param'
+import { useElectionIdParam } from '~/app/shared/hooks/url_params/use_election_id_param'
 import { ButtonLink } from '~/app/shared/ui/link'
 
 interface Props {
@@ -17,19 +17,17 @@ interface Props {
 
 function AdminCandidates({ elections, candidates }: Props) {
   const { t } = useTranslation()
-  const { electionId, setElectionId } = useElectionIdParam({
-    visitOptions: {
-      only: ['candidates'],
-    },
-  })
+  const { electionId, setElectionId } = useElectionIdParam()
 
   const tableData = useMemo<TableData>(() => {
     return {
-      head: ['Index', t('common.name'), t('common.type')],
+      head: ['Index', t('common.name'), t('common.type'), t('common.county'), t('common.locality')],
       body: candidates.map((candidate, index) => [
         index + 1,
         candidate.name,
         t(`common.${candidate.type}`),
+        candidate.county,
+        candidate.locality,
       ]),
     }
   }, [candidates])
@@ -54,7 +52,7 @@ function AdminCandidates({ elections, candidates }: Props) {
         placeholder={t('candidates.fields.election_id.placeholder')}
         withAsterisk
         defaultValue={electionId}
-        onChange={setElectionId}
+        onChange={(value) => value && setElectionId(value, { only: ['candidates'] })}
         data={elections.map((election) => ({ label: election.name, value: election.id }))}
         className="mt-6"
       />

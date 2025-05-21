@@ -1,5 +1,6 @@
 import Candidate from '#models/candidate'
 import Election from '#models/election'
+import UATService from '#services/uats_service'
 import { ROUTES } from '#shared/constants/routes'
 import { createCandidateValidator, getCandidatesValidator } from '#validators/candidates'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -22,18 +23,29 @@ export default class CandidatesController {
     })
   }
 
-  async renderCreate({ inertia }: HttpContext) {
+  async renderCreate({ request, inertia }: HttpContext) {
     return inertia.render(ROUTES.admin.candidates.create.view, {
       elections: () => Election.query().orderBy('createdAt', 'asc'),
+      counties: inertia.optional(() => {
+        return UATService.getCounties()
+      }),
+      localities: inertia.optional(() => {
+        const { autoCode } = request.only(['autoCode'])
+        return UATService.getLocalitiesByAutoCode(autoCode)
+      }),
     })
   }
 
   async create({ request, response }: HttpContext) {
     const payload = await request.validateUsing(createCandidateValidator)
     const election = await Election.findOrFail(payload.electionId)
+
     const candidate = await Candidate.create({
       name: payload.name,
       type: payload.type,
+      electionId: payload.electionId,
+      county: payload.county,
+      locality: payload.locality,
     })
 
     await candidate.related('election').associate(election)

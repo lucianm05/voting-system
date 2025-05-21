@@ -13,5 +13,7 @@ export const createCandidateValidator = vine.compile(
     name: vine.string().trim().minLength(1),
     type: vine.enum([CANDIDATE_TYPES.independent, CANDIDATE_TYPES.party]),
     electionId: vine.string().minLength(1),
+    county: vine.string().optional(),
+    locality: vine.string().optional(),
   })
 )
