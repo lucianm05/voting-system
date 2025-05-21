@@ -11,7 +11,8 @@
     "test": "node ace test",
     "lint": "eslint .",
     "format": "prettier --write .",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "build:icons": "npx @svgr/cli --typescript --filename-case snake --jsx-runtime automatic --icon '1.5em' --out-dir inertia/app/shared/components/icons -- resources/icons"
   },
   "imports": {
     "#controllers/*": "./app/controllers/*.js",
@@ -40,6 +41,7 @@
     "@japa/assert": "^4.0.1",
     "@japa/plugin-adonisjs": "^4.0.0",
     "@japa/runner": "^4.2.0",
+    "@svgr/cli": "^8.1.0",
     "@swc/core": "1.10.16",
     "@types/luxon": "^3.6.2",
     "@types/node": "^22.13.2",
@@ -83,7 +85,6 @@
     "edge.js": "^6.2.1",
     "face-api.js": "^0.22.2",
     "i18next": "^25.0.2",
-    "lucide-react": "^0.507.0",
     "luxon": "^3.6.1",
     "pg": "^8.14.1",
     "react": "^19.1.0",
@@ -91,7 +92,6 @@
     "react-i18next": "^15.5.1",
     "recharts": "2",
     "reflect-metadata": "^0.2.2",
-    "scribe.js-ocr": "^0.8.0",
     "tesseract.js": "^6.0.1"
   },
   "hotHook": {

@@ -4,10 +4,10 @@ import { useForm } from '@inertiajs/react'
 import { Button, Select, Text, TextInput, Title } from '@mantine/core'
 import { DateValue } from '@mantine/dates'
 import { notifications } from '@mantine/notifications'
-import { Save } from 'lucide-react'
 import { FormEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
+import { Save } from '~/app/shared/components/icons'
 import { toLocalTimezone } from '~/app/shared/functions'
 import { DateTimePicker } from '~/app/shared/ui/date-time-picker'
 
@@ -115,7 +115,7 @@ function AdminElectionCreate() {
         />
 
         <div className="flex justify-end">
-          <Button type="submit" leftSection={<Save size={20} />} disabled={processing}>
+          <Button type="submit" leftSection={<Save />} disabled={processing}>
             {t('common.save')}
           </Button>
         </div>

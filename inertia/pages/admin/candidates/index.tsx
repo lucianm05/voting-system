@@ -3,10 +3,10 @@ import Election from '#models/election'
 import { ROUTES } from '#shared/constants/routes'
 import { SEARCH_PARAMS } from '#shared/constants/search_params'
 import { Select, Table, TableData, Title } from '@mantine/core'
-import { Plus } from 'lucide-react'
 import { ReactElement, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
+import { Plus } from '~/app/shared/components/icons'
 import { useElectionIdParam } from '~/app/shared/hooks/url_params/use_election_id_param'
 import { ButtonLink } from '~/app/shared/ui/link'
 
@@ -40,7 +40,7 @@ function AdminCandidates({ elections, candidates }: Props) {
         <div>
           <ButtonLink
             href={`${ROUTES.admin.candidates.create.absolutePath}?${SEARCH_PARAMS.electionId}=${electionId}`}
-            leftSection={<Plus size={20} />}
+            leftSection={<Plus />}
           >
             {t('common.add')}
           </ButtonLink>
