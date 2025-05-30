@@ -1,4 +1,4 @@
-import { ELECTION_TYPES } from '#shared/constants/elections'
+import { ElectionTypes } from '#shared/constants/elections'
 import vine from '@vinejs/vine'
 
 export const createElectionValidator = vine.compile(
@@ -6,11 +6,11 @@ export const createElectionValidator = vine.compile(
     name: vine.string().trim().minLength(1),
     description: vine.string().trim().minLength(1),
     electionType: vine.enum([
-      ELECTION_TYPES.county,
-      ELECTION_TYPES.euro,
-      ELECTION_TYPES.local,
-      ELECTION_TYPES.parliamentary,
-      ELECTION_TYPES.presidential,
+      ElectionTypes.county,
+      ElectionTypes.euro,
+      ElectionTypes.local,
+      ElectionTypes.parliamentary,
+      ElectionTypes.presidential,
     ]),
     dateStart: vine.date({
       formats: ['iso8601'],

@@ -1,4 +1,4 @@
-import { ELECTION_TYPES } from '#shared/constants/elections'
+import { ElectionTypes } from '#shared/constants/elections'
 import { Routes } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Select, Text, TextInput, Title } from '@mantine/core'
@@ -87,7 +87,7 @@ function AdminElectionCreate() {
           value={data.electionType}
           onChange={(value) => value && setData('electionType', value)}
           error={errors.electionType}
-          data={Object.values(ELECTION_TYPES).map((type) => ({
+          data={Object.values(ElectionTypes).map((type) => ({
             label: t(`common.election_types.${type}`),
             value: type,
           }))}

@@ -1,15 +1,15 @@
-import { LIVENESS_CHALLENGES } from '#shared/constants/liveness'
+import { LivenessChallenges } from '#shared/constants/liveness'
 import { shuffle } from '#shared/functions/index'
 import env from '#start/env'
 import { createHash } from 'node:crypto'
 
 export default class CitizensService {
   generateChallenges() {
-    const nonFaceMatchChallenges = Object.values(LIVENESS_CHALLENGES).filter(
-      (challenge) => challenge !== LIVENESS_CHALLENGES.faceMatch
+    const nonFaceMatchChallenges = Object.values(LivenessChallenges).filter(
+      (challenge) => challenge !== LivenessChallenges.faceMatch
     )
     const shuffledChallenges = shuffle(nonFaceMatchChallenges)
-    const challenges = [LIVENESS_CHALLENGES.faceMatch, ...shuffledChallenges]
+    const challenges = [LivenessChallenges.faceMatch, ...shuffledChallenges]
 
     return challenges
   }

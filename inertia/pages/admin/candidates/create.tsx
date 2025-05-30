@@ -1,5 +1,5 @@
 import Election from '#models/election'
-import { CANDIDATE_TYPES } from '#shared/constants/candidates'
+import { CandidateTypes } from '#shared/constants/candidates'
 import { Routes } from '#shared/constants/routes'
 import { isElection } from '#shared/functions/elections'
 import { County, Locality } from '#shared/types/index'
@@ -136,8 +136,8 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
           withAsterisk
           required
           data={[
-            { label: t('common.independent'), value: CANDIDATE_TYPES.independent },
-            { label: t('common.party'), value: CANDIDATE_TYPES.party },
+            { label: t('common.independent'), value: CandidateTypes.independent },
+            { label: t('common.party'), value: CandidateTypes.party },
           ]}
           value={data.type}
           error={errors.type}

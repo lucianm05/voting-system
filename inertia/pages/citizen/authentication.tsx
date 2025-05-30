@@ -1,4 +1,4 @@
-import { CITIZEN_AUTH_STEPS } from '#shared/constants/citizens'
+import { CitizenAuthSteps } from '#shared/constants/citizens'
 import { CitizenAuthenticationProvider } from '~/app/features/citizen/authentication/providers'
 import { Props } from '~/app/features/citizen/authentication/types'
 import { CitizenAuthenticationUploadID } from '~/app/features/citizen/authentication/upload-id/components'
@@ -10,8 +10,8 @@ export default function CitizenAuthentication({ step }: Props) {
     <main className="px-4 w-full min-h-screen">
       <FaceApiProvider>
         <CitizenAuthenticationProvider>
-          {step === CITIZEN_AUTH_STEPS.uploadID && <CitizenAuthenticationUploadID />}
-          {step === CITIZEN_AUTH_STEPS.validation && <CitizenAuthenticationValidation />}
+          {step === CitizenAuthSteps.uploadID && <CitizenAuthenticationUploadID />}
+          {step === CitizenAuthSteps.validation && <CitizenAuthenticationValidation />}
         </CitizenAuthenticationProvider>
       </FaceApiProvider>
     </main>

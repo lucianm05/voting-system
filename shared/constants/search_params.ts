@@ -1,4 +1,4 @@
-export const SEARCH_PARAMS = {
+export const SearchParams = {
   electionId: 'electionId',
   autoCode: 'autoCode',
 } as const

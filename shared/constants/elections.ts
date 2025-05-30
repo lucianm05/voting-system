@@ -1,6 +1,6 @@
 import { ValueOf } from '#shared/types/index'
 
-export const ELECTION_TYPES = {
+export const ElectionTypes = {
   local: 'local',
   county: 'county',
   parliamentary: 'parliamentary',
@@ -8,4 +8,4 @@ export const ELECTION_TYPES = {
   euro: 'euro',
 } as const
 
-export type ElectionType = ValueOf<typeof ELECTION_TYPES>
+export type ElectionType = ValueOf<typeof ElectionTypes>

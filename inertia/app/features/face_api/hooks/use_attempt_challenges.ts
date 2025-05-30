@@ -1,4 +1,4 @@
-import { LIVENESS_CHALLENGES, LivenessChallenge } from '#shared/constants/liveness'
+import { LivenessChallenge, LivenessChallenges } from '#shared/constants/liveness'
 import { RefObject, useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useDetectHeadMovement } from '~/app/features/face_api/hooks/use_detect_head_movement'
 import { useDetectMouthOpenness } from '~/app/features/face_api/hooks/use_detect_mouth_openness'
@@ -16,10 +16,10 @@ interface Props {
 
 export function useAttemptChallenges({ imageRef, videoRef, challenges }: Props) {
   const [passed, setPassed] = useState({
-    [LIVENESS_CHALLENGES.faceMatch]: false,
-    [LIVENESS_CHALLENGES.headLeft]: false,
-    [LIVENESS_CHALLENGES.headRight]: false,
-    [LIVENESS_CHALLENGES.openMouth]: false,
+    [LivenessChallenges.faceMatch]: false,
+    [LivenessChallenges.headLeft]: false,
+    [LivenessChallenges.headRight]: false,
+    [LivenessChallenges.openMouth]: false,
   })
   const [currentChallenge, setCurrentChallenge] = useState<LivenessChallenge>(() => challenges[0])
   const [isStarted, setIsStarted] = useState(false)
@@ -48,22 +48,22 @@ export function useAttemptChallenges({ imageRef, videoRef, challenges }: Props) 
     }
 
     switch (currentChallenge) {
-      case LIVENESS_CHALLENGES.faceMatch: {
+      case LivenessChallenges.faceMatch: {
         const result = await faceMatch.verifyFace()
         return Boolean(result)
       }
 
-      case LIVENESS_CHALLENGES.headLeft: {
+      case LivenessChallenges.headLeft: {
         const result = await headMovement.detectHeadMovement()
         return result === 'LEFT'
       }
 
-      case LIVENESS_CHALLENGES.headRight: {
+      case LivenessChallenges.headRight: {
         const result = await headMovement.detectHeadMovement()
         return result === 'RIGHT'
       }
 
-      case LIVENESS_CHALLENGES.openMouth: {
+      case LivenessChallenges.openMouth: {
         const result = await mouthOpenness.detectMouth()
         return Boolean(result)
       }
