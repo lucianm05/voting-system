@@ -80,9 +80,16 @@ export const ROUTES = {
     },
 
     elections: {
-      absolutePath: '/citizen/elections',
-      relativePath: '/elections',
-      view: 'citizen/elections',
+      index: {
+        absolutePath: '/citizen/elections',
+        relativePath: '/elections',
+        view: 'citizen/elections',
+      },
+      vote: {
+        absolutePath: '/citizen/elections/:id/vote',
+        relativePath: '/elections/:id/vote',
+        view: 'citizen/elections/vote',
+      },
     },
 
     myVote: {

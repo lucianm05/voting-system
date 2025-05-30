@@ -13,6 +13,12 @@ export default class ElectionController {
     return inertia.render(ROUTES.admin.elections.index.view, { elections })
   }
 
+  async renderCitizensIndex({ inertia }: HttpContext) {
+    const elections = await Election.query().orderBy('createdAt', 'asc')
+
+    return inertia.render(ROUTES.citizen.elections.index.view, { elections })
+  }
+
   /**
    * Handle form submission for the create action
    */

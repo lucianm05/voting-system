@@ -54,6 +54,7 @@ router
 router
   .group(() => {
     const CitizensController = () => import('#controllers/citizens_controller')
+    const ElectionsController = () => import('#controllers/elections_controller')
 
     router
       .get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'renderIndex'])
@@ -70,8 +71,12 @@ router
       .post(ROUTES.citizen.authentication.login.relativePath, [CitizensController, 'login'])
       .use(middleware.citizenGuest())
 
-    router.on(ROUTES.citizen.elections.relativePath).renderInertia(ROUTES.citizen.elections.view)
-    // .use(middleware.citizen())
+    router
+      .get(ROUTES.citizen.elections.index.relativePath, [
+        ElectionsController,
+        'renderCitizensIndex',
+      ])
+      .use(middleware.citizenAuth())
   })
   .prefix(ROUTES.citizen.index.absolutePath)
 // #endregion

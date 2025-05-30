@@ -35,7 +35,8 @@
       "euro": "Europarlamentare"
     },
     "locality": "Localitate",
-    "county": "Județ"
+    "county": "Județ",
+    "vote": "Votează"
   },
 
   "elections": {
@@ -123,7 +124,12 @@
     },
 
     "dashboard": {
-      "verify_vote": "Verifică votul tău"
+      "verify_vote": "Verifică votul tău",
+
+      "elections": {
+        "title": "Tururi de scrutin active",
+        "no_active_elections": "Nu există tururi de scrutin active."
+      }
     }
   }
 }

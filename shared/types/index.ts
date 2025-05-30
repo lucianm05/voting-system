@@ -11,3 +11,9 @@ export interface County {
   nume: string
   localitati: Locality[]
 }
+
+export interface BaseDTO {
+  id: string
+  createdAt: string
+  updatedAt: string
+}

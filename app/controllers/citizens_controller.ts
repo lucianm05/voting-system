@@ -39,6 +39,6 @@ export default class CitizensController {
     const citizen = await Citizen.firstOrCreate({ identity })
     await auth.use('citizen').login(citizen)
 
-    return response.redirect(ROUTES.citizen.elections.absolutePath)
+    return response.redirect(ROUTES.citizen.elections.index.absolutePath)
   }
 }

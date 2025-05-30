@@ -13,7 +13,7 @@ export default class GuestCitizenMiddleware {
   /**
    * The URL to redirect to when user is logged-in
    */
-  redirectTo = ROUTES.citizen.elections.absolutePath
+  redirectTo = ROUTES.citizen.elections.index.absolutePath
 
   async handle(ctx: HttpContext, next: NextFn) {
     const guard = ctx.auth.use('citizen')
