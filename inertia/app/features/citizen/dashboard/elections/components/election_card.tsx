@@ -1,5 +1,5 @@
 import Election from '#models/election'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { getRoute } from '#shared/functions/routes'
 import { Badge, Card, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
@@ -21,7 +21,7 @@ export function ElectionCard({ id, name, description, electionType }: Election) 
       </Text>
 
       <ButtonLink
-        href={getRoute(ROUTES.citizen.elections.vote.absolutePath, { id })}
+        href={getRoute(Routes.citizen.elections.vote.absolutePath, { id })}
         className="mt-4 md:mt-6"
       >
         {t('common.vote')}

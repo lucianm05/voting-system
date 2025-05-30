@@ -1,4 +1,4 @@
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import type { Authenticators } from '@adonisjs/auth/types'
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
@@ -11,7 +11,7 @@ export default class AuthMiddleware {
   /**
    * The URL to redirect to, when authentication fails
    */
-  redirectTo = ROUTES.admin.login.absolutePath
+  redirectTo = Routes.admin.login.absolutePath
 
   async handle(
     ctx: HttpContext,

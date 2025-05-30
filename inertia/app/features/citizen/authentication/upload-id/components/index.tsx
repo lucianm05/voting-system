@@ -1,5 +1,5 @@
 import { IMAGE_MIME_TYPE } from '#shared/constants/files'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { Avatar, Button, Center, Skeleton, Text, Title } from '@mantine/core'
 import { Dropzone, FileRejection, FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
@@ -68,7 +68,7 @@ export function CitizenAuthenticationUploadID() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(ROUTES.citizen.authentication.index.absolutePath, {
+    post(Routes.citizen.authentication.index.absolutePath, {
       onError: (errors) => {
         if (typeof errors.file === 'string') {
           notifications.show({

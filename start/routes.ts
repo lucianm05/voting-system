@@ -7,22 +7,22 @@
 |
 */
 
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { middleware } from '#start/kernel'
 import router from '@adonisjs/core/services/router'
 
-router.on('/').redirect(ROUTES.citizen.authentication.index.absolutePath)
+router.on('/').redirect(Routes.citizen.authentication.index.absolutePath)
 
 // #region Admins auth
 router
   .group(() => {
     const AdminsController = () => import('#controllers/admins_controller')
 
-    router.on('/').renderInertia(ROUTES.admin.login.view).use(middleware.adminGuest())
+    router.on('/').renderInertia(Routes.admin.login.view).use(middleware.adminGuest())
     router.post('/', [AdminsController, 'login']).use(middleware.adminGuest())
     router.delete('/', [AdminsController, 'logout']).use(middleware.citizenGuest())
   })
-  .prefix(ROUTES.admin.login.absolutePath)
+  .prefix(Routes.admin.login.absolutePath)
 // #endregion
 
 // #region Admins dashboard
@@ -31,22 +31,22 @@ router
     const ElectionsController = () => import('#controllers/elections_controller')
     const CandidatesController = () => import('#controllers/candidates_controller')
 
-    router.on('/').redirect(ROUTES.admin.elections.index.absolutePath)
+    router.on('/').redirect(Routes.admin.elections.index.absolutePath)
 
-    router.get(ROUTES.admin.elections.index.relativePath, [ElectionsController, 'renderAdminIndex'])
+    router.get(Routes.admin.elections.index.relativePath, [ElectionsController, 'renderAdminIndex'])
     router
-      .on(ROUTES.admin.elections.create.relativePath)
-      .renderInertia(ROUTES.admin.elections.create.view)
-    router.post(ROUTES.admin.elections.create.relativePath, [ElectionsController, 'create'])
+      .on(Routes.admin.elections.create.relativePath)
+      .renderInertia(Routes.admin.elections.create.view)
+    router.post(Routes.admin.elections.create.relativePath, [ElectionsController, 'create'])
 
-    router.get(ROUTES.admin.candidates.index.relativePath, [
+    router.get(Routes.admin.candidates.index.relativePath, [
       CandidatesController,
       'renderAdminIndex',
     ])
-    router.get(ROUTES.admin.candidates.create.relativePath, [CandidatesController, 'renderCreate'])
-    router.post(ROUTES.admin.candidates.create.relativePath, [CandidatesController, 'create'])
+    router.get(Routes.admin.candidates.create.relativePath, [CandidatesController, 'renderCreate'])
+    router.post(Routes.admin.candidates.create.relativePath, [CandidatesController, 'create'])
   })
-  .prefix(ROUTES.admin.index.absolutePath)
+  .prefix(Routes.admin.index.absolutePath)
   .use(middleware.adminAuth())
 // #endregion
 
@@ -57,26 +57,26 @@ router
     const ElectionsController = () => import('#controllers/elections_controller')
 
     router
-      .get(ROUTES.citizen.authentication.index.relativePath, [CitizensController, 'renderIndex'])
+      .get(Routes.citizen.authentication.index.relativePath, [CitizensController, 'renderIndex'])
       .use(middleware.citizenGuest())
 
     router
-      .post(ROUTES.citizen.authentication.index.relativePath, [
+      .post(Routes.citizen.authentication.index.relativePath, [
         CitizensController,
         'renderAttemptAuthentication',
       ])
       .use(middleware.citizenGuest())
 
     router
-      .post(ROUTES.citizen.authentication.login.relativePath, [CitizensController, 'login'])
+      .post(Routes.citizen.authentication.login.relativePath, [CitizensController, 'login'])
       .use(middleware.citizenGuest())
 
     router
-      .get(ROUTES.citizen.elections.index.relativePath, [
+      .get(Routes.citizen.elections.index.relativePath, [
         ElectionsController,
         'renderCitizensIndex',
       ])
       .use(middleware.citizenAuth())
   })
-  .prefix(ROUTES.citizen.index.absolutePath)
+  .prefix(Routes.citizen.index.absolutePath)
 // #endregion

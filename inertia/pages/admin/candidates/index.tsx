@@ -1,6 +1,6 @@
 import Candidate from '#models/candidate'
 import Election from '#models/election'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { SEARCH_PARAMS } from '#shared/constants/search_params'
 import { Select, Table, TableData, Title } from '@mantine/core'
 import { ReactElement, useMemo } from 'react'
@@ -39,7 +39,7 @@ function AdminCandidates({ elections, candidates }: Props) {
 
         <div>
           <ButtonLink
-            href={`${ROUTES.admin.candidates.create.absolutePath}?${SEARCH_PARAMS.electionId}=${electionId}`}
+            href={`${Routes.admin.candidates.create.absolutePath}?${SEARCH_PARAMS.electionId}=${electionId}`}
             leftSection={<Plus />}
           >
             {t('common.add')}

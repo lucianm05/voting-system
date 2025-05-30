@@ -1,4 +1,4 @@
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { usePage } from '@inertiajs/react'
 import { AppShell, Burger } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
@@ -30,17 +30,17 @@ export function CitizenDashboardLayout({ children }: PropsWithChildren) {
       <AppShell.Navbar p="md" className="flex flex-col justify-between">
         <div>
           <Link
-            href={ROUTES.citizen.elections.index.absolutePath}
+            href={Routes.citizen.elections.index.absolutePath}
             label={t('common.elections')}
             leftSection={<Vote />}
-            active={route.url.includes(ROUTES.citizen.elections.index.relativePath)}
+            active={route.url.includes(Routes.citizen.elections.index.relativePath)}
             className="font-medium"
           />
           <Link
-            href={ROUTES.citizen.myVote.absolutePath}
+            href={Routes.citizen.myVote.absolutePath}
             label={t('citizen.dashboard.verify_vote')}
             leftSection={<Check />}
-            active={route.url.includes(ROUTES.citizen.myVote.relativePath)}
+            active={route.url.includes(Routes.citizen.myVote.relativePath)}
             className="font-medium"
           />
         </div>

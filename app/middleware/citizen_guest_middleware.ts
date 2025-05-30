@@ -1,4 +1,4 @@
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
 
@@ -13,7 +13,7 @@ export default class GuestCitizenMiddleware {
   /**
    * The URL to redirect to when user is logged-in
    */
-  redirectTo = ROUTES.citizen.elections.index.absolutePath
+  redirectTo = Routes.citizen.elections.index.absolutePath
 
   async handle(ctx: HttpContext, next: NextFn) {
     const guard = ctx.auth.use('citizen')

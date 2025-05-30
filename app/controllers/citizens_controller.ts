@@ -1,7 +1,7 @@
 import Citizen from '#models/citizen'
 import CitizensService from '#services/citizens_service'
 import { CITIZEN_AUTH_STEPS } from '#shared/constants/citizens'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { attemptAuthenticationValidator } from '#validators/citizens'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -13,7 +13,7 @@ export default class CitizensController {
   }
 
   async renderIndex({ inertia }: HttpContext) {
-    return inertia.render(ROUTES.citizen.authentication.index.view, {
+    return inertia.render(Routes.citizen.authentication.index.view, {
       step: CITIZEN_AUTH_STEPS.uploadID,
     })
   }
@@ -27,7 +27,7 @@ export default class CitizensController {
 
     session.put('cnp', cnp)
 
-    return inertia.render(ROUTES.citizen.authentication.index.view, {
+    return inertia.render(Routes.citizen.authentication.index.view, {
       step: CITIZEN_AUTH_STEPS.validation,
       challenges,
     })
@@ -39,6 +39,6 @@ export default class CitizensController {
     const citizen = await Citizen.firstOrCreate({ identity })
     await auth.use('citizen').login(citizen)
 
-    return response.redirect(ROUTES.citizen.elections.index.absolutePath)
+    return response.redirect(Routes.citizen.elections.index.absolutePath)
   }
 }

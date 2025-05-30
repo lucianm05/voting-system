@@ -1,5 +1,5 @@
 import { ELECTION_TYPES } from '#shared/constants/elections'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { useForm } from '@inertiajs/react'
 import { Button, Select, Text, TextInput, Title } from '@mantine/core'
 import { DateValue } from '@mantine/dates'
@@ -42,7 +42,7 @@ function AdminElectionCreate() {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(ROUTES.admin.elections.create.absolutePath, {
+    post(Routes.admin.elections.create.absolutePath, {
       onSuccess: () => {
         notifications.show({
           title: t('common.success'),

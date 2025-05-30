@@ -1,5 +1,5 @@
 import Admin from '#models/admin'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class AdminController {
@@ -14,12 +14,12 @@ export default class AdminController {
 
     await auth.use('web').login(admin)
 
-    return response.redirect(ROUTES.admin.index.absolutePath)
+    return response.redirect(Routes.admin.index.absolutePath)
   }
 
   async logout({ response, auth }: HttpContext) {
     await auth.use('web').logout()
 
-    return response.redirect(ROUTES.admin.login.absolutePath)
+    return response.redirect(Routes.admin.login.absolutePath)
   }
 }

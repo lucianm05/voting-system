@@ -1,6 +1,6 @@
 import Election from '#models/election'
 import { CANDIDATE_TYPES } from '#shared/constants/candidates'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { isElection } from '#shared/functions/elections'
 import { County, Locality } from '#shared/types/index'
 import { router, useForm } from '@inertiajs/react'
@@ -102,7 +102,7 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(ROUTES.admin.candidates.create.absolutePath, {
+    post(Routes.admin.candidates.create.absolutePath, {
       onSuccess: () => {
         notifications.show({
           title: t('common.success'),

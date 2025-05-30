@@ -1,5 +1,5 @@
 import Election from '#models/election'
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { createElectionValidator } from '#validators/elections'
 import type { HttpContext } from '@adonisjs/core/http'
 
@@ -10,13 +10,13 @@ export default class ElectionController {
   async renderAdminIndex({ inertia }: HttpContext) {
     const elections = await Election.query().orderBy('createdAt', 'asc')
 
-    return inertia.render(ROUTES.admin.elections.index.view, { elections })
+    return inertia.render(Routes.admin.elections.index.view, { elections })
   }
 
   async renderCitizensIndex({ inertia }: HttpContext) {
     const elections = await Election.query().orderBy('createdAt', 'asc')
 
-    return inertia.render(ROUTES.citizen.elections.index.view, { elections })
+    return inertia.render(Routes.citizen.elections.index.view, { elections })
   }
 
   /**
@@ -32,6 +32,6 @@ export default class ElectionController {
       dateEnd: payload.dateEnd,
     })
 
-    return response.redirect().toRoute(ROUTES.admin.elections.index.absolutePath)
+    return response.redirect().toRoute(Routes.admin.elections.index.absolutePath)
   }
 }

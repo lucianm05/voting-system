@@ -1,4 +1,4 @@
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { usePage } from '@inertiajs/react'
 import { AppShell } from '@mantine/core'
 import { PropsWithChildren } from 'react'
@@ -28,17 +28,17 @@ export function AdminLayout({ children }: PropsWithChildren) {
       <AppShell.Navbar p="md" className="flex flex-col justify-between">
         <div>
           <Link
-            href={ROUTES.admin.elections.index.absolutePath}
+            href={Routes.admin.elections.index.absolutePath}
             label={t('common.elections')}
             leftSection={<Vote />}
-            active={route.url.includes(ROUTES.admin.elections.index.relativePath)}
+            active={route.url.includes(Routes.admin.elections.index.relativePath)}
             className="font-medium"
           />
           <Link
-            href={ROUTES.admin.candidates.index.absolutePath}
+            href={Routes.admin.candidates.index.absolutePath}
             label={t('common.candidates')}
             leftSection={<Users />}
-            active={route.url.includes(ROUTES.admin.candidates.index.relativePath)}
+            active={route.url.includes(Routes.admin.candidates.index.relativePath)}
             className="font-medium"
           />
         </div>

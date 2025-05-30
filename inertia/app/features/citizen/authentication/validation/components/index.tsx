@@ -1,4 +1,4 @@
-import { ROUTES } from '#shared/constants/routes'
+import { Routes } from '#shared/constants/routes'
 import { usePage } from '@inertiajs/react'
 import { Title } from '@mantine/core'
 import { useEffect, useRef } from 'react'
@@ -61,7 +61,7 @@ export function CitizenAuthenticationValidation() {
     }
 
     function loginCitizen() {
-      form.post(ROUTES.citizen.authentication.login.absolutePath)
+      form.post(Routes.citizen.authentication.login.absolutePath)
     }
 
     const timeout = setTimeout(() => {
