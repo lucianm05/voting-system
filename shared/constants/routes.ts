@@ -83,7 +83,7 @@ export const Routes = {
       index: {
         absolutePath: '/citizen/elections',
         relativePath: '/elections',
-        view: 'citizen/elections',
+        view: 'citizen/elections/index',
       },
       vote: {
         absolutePath: '/citizen/elections/:id/vote',

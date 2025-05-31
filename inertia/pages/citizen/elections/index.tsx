@@ -18,7 +18,7 @@ function CitizenElections({ elections }: Props) {
       {!elections && <Text>{t('citizen.dashboard.elections.no_active_elections')}</Text>}
 
       {elections && (
-        <ol className="mt-4 md:mt-8 flex flex-col gap-y-4 gap-x-4 md:gap-x-6 md:gap-y-6 md:grid md:grid-cols-[repeat(auto-fit,25rem)]">
+        <ol className="mt-4 md:mt-6 flex flex-col gap-y-4 gap-x-4 md:grid md:grid-cols-[repeat(auto-fit,25rem)]">
           {elections.map((election) => (
             <li key={election.id}>
               <ElectionCard {...election} />

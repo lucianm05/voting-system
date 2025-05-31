@@ -20,7 +20,7 @@ router
 
     router.on('/').renderInertia(Routes.admin.login.view).use(middleware.adminGuest())
     router.post('/', [AdminsController, 'login']).use(middleware.adminGuest())
-    router.delete('/', [AdminsController, 'logout']).use(middleware.citizenGuest())
+    router.delete('/', [AdminsController, 'logout']).use(middleware.adminAuth())
   })
   .prefix(Routes.admin.login.absolutePath)
 // #endregion
@@ -55,27 +55,35 @@ router
   .group(() => {
     const CitizensController = () => import('#controllers/citizens_controller')
     const ElectionsController = () => import('#controllers/elections_controller')
+    const VotesController = () => import('#controllers/votes_controller')
 
     router
-      .get(Routes.citizen.authentication.index.relativePath, [CitizensController, 'renderIndex'])
+      .group(() => {
+        router.get(Routes.citizen.authentication.index.relativePath, [
+          CitizensController,
+          'renderIndex',
+        ])
+
+        router.post(Routes.citizen.authentication.index.relativePath, [
+          CitizensController,
+          'renderAttemptAuthentication',
+        ])
+
+        router.post(Routes.citizen.authentication.login.relativePath, [CitizensController, 'login'])
+      })
       .use(middleware.citizenGuest())
 
     router
-      .post(Routes.citizen.authentication.index.relativePath, [
-        CitizensController,
-        'renderAttemptAuthentication',
-      ])
-      .use(middleware.citizenGuest())
+      .group(() => {
+        router.get(Routes.citizen.elections.index.relativePath, [
+          ElectionsController,
+          'renderCitizensIndex',
+        ])
 
-    router
-      .post(Routes.citizen.authentication.login.relativePath, [CitizensController, 'login'])
-      .use(middleware.citizenGuest())
+        router.get(Routes.citizen.elections.vote.relativePath, [VotesController, 'renderVote'])
 
-    router
-      .get(Routes.citizen.elections.index.relativePath, [
-        ElectionsController,
-        'renderCitizensIndex',
-      ])
+        router.post(Routes.citizen.elections.vote.relativePath, [VotesController, 'vote'])
+      })
       .use(middleware.citizenAuth())
   })
   .prefix(Routes.citizen.index.absolutePath)

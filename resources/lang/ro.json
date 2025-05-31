@@ -15,6 +15,7 @@
     "independent": "Independent",
     "party": "Partid",
     "save": "Salvează",
+    "send": "Trimite",
     "email": "Email",
     "password": "Parolă",
     "login": "Intră în cont",
@@ -129,6 +130,11 @@
       "elections": {
         "title": "Tururi de scrutin active",
         "no_active_elections": "Nu există tururi de scrutin active."
+      },
+
+      "vote": {
+        "description": "Alege candidatul preferat și trimite votul pentru acesta.",
+        "voted_successfully": "Votul a fost înregistrat cu success!"
       }
     }
   }

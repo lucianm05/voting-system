@@ -60,13 +60,26 @@ export function CitizenAuthenticationValidation() {
       return
     }
 
+    function stopTracks() {
+      const mediaStream = videoRef.current?.srcObject
+
+      if (mediaStream instanceof MediaStream) {
+        const tracks = mediaStream.getTracks()
+        tracks.forEach((track) => track.stop())
+      }
+    }
+
     function loginCitizen() {
-      form.post(Routes.citizen.authentication.login.absolutePath)
+      form.post(Routes.citizen.authentication.login.absolutePath, {
+        onSuccess: () => {
+          stopTracks()
+        },
+      })
     }
 
     const timeout = setTimeout(() => {
       loginCitizen()
-    }, 5000)
+    }, 2500)
 
     return () => {
       clearTimeout(timeout)
