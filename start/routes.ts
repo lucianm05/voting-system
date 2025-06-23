@@ -59,6 +59,8 @@ router
 
     router
       .group(() => {
+        router.on('/').redirectToPath(Routes.citizen.authentication.index.absolutePath)
+
         router.get(Routes.citizen.authentication.index.relativePath, [
           CitizensController,
           'renderIndex',

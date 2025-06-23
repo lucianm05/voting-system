@@ -1,6 +1,5 @@
 import Vote from '#models/vote'
-import { BaseModel, beforeCreate, column, hasOne } from '@adonisjs/lucid/orm'
-import type { HasOne } from '@adonisjs/lucid/types/relations'
+import { BaseModel, beforeCreate, column } from '@adonisjs/lucid/orm'
 import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
 
@@ -17,10 +16,7 @@ export default class Citizen extends BaseModel {
   declare identity: string
 
   @column()
-  declare lastVoteId: string
-
-  @hasOne(() => Vote)
-  declare lastVote: HasOne<typeof Vote>
+  declare lastVotesMap: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

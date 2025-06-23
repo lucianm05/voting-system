@@ -4,9 +4,6 @@ import { createElectionValidator } from '#validators/elections'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class ElectionController {
-  /**
-   * Display a list of resource
-   */
   async renderAdminIndex({ inertia }: HttpContext) {
     const elections = await Election.query().orderBy('createdAt', 'asc')
 

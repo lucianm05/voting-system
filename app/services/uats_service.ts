@@ -43,8 +43,8 @@ export default class UATService {
 
     if (!county) return []
 
-    const localities = county.localitati
+    const localities = county.localitati.sort((l1, l2) => l1.nume.localeCompare(l2.nume))
 
-    return localities || []
+    return localities
   }
 }
