@@ -29,7 +29,7 @@ export default class ResultsService {
   }
 
   static async decrementVote(candidateId: string, options?: ModelAssignOptions) {
-    const result = await ResultsService.findByCandidateIdOrCreate(candidateId)
+    const result = await ResultsService.findByCandidateIdOrCreate(candidateId, options)
 
     let votes = result.votes
     if (result.votes > 0) {

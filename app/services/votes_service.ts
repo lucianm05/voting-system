@@ -63,7 +63,7 @@ export default class VotesService {
 
     const newPayload = VotesService.encryptVote({ ...decryptedPayload, revokedAt: new Date() })
 
-    return Vote.updateOrCreate({ id: voteId }, { payload: newPayload, rekoved: true })
+    return Vote.updateOrCreate({ id: voteId }, { payload: newPayload, rekoved: true }, options)
   }
 
   /**
