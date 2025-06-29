@@ -42,4 +42,10 @@ export default await Env.create(new URL('../', import.meta.url), {
   VOTING_ENCRYPTION_SECRET: Env.schema.string(),
 
   CITIZEN_LAST_VOTES_ENCRYPTION_SECRET: Env.schema.string(),
+
+  DOCUMENTAI_CREDENTIALS: Env.schema.string(),
+  DOCUMENTAI_LOCATION: Env.schema.string(),
+  DOCUMENTAI_PROJECT_ID: Env.schema.string(),
+  DOCUMENTAI_PROCESSOR_ID: Env.schema.string(),
+  DOCUMENTAI_VERSION_ID: Env.schema.string(),
 })

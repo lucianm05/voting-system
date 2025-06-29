@@ -16,7 +16,7 @@ export default class Citizen extends BaseModel {
   declare identity: string
 
   @column()
-  declare lastVotesMap: string
+  declare votesMap: string
 
   @column.dateTime({ autoCreate: true })
   declare createdAt: DateTime

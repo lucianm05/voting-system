@@ -4,8 +4,7 @@ import { ModelAssignOptions } from '@adonisjs/lucid/types/model'
 
 export default class ResultsService {
   static async findByCandidateIdOrCreate(candidateId: string, options?: ModelAssignOptions) {
-    const result = await Result.find(candidateId, options)
-
+    const result = await Result.findBy({ candidateId }, options)
     if (result) return result
 
     const candidate = await Candidate.findOrFail(candidateId, options)
@@ -25,17 +24,19 @@ export default class ResultsService {
 
     const votes = result.votes + 1
 
-    return Result.updateOrCreate({ candidateId }, { votes }, options)
+    return Result.updateOrCreate({ id: result.id }, { votes }, options)
   }
 
   static async decrementVote(candidateId: string, options?: ModelAssignOptions) {
     const result = await ResultsService.findByCandidateIdOrCreate(candidateId, options)
 
+    console.log('initialVotes', result.votes)
     let votes = result.votes
-    if (result.votes > 0) {
-      votes = result.votes - 1
+    if (votes > 0) {
+      votes = votes - 1
     }
+    console.log('currentVotes', votes)
 
-    return Result.updateOrCreate({ candidateId }, { votes }, options)
+    return Result.updateOrCreate({ id: result.id }, { votes }, options)
   }
 }

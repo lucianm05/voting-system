@@ -16,7 +16,7 @@ export default class Vote extends BaseModel {
   declare payload: string
 
   @column()
-  declare rekoved: boolean
+  declare revoked: boolean
 
   @column()
   declare electionId: string

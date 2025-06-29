@@ -68,7 +68,7 @@ router
 
         router.post(Routes.citizen.authentication.index.relativePath, [
           CitizensController,
-          'renderAttemptAuthentication',
+          'attemptIdentityCardValidation',
         ])
 
         router.post(Routes.citizen.authentication.login.relativePath, [CitizensController, 'login'])

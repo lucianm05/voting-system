@@ -1,11 +1,13 @@
 import { IMAGE_MIME_TYPE } from '#shared/constants/files'
 import { Routes } from '#shared/constants/routes'
+import { usePage } from '@inertiajs/react'
 import { Avatar, Button, Center, Skeleton, Text, Title } from '@mantine/core'
 import { Dropzone, FileRejection, FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
 import { FormEvent, useEffect, useRef } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCitizenAuthenticationContext } from '~/app/features/citizen/authentication/providers'
+import { Props } from '~/app/features/citizen/authentication/types'
 import { useDetectFaceInImage } from '~/app/features/face_api/hooks/use_detect_face_in_image'
 import { cn } from '~/app/shared/functions'
 import { flattenFileRejections } from '~/app/shared/functions/files'
@@ -15,11 +17,19 @@ import { CardWithLogo } from '~/app/shared/ui/card-with-logo'
 export function CitizenAuthenticationUploadID() {
   const { t } = useTranslation()
   const { form } = useCitizenAuthenticationContext()
-  const { data, setData, post, processing, setError, errors } = form
+  const { data, setData, post, get, processing, setError, errors } = form
+
+  const {
+    props: { ocrData },
+  } = usePage<Props>()
 
   const imageRef = useRef<HTMLImageElement | null>(null)
   const imageUrl = useLocalFileURL({ file: data.file })
   const detectFace = useDetectFaceInImage({ imageRef, label: 'citizen' })
+
+  const descriptorUnavailable = Boolean(imageUrl && detectFace.descriptor === undefined)
+  const hasErrors = Object.values(errors).some(Boolean)
+  const isDisabled = Boolean(!data.file || hasErrors || processing || descriptorUnavailable)
 
   useEffect(() => {
     function analyzeDescriptor() {
@@ -32,57 +42,58 @@ export function CitizenAuthenticationUploadID() {
         return
       }
 
-      setError('file', '')
+      resetErrors()
     }
 
     analyzeDescriptor()
   }, [detectFace.descriptor, imageUrl])
 
+  function resetErrors() {
+    Object.keys(errors).forEach((key) => setError(key as keyof typeof errors, ''))
+  }
+
   function onDrop(files: FileWithPath[]) {
     const [file] = files
-    console.log('file', file)
 
     if (!file) {
-      notifications.show({
-        title: t('common.error'),
-        message: t('common.no_file_added'),
-        color: 'red',
-      })
+      setError('file', t('common.no_file_added'))
       return
     }
 
-    setError('file', '')
+    resetErrors()
     setData('file', file)
   }
 
   function onReject(fileRejections: FileRejection[]) {
     const error = flattenFileRejections(fileRejections).join('\n')
-
-    notifications.show({
-      title: t('common.error'),
-      message: error,
-      color: 'red',
-    })
+    setError('file', error)
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(Routes.citizen.authentication.index.absolutePath, {
-      onError: (errors) => {
-        if (typeof errors.file === 'string') {
-          notifications.show({
-            title: t('common.error'),
-            message: errors.file,
-            color: 'red',
-          })
-        }
-      },
-    })
+    if (isDisabled) return
+
+    if (!ocrData) {
+      post(Routes.citizen.authentication.index.absolutePath, {
+        onError: (errors) => {
+          if (typeof errors.file === 'string') {
+            notifications.show({
+              title: t('common.error'),
+              message: errors.file,
+              color: 'red',
+            })
+          }
+        },
+      })
+      return
+    }
+
+    get(Routes.citizen.authentication.index.absolutePath, { preserveState: true })
   }
 
   return (
-    <Center h="100vh">
+    <Center className="min-h-screen py-4">
       {imageUrl && (
         <img
           ref={imageRef}
@@ -94,8 +105,8 @@ export function CitizenAuthenticationUploadID() {
       )}
 
       <CardWithLogo>
-        <div className="px-8 py-4 space-y-6">
-          <div className="space-y-6">
+        <div className="px-4 py-4 space-y-4 md:px-8">
+          <div className="space-y-2">
             <Title size="xl">{t('citizen.authentication.upload_ci.title')}</Title>
             <div className="space-y-2">
               <Text size="sm">{t('citizen.authentication.upload_ci.description_1')}</Text>
@@ -104,14 +115,14 @@ export function CitizenAuthenticationUploadID() {
           </div>
 
           <form onSubmit={onSubmit} className="flex items-end space-y-6 flex-col w-full">
-            <div className="space-y-1 w-full">
+            <div className="space-y-2 w-full">
               <Dropzone
                 id="id-upload"
                 accept={IMAGE_MIME_TYPE}
                 multiple={false}
                 radius="md"
                 className="relative overflow-hidden w-full group"
-                loading={Boolean(imageUrl && detectFace.descriptor === undefined)}
+                loading={descriptorUnavailable}
                 onDrop={onDrop}
                 onReject={onReject}
                 aria-required
@@ -157,15 +168,30 @@ export function CitizenAuthenticationUploadID() {
                 )}
               </Dropzone>
 
-              {errors.file && (
-                <Text c="red" size="sm">
-                  {errors.file}
-                </Text>
-              )}
+              {errors &&
+                Object.entries(errors).map(([key, error]) => (
+                  <Text key={key} c="red" size="sm">
+                    {error}
+                  </Text>
+                ))}
             </div>
 
-            <Button type="submit" disabled={Boolean(!data.file || errors.file || processing)}>
-              {t('common.submit')}
+            {ocrData && (
+              <div>
+                <Text size="sm" fw={500}>
+                  {t('citizen.authentication.upload_ci.info_extracted_from_ci')}
+                </Text>
+                {Object.entries(ocrData).map(([key, info]) => (
+                  <Text key={key} size="sm">
+                    <span className="font-medium">{t(`common.${key}`)}: </span>
+                    <span>{info}</span>
+                  </Text>
+                ))}
+              </div>
+            )}
+
+            <Button type="submit" disabled={isDisabled} loading={processing}>
+              {ocrData ? t('common.next_step') : t('common.submit')}
             </Button>
           </form>
         </div>

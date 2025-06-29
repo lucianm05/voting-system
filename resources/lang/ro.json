@@ -37,7 +37,13 @@
     },
     "locality": "Localitate",
     "county": "Județ",
-    "vote": "Votează"
+    "vote": "Votează",
+    "cnp": "CNP",
+    "address": "Adresă",
+    "firstName": "Nume",
+    "lastName": "Prenume",
+    "validity": "Valabilitate",
+    "next_step": "Pasul următor"
   },
 
   "elections": {
@@ -105,7 +111,8 @@
       "upload_ci": {
         "title": "Autentificați-vă cu cartea de identitate (buletin)",
         "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei video.",
-        "description_2": "Camera video va fi folosită pentru a valida identitatea dumneavoastră."
+        "description_2": "Camera video va fi folosită pentru a valida identitatea dumneavoastră.",
+        "info_extracted_from_ci": "Informații extrase din cartea de identitate:"
       },
       "validation": {
         "title": "Validarea identității",

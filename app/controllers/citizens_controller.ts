@@ -1,41 +1,54 @@
 import Citizen from '#models/citizen'
 import CitizensService from '#services/citizens_service'
+import DocumentAIService from '#services/document_ai'
 import { CitizenAuthSteps } from '#shared/constants/citizens'
 import { Routes } from '#shared/constants/routes'
-import { attemptAuthenticationValidator } from '#validators/citizens'
+import { attemptAuthenticationValidator, identityCardValidator } from '#validators/citizens'
 import type { HttpContext } from '@adonisjs/core/http'
 
 export default class CitizensController {
-  service: CitizensService
+  async renderIndex({ inertia, session }: HttpContext) {
+    const citizenData = await CitizensService.sessionData.pullAll(session) // pull the session data to avoid blocking the user in the validation step
 
-  constructor() {
-    this.service = new CitizensService()
-  }
+    // if we have citizen data, it means the user already passed the "upload ci" step, so they need to validate their identity
+    if (citizenData) {
+      CitizensService.sessionData.setCNP(session, citizenData.cnp)
+      CitizensService.sessionData.setAddress(session, citizenData.address)
 
-  async renderIndex({ inertia }: HttpContext) {
+      const challenges = CitizensService.generateChallenges()
+
+      return inertia.render(Routes.citizen.authentication.index.view, {
+        step: CitizenAuthSteps.validation,
+        challenges,
+      })
+    }
+
     return inertia.render(Routes.citizen.authentication.index.view, {
       step: CitizenAuthSteps.uploadID,
     })
   }
 
-  async renderAttemptAuthentication({ request, inertia, session }: HttpContext) {
+  async attemptIdentityCardValidation({ request, inertia, session }: HttpContext) {
     const { file } = await request.validateUsing(attemptAuthenticationValidator)
-    // console.log('file', file)
-    const cnp = '5010405295915'
+    const ocrData = await DocumentAIService.extractOCRData(file)
+    const validatedData = await identityCardValidator.validate(ocrData)
 
-    const challenges = this.service.generateChallenges()
-
-    session.put('cnp', cnp)
+    CitizensService.sessionData.setAll(session, validatedData)
 
     return inertia.render(Routes.citizen.authentication.index.view, {
-      step: CitizenAuthSteps.validation,
-      challenges,
+      step: CitizenAuthSteps.uploadID,
+      ocrData: validatedData,
     })
   }
 
   async login({ session, auth, response }: HttpContext) {
-    const cnp = session.get('cnp')
-    const identity = await this.service.createIdentity(cnp)
+    const cnp = await CitizensService.sessionData.pullCNP(session)
+
+    if (!cnp) {
+      return response.redirect(Routes.citizen.authentication.index.absolutePath)
+    }
+
+    const identity = await CitizensService.createIdentity(cnp)
     const citizen = await Citizen.firstOrCreate({ identity })
     await auth.use('citizen').login(citizen)
 

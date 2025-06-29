@@ -40,9 +40,8 @@ export default class VotesService {
    * @returns
    */
   private static async saveVote(candidateId: string, options?: ModelAssignOptions) {
-    const candidate = await Candidate.find(candidateId, options)
+    const candidate = await Candidate.findOrFail(candidateId, options)
 
-    if (!candidate) throw new Error(`Candidate with ID ${candidateId} does not exist.`)
     if (!candidate.electionId)
       throw new Error(`Candidate ${candidateId} does not belong to any election.`)
 
@@ -54,24 +53,22 @@ export default class VotesService {
     return Vote.create({ payload: encryptedPayload, electionId: candidate.electionId }, options)
   }
 
-  private static async rekoveVote(voteId: string, options?: ModelAssignOptions) {
-    const vote = await Vote.find(voteId, options)
-    if (!vote) throw new Error(`Vote with ID ${voteId} does not exist.`)
+  private static async revokeVote(voteId: string, options?: ModelAssignOptions) {
+    const vote = await Vote.findOrFail(voteId, options)
 
     const decryptedPayload = VotesService.decryptVote(vote.payload)
     if (!decryptedPayload) throw new Error(`Vote could not be decrypted.`)
 
     const newPayload = VotesService.encryptVote({ ...decryptedPayload, revokedAt: new Date() })
 
-    return Vote.updateOrCreate({ id: voteId }, { payload: newPayload, rekoved: true }, options)
+    return Vote.updateOrCreate({ id: voteId }, { payload: newPayload, revoked: true }, options)
   }
 
   /**
    * If the citizen didn't vote already, saves a new vote and increments the result for the given candidate. Otherwise, marks the existing vote as revoked, decrements the result for that candidated, saves a new vote and increments the result for the new candidate.
    */
   static async registerVote({ candidateId, citizen }: RegisterVotePayload) {
-    const candidate = await Candidate.find(candidateId)
-    if (!candidate) throw new Error(`Candidate with ID ${candidate} does not exist.`)
+    const candidate = await Candidate.findOrFail(candidateId)
 
     const lastVoteId = CitizensService.getLastVoteId({
       citizen,
@@ -79,9 +76,10 @@ export default class VotesService {
     })
 
     return db.transaction(async (transaction) => {
+      console.log('lastVoteId', lastVoteId)
       if (lastVoteId) {
         await ResultsService.decrementVote(candidateId, { client: transaction })
-        await VotesService.rekoveVote(lastVoteId, { client: transaction })
+        await VotesService.revokeVote(lastVoteId, { client: transaction })
       }
 
       const vote = await VotesService.saveVote(candidateId, { client: transaction })

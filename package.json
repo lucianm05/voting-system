@@ -73,6 +73,7 @@
     "@adonisjs/shield": "^8.1.2",
     "@adonisjs/static": "^1.1.1",
     "@adonisjs/vite": "^4.0.0",
+    "@google-cloud/documentai": "^9.2.0",
     "@inertiajs/react": "^2.0.8",
     "@mantine/charts": "^8.0.0",
     "@mantine/core": "^8.0.0",
