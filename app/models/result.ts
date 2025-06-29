@@ -11,7 +11,10 @@ export default class Result extends BaseModel {
   @column({ isPrimary: true })
   declare id: string
 
-  @column()
+  @column({
+    prepare: (value) => Number(value) || 0,
+    consume: (value) => Number(value) || 0,
+  })
   declare votes: number
 
   @column()

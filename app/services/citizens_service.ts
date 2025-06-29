@@ -4,10 +4,10 @@ import { shuffle } from '#shared/functions/index'
 import env from '#start/env'
 import { cnpValidator, identityCardValidator } from '#validators/citizens'
 import { Encryption } from '@adonisjs/core/encryption'
-import { ModelAssignOptions } from '@adonisjs/lucid/types/model'
 import { Session } from '@adonisjs/session'
 import { AllowedSessionValues } from '@adonisjs/session/types'
 import { createHash } from 'node:crypto'
+import { WithTransaction } from '../types.js'
 
 interface SaveLastVotePayload {
   citizen: Citizen
@@ -92,21 +92,17 @@ export default class CitizensService {
     return this.encryption.decrypt(citizen.votesMap)
   }
 
-  static saveLastVoteId(payload: SaveLastVotePayload, options?: ModelAssignOptions) {
-    const decryptedVotesMap = CitizensService.decryptVotesMap(payload.citizen)
+  static async saveLastVoteId(payload: SaveLastVotePayload, options?: WithTransaction) {
+    const { citizen, electionId, voteId } = payload
+
+    const decryptedVotesMap = CitizensService.decryptVotesMap(citizen)
     const newVotesMap = {
       ...decryptedVotesMap,
-      [payload.electionId]: payload.voteId,
+      [electionId]: voteId,
     }
-    console.log('newVotesMap', newVotesMap)
     const encryptedVotesMap = CitizensService.encryptVotesMap(newVotesMap)
-    console.log('encryptedVotesMap', encryptedVotesMap)
 
-    return Citizen.updateOrCreate(
-      { id: payload.citizen.id },
-      { votesMap: encryptedVotesMap },
-      options
-    )
+    return Citizen.updateOrCreate({ id: citizen.id }, { votesMap: encryptedVotesMap }, options)
   }
 
   static getLastVoteId(payload: GetLastVotePayload) {

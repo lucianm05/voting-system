@@ -1,9 +1,9 @@
 import Candidate from '#models/candidate'
 import Result from '#models/result'
-import { ModelAssignOptions } from '@adonisjs/lucid/types/model'
+import { WithTransaction } from '../types.js'
 
 export default class ResultsService {
-  static async findByCandidateIdOrCreate(candidateId: string, options?: ModelAssignOptions) {
+  static async findByCandidateIdOrCreate(candidateId: string, options?: WithTransaction) {
     const result = await Result.findBy({ candidateId }, options)
     if (result) return result
 
@@ -19,23 +19,19 @@ export default class ResultsService {
     )
   }
 
-  static async incrementVote(candidateId: string, options?: ModelAssignOptions) {
+  static async incrementVote(candidateId: string, options?: WithTransaction) {
     const result = await ResultsService.findByCandidateIdOrCreate(candidateId, options)
-
     const votes = result.votes + 1
 
     return Result.updateOrCreate({ id: result.id }, { votes }, options)
   }
 
-  static async decrementVote(candidateId: string, options?: ModelAssignOptions) {
+  static async decrementVote(candidateId: string, options?: WithTransaction) {
     const result = await ResultsService.findByCandidateIdOrCreate(candidateId, options)
-
-    console.log('initialVotes', result.votes)
     let votes = result.votes
     if (votes > 0) {
       votes = votes - 1
     }
-    console.log('currentVotes', votes)
 
     return Result.updateOrCreate({ id: result.id }, { votes }, options)
   }

@@ -6,7 +6,7 @@ import ResultsService from '#services/results_service'
 import env from '#start/env'
 import { Encryption } from '@adonisjs/core/encryption'
 import db from '@adonisjs/lucid/services/db'
-import { ModelAssignOptions } from '@adonisjs/lucid/types/model'
+import { WithTransaction } from '../types.js'
 
 interface VotePayload {
   candidateId: string
@@ -39,7 +39,7 @@ export default class VotesService {
    * @param candidateId
    * @returns
    */
-  private static async saveVote(candidateId: string, options?: ModelAssignOptions) {
+  private static async createVote(candidateId: string, options?: WithTransaction) {
     const candidate = await Candidate.findOrFail(candidateId, options)
 
     if (!candidate.electionId)
@@ -53,8 +53,9 @@ export default class VotesService {
     return Vote.create({ payload: encryptedPayload, electionId: candidate.electionId }, options)
   }
 
-  private static async revokeVote(voteId: string, options?: ModelAssignOptions) {
-    const vote = await Vote.findOrFail(voteId, options)
+  private static async revokeVote(voteId: string, options?: WithTransaction) {
+    const vote = await Vote.find(voteId, options)
+    if (!vote) return null
 
     const decryptedPayload = VotesService.decryptVote(vote.payload)
     if (!decryptedPayload) throw new Error(`Vote could not be decrypted.`)
@@ -62,6 +63,16 @@ export default class VotesService {
     const newPayload = VotesService.encryptVote({ ...decryptedPayload, revokedAt: new Date() })
 
     return Vote.updateOrCreate({ id: voteId }, { payload: newPayload, revoked: true }, options)
+  }
+
+  private static async getVotedCandidate(voteId: string, options?: WithTransaction) {
+    const vote = await Vote.find(voteId, options)
+    if (!vote) return null
+
+    const decryptedPayload = VotesService.decryptVote(vote.payload)
+    if (!decryptedPayload) throw new Error(`Vote could not be decrypted.`)
+
+    return decryptedPayload.candidateId
   }
 
   /**
@@ -76,13 +87,17 @@ export default class VotesService {
     })
 
     return db.transaction(async (transaction) => {
-      console.log('lastVoteId', lastVoteId)
       if (lastVoteId) {
-        await ResultsService.decrementVote(candidateId, { client: transaction })
-        await VotesService.revokeVote(lastVoteId, { client: transaction })
+        const votedCandidate = await VotesService.getVotedCandidate(lastVoteId, {
+          client: transaction,
+        })
+        if (votedCandidate) {
+          await ResultsService.decrementVote(votedCandidate, { client: transaction })
+          await VotesService.revokeVote(lastVoteId, { client: transaction })
+        }
       }
 
-      const vote = await VotesService.saveVote(candidateId, { client: transaction })
+      const vote = await VotesService.createVote(candidateId, { client: transaction })
       await ResultsService.incrementVote(candidateId, { client: transaction })
       await CitizensService.saveLastVoteId(
         {
