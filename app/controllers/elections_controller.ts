@@ -1,4 +1,5 @@
 import Election from '#models/election'
+import CitizensService from '#services/citizens_service'
 import { Routes } from '#shared/constants/routes'
 import { createElectionValidator } from '#validators/elections'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -10,7 +11,9 @@ export default class ElectionController {
     return inertia.render(Routes.admin.elections.index.view, { elections })
   }
 
-  async renderCitizensIndex({ inertia }: HttpContext) {
+  async renderCitizensIndex({ inertia, session }: HttpContext) {
+    const address = CitizensService.sessionData.getAddress(session)
+    const location = await CitizensService.findLocation(address)
     const elections = await Election.query().orderBy('createdAt', 'asc')
 
     return inertia.render(Routes.citizen.elections.index.view, { elections })

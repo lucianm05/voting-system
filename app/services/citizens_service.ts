@@ -1,6 +1,8 @@
 import Citizen from '#models/citizen'
+import UATService from '#services/uats_service'
 import { LivenessChallenges } from '#shared/constants/liveness'
-import { shuffle } from '#shared/functions/index'
+import { removeDiacritics, shuffle } from '#shared/functions/index'
+import { County } from '#shared/types/index'
 import env from '#start/env'
 import { cnpValidator, identityCardValidator } from '#validators/citizens'
 import { Encryption } from '@adonisjs/core/encryption'
@@ -112,5 +114,54 @@ export default class CitizensService {
     const voteId = decryptedPayload[payload.electionId]
 
     return voteId || null
+  }
+
+  /**
+   * Finds the citizen's county and locality based on their CI address.
+   */
+  static async findLocation(ciAddress: string) {
+    function searchable(input: string) {
+      return removeDiacritics(input).replace(/\s/g, '').toLowerCase()
+    }
+
+    async function findLocationInBucharest() {
+      const [sectorString = ''] = normalizedAddress.match(/sec\.\d/) || []
+      const [sectorNumber = ''] = sectorString.match(/\d/) || []
+
+      if (!sectorNumber) return null
+
+      const sectors = await UATService.getLocalitiesByAutoCode('B')
+      const county: County = { auto: 'B', nume: 'București', localitati: [] }
+      const locality = sectors.find((s) => s.nume.includes(sectorNumber))
+
+      return { county: county || null, locality: locality || null }
+    }
+
+    const normalizedAddress = searchable(ciAddress)
+
+    if (normalizedAddress.includes('bucuresti')) {
+      return await findLocationInBucharest()
+    }
+
+    const counties = await UATService.getCounties()
+    const county = counties.find(
+      (c) =>
+        normalizedAddress.includes(searchable(`Jud.${c.auto}`)) ||
+        normalizedAddress.includes(searchable(`Jud.${c.nume}`))
+    )
+
+    const localities = county ? await UATService.getLocalitiesByAutoCode(county.auto) : []
+    const locality = localities.find((l) => {
+      if (l.comuna) {
+        return (
+          normalizedAddress.includes(searchable(`Com.${l.comuna}`)) &&
+          normalizedAddress.includes(searchable(l.nume))
+        )
+      }
+
+      return normalizedAddress.includes(searchable(l.nume))
+    })
+
+    return { county: county || null, locality: locality || null }
   }
 }

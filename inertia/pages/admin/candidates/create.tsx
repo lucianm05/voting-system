@@ -1,9 +1,8 @@
 import Election from '#models/election'
 import { CandidateTypes } from '#shared/constants/candidates'
-import { Routes } from '#shared/constants/routes'
 import { isElection } from '#shared/functions/elections'
 import { County, Locality } from '#shared/types/index'
-import { router, useForm } from '@inertiajs/react'
+import { router, useForm, usePage } from '@inertiajs/react'
 import { Button, Select, Text, TextInput, Title } from '@mantine/core'
 import { notifications } from '@mantine/notifications'
 import { FormEvent, ReactElement, useEffect, useMemo } from 'react'
@@ -22,10 +21,11 @@ interface Props {
 function AdminCandidateCreate({ elections, counties, localities }: Props) {
   const { t } = useTranslation()
 
+  const page = usePage()
   const { electionId, setElectionId } = useElectionIdParam()
   const { autoCode, setAutoCode } = useAutoCodeParam()
 
-  const { data, setData, post, errors, processing, reset } = useForm<{
+  const { data, setData, post, errors, processing } = useForm<{
     name: string
     type: string
     electionId: string
@@ -47,21 +47,17 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
     let timeout: ReturnType<typeof setTimeout>
 
     function loadData() {
-      const only: string[] = []
-
-      if (needsCounties && !counties) {
-        only.push('counties')
-      }
-
-      if (needsLocalities && data.county) {
-        only.push('localities')
-      }
+      const only = determineResources()
 
       timeout = setTimeout(() => {
         if (only.length) {
-          router.reload({ only })
+          router.visit(page.url, {
+            only,
+            preserveState: true,
+            preserveScroll: true,
+          })
         }
-      }, 500)
+      }, 250)
     }
 
     loadData()
@@ -70,6 +66,19 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
       clearTimeout(timeout)
     }
   }, [])
+
+  function determineResources() {
+    const only: string[] = []
+
+    if (needsCounties && !counties) {
+      only.push('counties')
+    }
+    if (needsLocalities && data.county) {
+      only.push('localities')
+    }
+
+    return only
+  }
 
   function getElection(id: string) {
     const election = elections.find((e) => e.id === id)
@@ -89,6 +98,8 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
     setData('electionId', value)
     setElectionId(value, {
       only: fetchCounties ? ['counties'] : undefined,
+      preserveState: true,
+      preserveScroll: true,
     })
   }
 
@@ -96,20 +107,24 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
     if (!value) return
 
     setData('county', value)
-    setAutoCode(value, { only: ['localities'] })
+    setAutoCode(value, { only: ['localities'], preserveState: true, preserveScroll: true })
   }
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(Routes.admin.candidates.create.absolutePath, {
+    post(page.url, {
+      only: determineResources(),
+      preserveScroll: true,
+      preserveState: true,
+      preserveUrl: true,
       onSuccess: () => {
         notifications.show({
           title: t('common.success'),
           message: t('new_candidate.candidate_created_successfully'),
           color: 'green',
         })
-        reset('name')
+        setData('name', '')
       },
     })
   }
@@ -177,7 +192,7 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
             required
             data={localities.map((locality) => ({
               label: locality.nume,
-              value: locality.simplu || locality.nume,
+              value: locality.nume,
             }))}
             value={data.locality}
             error={errors.locality}

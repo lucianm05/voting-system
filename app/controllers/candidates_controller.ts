@@ -18,7 +18,11 @@ export default class CandidatesController {
       },
       candidates: () => {
         if (!electionId) return []
-        return Candidate.query().where('electionId', electionId)
+        return Candidate.query()
+          .where('electionId', electionId)
+          .orderBy('county', 'asc')
+          .orderBy('locality', 'asc')
+          .orderBy('name', 'asc')
       },
     })
   }
@@ -31,7 +35,7 @@ export default class CandidatesController {
       }),
       localities: inertia.optional(() => {
         const { autoCode } = request.only(['autoCode'])
-        return UATService.getLocalitiesByAutoCode(autoCode)
+        return UATService.getLocalitiesForElectionsByAutoCode(autoCode)
       }),
     })
   }
@@ -50,6 +54,6 @@ export default class CandidatesController {
 
     await candidate.related('election').associate(election)
 
-    return response.redirect().toRoute(Routes.admin.candidates.create.absolutePath)
+    return response.redirect().toPath(request.url(true))
   }
 }

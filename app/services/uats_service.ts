@@ -1,3 +1,4 @@
+import { pascalCase, removeDiacritics } from '#shared/functions/index'
 import { County } from '#shared/types/index'
 import logger from '@adonisjs/core/services/logger'
 import fs from 'node:fs/promises'
@@ -21,30 +22,51 @@ export default class UATService {
   }
 
   static async getCounties() {
-    await this.initUats()
+    await UATService.initUats()
 
-    const counties = this.uats.map((uat) => ({ ...uat, localitati: [] }))
+    const counties = UATService.uats.map((uat) => ({ ...uat, localitati: [] }))
 
     return counties || []
   }
 
   static async getCountyByAutoCode(autoCode: string) {
-    await this.initUats()
+    await UATService.initUats()
 
-    const county = this.uats.find((uat) => uat.auto === autoCode)
+    const county = UATService.uats.find((uat) => uat.auto === autoCode)
 
     return county || null
   }
 
   static async getLocalitiesByAutoCode(autoCode: string) {
-    await this.initUats()
+    await UATService.initUats()
 
-    const county = await this.getCountyByAutoCode(autoCode)
+    const county = await UATService.getCountyByAutoCode(autoCode)
 
     if (!county) return []
 
     const localities = county.localitati.sort((l1, l2) => l1.nume.localeCompare(l2.nume))
 
     return localities
+  }
+
+  /**
+   * The localities for elections are the cities or towns, where the towns are composed of multiple localities (villages). We need to filter the villages and keep only towns and cities, because there are no elections for villages.
+   */
+  static async getLocalitiesForElectionsByAutoCode(autoCode: string) {
+    function comparable(input: string) {
+      return pascalCase(removeDiacritics(input))
+    }
+
+    const localities = await UATService.getLocalitiesByAutoCode(autoCode)
+    const localitiesForElections = localities.map((l) => {
+      if (l.comuna) return comparable(l.comuna)
+      return comparable(l.nume)
+    })
+    const uniqueLocalities = [...new Set(localitiesForElections)]
+    const mappedLocalities = uniqueLocalities
+      .map((l) => ({ nume: l }))
+      .sort((l1, l2) => l1.nume.localeCompare(l2.nume))
+
+    return mappedLocalities
   }
 }
