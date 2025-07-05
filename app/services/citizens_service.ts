@@ -2,7 +2,7 @@ import Citizen from '#models/citizen'
 import UATService from '#services/uats_service'
 import { LivenessChallenges } from '#shared/constants/liveness'
 import { removeDiacritics, shuffle } from '#shared/functions/index'
-import { County } from '#shared/types/index'
+import { CitizenLocation, County } from '#shared/types/index'
 import env from '#start/env'
 import { cnpValidator, identityCardValidator } from '#validators/citizens'
 import { Encryption } from '@adonisjs/core/encryption'
@@ -63,6 +63,11 @@ export default class CitizensService {
       if (!data) return null
       return data
     },
+
+    async getLocation(session: Session) {
+      const address = CitizensService.sessionData.getAddress(session)
+      return CitizensService.findLocation(address)
+    },
   }
 
   static generateChallenges() {
@@ -119,7 +124,7 @@ export default class CitizensService {
   /**
    * Finds the citizen's county and locality based on their CI address.
    */
-  static async findLocation(ciAddress: string) {
+  static async findLocation(ciAddress: string): Promise<CitizenLocation> {
     function searchable(input: string) {
       return removeDiacritics(input).replace(/\s/g, '').toLowerCase()
     }
@@ -128,7 +133,7 @@ export default class CitizensService {
       const [sectorString = ''] = normalizedAddress.match(/sec\.\d/) || []
       const [sectorNumber = ''] = sectorString.match(/\d/) || []
 
-      if (!sectorNumber) return null
+      if (!sectorNumber) return { county: null, locality: null }
 
       const sectors = await UATService.getLocalitiesByAutoCode('B')
       const county: County = { auto: 'B', nume: 'București', localitati: [] }

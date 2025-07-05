@@ -1,3 +1,4 @@
+import CitizensService from '#services/citizens_service'
 import { Routes } from '#shared/constants/routes'
 import type { HttpContext } from '@adonisjs/core/http'
 import type { NextFn } from '@adonisjs/core/types/http'
@@ -15,8 +16,9 @@ export default class AuthCitizenMiddleware {
   async handle(ctx: HttpContext, next: NextFn) {
     const guard = ctx.auth.use('citizen')
     const isAuthenticated = await guard.check()
+    const location = await CitizensService.sessionData.getLocation(ctx.session)
 
-    if (!isAuthenticated) {
+    if (!isAuthenticated || !location) {
       return ctx.response.redirect(this.redirectTo)
     }
 

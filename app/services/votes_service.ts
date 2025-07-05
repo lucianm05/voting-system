@@ -16,7 +16,7 @@ interface VotePayload {
 
 interface RegisterVotePayload {
   citizen: Citizen
-  candidateId: string
+  candidate: Candidate
 }
 
 export default class VotesService {
@@ -78,9 +78,7 @@ export default class VotesService {
   /**
    * If the citizen didn't vote already, saves a new vote and increments the result for the given candidate. Otherwise, marks the existing vote as revoked, decrements the result for that candidated, saves a new vote and increments the result for the new candidate.
    */
-  static async registerVote({ candidateId, citizen }: RegisterVotePayload) {
-    const candidate = await Candidate.findOrFail(candidateId)
-
+  static async registerVote({ candidate, citizen }: RegisterVotePayload) {
     const lastVoteId = CitizensService.getLastVoteId({
       citizen,
       electionId: candidate.electionId,
@@ -97,8 +95,8 @@ export default class VotesService {
         }
       }
 
-      const vote = await VotesService.createVote(candidateId, { client: transaction })
-      await ResultsService.incrementVote(candidateId, { client: transaction })
+      const vote = await VotesService.createVote(candidate.id, { client: transaction })
+      await ResultsService.incrementVote(candidate.id, { client: transaction })
       await CitizensService.saveLastVoteId(
         {
           citizen,

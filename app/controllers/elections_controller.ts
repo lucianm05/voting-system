@@ -1,4 +1,5 @@
 import Election from '#models/election'
+import CandidatesService from '#services/candidates_service'
 import CitizensService from '#services/citizens_service'
 import { Routes } from '#shared/constants/routes'
 import { createElectionValidator } from '#validators/elections'
@@ -11,12 +12,23 @@ export default class ElectionController {
     return inertia.render(Routes.admin.elections.index.view, { elections })
   }
 
-  async renderCitizensIndex({ inertia, session }: HttpContext) {
-    const address = CitizensService.sessionData.getAddress(session)
-    const location = await CitizensService.findLocation(address)
+  async renderCitizensIndex({ inertia }: HttpContext) {
     const elections = await Election.query().orderBy('createdAt', 'asc')
 
     return inertia.render(Routes.citizen.elections.index.view, { elections })
+  }
+
+  async renderVote({ params, session, inertia }: HttpContext) {
+    const { id } = params
+
+    const election = await Election.findOrFail(id)
+    const citizenLocation = await CitizensService.sessionData.getLocation(session)
+    const candidates = await CandidatesService.findElectionCandidates({ election, citizenLocation })
+
+    return inertia.render(Routes.citizen.elections.vote.view, {
+      election,
+      candidates: candidates || [],
+    })
   }
 
   /**

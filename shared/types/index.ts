@@ -12,6 +12,11 @@ export interface County {
   localitati: Locality[]
 }
 
+export interface CitizenLocation {
+  county: County | null
+  locality: Locality | null
+}
+
 export interface BaseDTO {
   id: string
   createdAt: string

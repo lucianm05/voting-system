@@ -82,9 +82,9 @@ router
           'renderCitizensIndex',
         ])
 
-        router.get(Routes.citizen.elections.vote.relativePath, [VotesController, 'renderVote'])
+        router.get(Routes.citizen.elections.vote.relativePath, [ElectionsController, 'renderVote'])
 
-        router.post(Routes.citizen.elections.vote.relativePath, [VotesController, 'vote'])
+        router.post(Routes.citizen.elections.vote.relativePath, [VotesController, 'create'])
       })
       .use(middleware.citizenAuth())
   })

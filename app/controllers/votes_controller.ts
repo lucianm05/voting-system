@@ -1,32 +1,26 @@
 import Candidate from '#models/candidate'
-import Election from '#models/election'
+import CandidatesService from '#services/candidates_service'
+import CitizensService from '#services/citizens_service'
 import VotesService from '#services/votes_service'
 import { Routes } from '#shared/constants/routes'
 import { createVoteValidator } from '#validators/votes'
 import { type HttpContext } from '@adonisjs/core/http'
 
 export default class VotesController {
-  async renderVote({ params, response, inertia }: HttpContext) {
-    const { id } = params
+  async create({ request, response, session, auth }: HttpContext) {
+    const { candidateId } = await request.validateUsing(createVoteValidator)
 
-    const election = await Election.find(id)
+    const citizen = auth.use('citizen').getUserOrFail()
+    const citizenLocation = await CitizensService.sessionData.getLocation(session)
 
-    if (!election) {
-      return response.notFound()
+    const candidate = await Candidate.findOrFail(candidateId)
+    const canVote = await CandidatesService.canVoteForCandidate({ candidate, citizenLocation })
+
+    if (!canVote) {
+      return response.forbidden()
     }
 
-    const candidates = await Candidate.findManyBy({ electionId: id })
-
-    return inertia.render(Routes.citizen.elections.vote.view, { election, candidates })
-  }
-
-  async vote({ request, response, auth }: HttpContext) {
-    const { candidateId, electionId } = await request.validateUsing(createVoteValidator)
-    const citizen = auth.use('citizen').getUserOrFail()
-
-    console.log(`registering vote in election ${electionId} for candidate ${candidateId}`)
-
-    await VotesService.registerVote({ candidateId, citizen })
+    await VotesService.registerVote({ candidate, citizen })
 
     return response.redirect(Routes.citizen.elections.index.absolutePath)
   }
