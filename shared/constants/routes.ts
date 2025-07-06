@@ -95,6 +95,11 @@ export const Routes = {
         relativePath: '/elections/:id/results',
         view: 'citizen/elections/results',
       },
+      verifyVote: {
+        absolutePath: '/citizen/elections/:id/verify-vote',
+        relativePath: '/elections/:id/verify-vote',
+        view: 'citizen/elections/verify_vote',
+      },
     },
 
     myVote: {

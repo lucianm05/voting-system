@@ -2,6 +2,7 @@ import Election from '#models/election'
 import CandidatesService from '#services/candidates_service'
 import CitizensService from '#services/citizens_service'
 import ElectionsService from '#services/elections_service'
+import VotesService from '#services/votes_service'
 import { FlashMessageTypes } from '#shared/constants/flash_messages'
 import { Routes } from '#shared/constants/routes'
 import { isElectionActive } from '#shared/functions/elections'
@@ -33,10 +34,10 @@ export default class ElectionController {
 
   async renderVote({ params, session, inertia, response, i18n }: HttpContext) {
     const { id } = params
-
     const election = await Election.findOrFail(id)
 
-    if (!isElectionActive(election)) {
+    const isActive = isElectionActive(election)
+    if (!isActive) {
       session.flash('election_not_active', {
         type: FlashMessageTypes.warning,
         message: i18n.t('citizen.dashboard.elections.election_not_active'),
@@ -52,6 +53,26 @@ export default class ElectionController {
       election,
       candidates: candidates || [],
     })
+  }
+
+  async renderVerifyVote({ inertia, params, auth, response, session, i18n }: HttpContext) {
+    const { id } = params
+    const citizen = auth.use('citizen').getUserOrFail()
+    const election = await Election.findOrFail(id)
+
+    const canVerify = await VotesService.canVerifyVote({ citizen, electionId: election.id })
+    if (!canVerify) {
+      session.flash('verify_vote', {
+        type: FlashMessageTypes.warning,
+        message: i18n.t('citizen.dashboard.verify_vote.limit_exceeded'),
+      })
+
+      return response.redirect().toRoute(Routes.citizen.elections.index.absolutePath)
+    }
+
+    const candidate = await VotesService.verifyVote({ citizen, electionId: election.id })
+
+    return inertia.render(Routes.citizen.elections.verifyVote.view, { election, candidate })
   }
 
   /**

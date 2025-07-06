@@ -25,19 +25,29 @@ export function ElectionCard(election: Election) {
         </Text>
       </div>
 
-      {isElectionActive(election) && (
-        <ButtonLink href={getRoute(Routes.citizen.elections.vote.absolutePath, { id })}>
-          {t('common.vote')}
-        </ButtonLink>
-      )}
+      <div className="flex flex-col">
+        {isElectionFuture(election) && <Countdown endDate={dateStart} className="w-full" />}
 
-      {isElectionFuture(election) && <Countdown endDate={dateStart} className="w-full" />}
+        {isElectionActive(election) && (
+          <>
+            <ButtonLink href={getRoute(Routes.citizen.elections.vote.absolutePath, { id })}>
+              {t('common.vote')}
+            </ButtonLink>
+            <ButtonLink
+              href={getRoute(Routes.citizen.elections.verifyVote.absolutePath, { id: election.id })}
+              variant="transparent"
+            >
+              {t('citizen.dashboard.elections.verify_vote')}
+            </ButtonLink>
+          </>
+        )}
 
-      {isElectionPast(election) && (
-        <ButtonLink href={getRoute(Routes.citizen.elections.results.absolutePath, { id })}>
-          {t('common.view_results')}
-        </ButtonLink>
-      )}
+        {isElectionPast(election) && (
+          <ButtonLink href={getRoute(Routes.citizen.elections.results.absolutePath, { id })}>
+            {t('common.view_results')}
+          </ButtonLink>
+        )}
+      </div>
     </Card>
   )
 }

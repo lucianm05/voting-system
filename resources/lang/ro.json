@@ -22,6 +22,7 @@
     "logout": "Ieși din cont",
     "elections": "Tururi de scrutin",
     "candidates": "Candidați",
+    "candidate": "Candidat",
     "drag_image_here_or_press_to_select_file": "Trageți imaginea aici sau faceți clic pentru a selecta un fișier",
     "only_images_are_allowed": "Sunt permise doar imagini",
     "only_one_image_allowed": "Este permisă o singură imagine",
@@ -134,8 +135,6 @@
     },
 
     "dashboard": {
-      "verify_vote": "Verifică votul tău",
-
       "elections": {
         "title": "Tururi de scrutin",
         "description": "Mai jos puteți vedea tururile de scrutin active și pe cele închise.",
@@ -145,12 +144,20 @@
         "no_ended_elections": "Nu există tururi de scrutin închise.",
         "no_elections": "Nu există tururi de scrutin.",
         "future_title": "Viitoare",
-        "election_not_active": "Turul de scrutin nu este activ."
+        "election_not_active": "Turul de scrutin nu este activ.",
+        "verify_vote": "Verifică votul"
       },
 
       "vote": {
         "description": "Alege candidatul preferat și trimite votul pentru acesta.",
         "voted_successfully": "Votul a fost înregistrat cu success!"
+      },
+
+      "verify_vote": {
+        "title": "Verifică votul",
+        "voted_candidate": "Candidat votat",
+        "none": "Nu există",
+        "limit_exceeded": "Nu puteți verifica votul deoarece numărul maxim de verificări a fost atins."
       }
     }
   }

@@ -7,16 +7,55 @@
     "description": "Descriere",
     "date_start": "Dată de început",
     "date_end": "Dată de sfârșit",
-    "submit": "Trimite"
+    "submit": "Trimite",
+    "success": "Succes",
+    "error": "Error",
+    "type": "Tip",
+    "election": "Tur de scrutin",
+    "independent": "Independent",
+    "party": "Partid",
+    "save": "Salvează",
+    "send": "Trimite",
+    "email": "Email",
+    "password": "Parolă",
+    "login": "Intră în cont",
+    "logout": "Ieși din cont",
+    "elections": "Tururi de scrutin",
+    "candidates": "Candidați",
+    "candidate": "Candidat",
+    "drag_image_here_or_press_to_select_file": "Trageți imaginea aici sau faceți clic pentru a selecta un fișier",
+    "only_images_are_allowed": "Sunt permise doar imagini",
+    "only_one_image_allowed": "Este permisă o singură imagine",
+    "no_file_added": "Nicio fotografie atașată",
+    "start": "Începeți",
+    "election_type": "Tipul alegerilor",
+    "election_types": {
+      "local": "Locale",
+      "county": "Județene",
+      "parliamentary": "Parlamentare",
+      "presidential": "Prezidențiale",
+      "euro": "Europarlamentare"
+    },
+    "locality": "Localitate",
+    "county": "Județ",
+    "vote": "Votează",
+    "cnp": "CNP",
+    "address": "Adresă",
+    "firstName": "Nume",
+    "lastName": "Prenume",
+    "validity": "Valabilitate",
+    "next_step": "Pasul următor",
+    "view_results": "Vezi rezultate",
+    "days_hours_minutes_seconds": "{{days}}z {{hours}}h {{minutes}}m {{seconds}}s"
   },
 
   "elections": {
-    "title": "Alegeri"
+    "title": "Tururi de scrutin"
   },
 
   "new_election": {
-    "title": "Alegeri noi",
-    "description": "Adăugați un tur nou de alegeri",
+    "title": "Tur de scrutin nou",
+    "description": "Adăugați un tur nou de scrutin",
     "fields": {
       "name": {
         "placeholder": "2025 - Alegeri prezindențiale tur 1"
@@ -24,11 +63,101 @@
       "description": {
         "placeholder": "Alegerea următorului președinte al României"
       },
+      "election_type": {
+        "placeholder": "Locale"
+      },
       "date_start": {
         "placeholder": "4 Mai 2025"
       },
       "date_end": {
         "placeholder": "4 Mai 2025"
+      }
+    },
+    "election_created_successfully": "Turul de scrutin a fost adăugat!"
+  },
+
+  "candidates": {
+    "title": "Candidați",
+    "select_election": "Alegeți turul de scrutin",
+    "fields": {
+      "election_id": {
+        "placeholder": "Alegeri prezindențiale 2025"
+      }
+    }
+  },
+
+  "new_candidate": {
+    "title": "Candidat nou",
+    "description": "Adăugați un candidat nou pentru un tur de scrutin",
+    "fields": {
+      "name": {
+        "placeholder": "Popescu Ion"
+      },
+      "type": {
+        "placeholder": "Alegeți tipul candidatului"
+      },
+      "election_id": {
+        "placeholder": "Alegeți turul de scrutin"
+      },
+      "locality": {
+        "placeholder": "Alegeți localitatea"
+      },
+      "county": {
+        "placeholder": "Alegeți județul"
+      }
+    },
+    "candidate_created_successfully": "Candidatul a fost adăugat!"
+  },
+
+  "citizen": {
+    "authentication": {
+      "upload_ci": {
+        "title": "Autentificați-vă cu cartea de identitate (buletin)",
+        "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei video.",
+        "description_2": "Camera video va fi folosită pentru a valida identitatea dumneavoastră.",
+        "info_extracted_from_ci": "Informații extrase din cartea de identitate:"
+      },
+      "validation": {
+        "title": "Validarea identității",
+        "description_1": "Pentru asta, trebuie să acordați permisiuni pentru accesarea camerei video a dispozitivului.",
+        "description_2": "Pe ecran vor apărea instrucțiuni pe care trebuie să le urmați."
+      },
+      "errors": {
+        "face_not_found": "Nu a fost găsită nicio față în imaginea încărcată. Vă rugăm să încercați din nou cu o imagine clară, bine luminată, iar cartea de identitate să fie încadrată cât mai bine."
+      },
+      "liveness_challenges": {
+        "head_right": "Întoarceți capul spre stânga",
+        "head_left": "Întoarceți capul spre dreapta",
+        "open_mouth": "Țineți gura deschisă",
+        "face_match": "Priviți spre camera video",
+        "done": "Ați fost verificat cu success!"
+      }
+    },
+
+    "dashboard": {
+      "elections": {
+        "title": "Tururi de scrutin",
+        "description": "Mai jos puteți vedea tururile de scrutin active și pe cele închise.",
+        "active_title": "Active",
+        "no_active_elections": "Nu există tururi de scrutin active.",
+        "ended_title": "Închise",
+        "no_ended_elections": "Nu există tururi de scrutin închise.",
+        "no_elections": "Nu există tururi de scrutin.",
+        "future_title": "Viitoare",
+        "election_not_active": "Turul de scrutin nu este activ.",
+        "verify_vote": "Verifică votul"
+      },
+
+      "vote": {
+        "description": "Alege candidatul preferat și trimite votul pentru acesta.",
+        "voted_successfully": "Votul a fost înregistrat cu success!"
+      },
+
+      "verify_vote": {
+        "title": "Verifică votul",
+        "voted_candidate": "Candidat votat",
+        "none": "Nu există",
+        "limit_exceeded": "Numărul maxim de verificări a fost atins."
       }
     }
   }

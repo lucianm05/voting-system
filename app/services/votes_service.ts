@@ -1,8 +1,10 @@
 import Candidate from '#models/candidate'
 import Citizen from '#models/citizen'
 import Vote from '#models/vote'
+import VoteVerificationAttempt from '#models/vote_verification_attempt'
 import CitizensService from '#services/citizens_service'
 import ResultsService from '#services/results_service'
+import { toUTC } from '#shared/functions/dates'
 import env from '#start/env'
 import { Encryption } from '@adonisjs/core/encryption'
 import db from '@adonisjs/lucid/services/db'
@@ -17,6 +19,11 @@ interface VotePayload {
 interface RegisterVotePayload {
   citizen: Citizen
   candidate: Candidate
+}
+
+interface VerifyVotePayload {
+  citizen: Citizen
+  electionId: string
 }
 
 export default class VotesService {
@@ -65,7 +72,7 @@ export default class VotesService {
     return Vote.updateOrCreate({ id: voteId }, { payload: newPayload, revoked: true }, options)
   }
 
-  private static async getVotedCandidate(voteId: string, options?: WithTransaction) {
+  private static async getVotedCandidateId(voteId: string, options?: WithTransaction) {
     const vote = await Vote.find(voteId, options)
     if (!vote) return null
 
@@ -86,7 +93,7 @@ export default class VotesService {
 
     return db.transaction(async (transaction) => {
       if (lastVoteId) {
-        const votedCandidate = await VotesService.getVotedCandidate(lastVoteId, {
+        const votedCandidate = await VotesService.getVotedCandidateId(lastVoteId, {
           client: transaction,
         })
         if (votedCandidate) {
@@ -107,6 +114,43 @@ export default class VotesService {
       )
 
       return vote
+    })
+  }
+
+  static async canVerifyVote({ citizen, electionId }: VerifyVotePayload) {
+    // if there's not vote, let the user see the verification screen, where they'll be prompted with "no vote registered"
+    const lastVoteId = CitizensService.getLastVoteId({ citizen, electionId })
+    if (!lastVoteId) return true
+
+    const vote = await Vote.find(lastVoteId)
+    if (!vote) return true
+
+    const votePayload = VotesService.decryptVote(vote.payload)
+    if (!votePayload) return true
+
+    // if we have a vote, limit the attempts to 3 maximum and 30 mins since the vote was registered
+    const attempts = await VoteVerificationAttempt.findManyBy({ voteId: lastVoteId })
+
+    const currentDate = toUTC(undefined)
+    const voteCreatedAt = toUTC(votePayload.createdAt)
+    const diff = currentDate.diff(voteCreatedAt, 'minutes')
+
+    return diff < 30 && attempts.length < 3
+  }
+
+  static async verifyVote({ citizen, electionId }: VerifyVotePayload) {
+    return db.transaction(async (transaction) => {
+      const lastVoteId = CitizensService.getLastVoteId({ citizen, electionId })
+      if (!lastVoteId) return null
+
+      const candidateId = await VotesService.getVotedCandidateId(lastVoteId, {
+        client: transaction,
+      })
+      const candidate = await Candidate.findOrFail(candidateId, { client: transaction })
+
+      await VoteVerificationAttempt.create({ voteId: lastVoteId })
+
+      return candidate
     })
   }
 }

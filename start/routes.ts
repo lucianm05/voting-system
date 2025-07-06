@@ -84,6 +84,11 @@ router
 
         router.get(Routes.citizen.elections.vote.relativePath, [ElectionsController, 'renderVote'])
 
+        router.get(Routes.citizen.elections.verifyVote.relativePath, [
+          ElectionsController,
+          'renderVerifyVote',
+        ])
+
         router.post(Routes.citizen.elections.vote.relativePath, [VotesController, 'create'])
       })
       .use(middleware.citizenAuth())
