@@ -43,7 +43,9 @@
     "firstName": "Nume",
     "lastName": "Prenume",
     "validity": "Valabilitate",
-    "next_step": "Pasul următor"
+    "next_step": "Pasul următor",
+    "view_results": "Vezi rezultate",
+    "days_hours_minutes_seconds": "{{days}}z {{hours}}h {{minutes}}m {{seconds}}s"
   },
 
   "elections": {
@@ -135,8 +137,14 @@
       "verify_vote": "Verifică votul tău",
 
       "elections": {
-        "title": "Tururi de scrutin active",
-        "no_active_elections": "Nu există tururi de scrutin active."
+        "title": "Tururi de scrutin",
+        "description": "Mai jos puteți vedea tururile de scrutin active și pe cele închise.",
+        "active_title": "Active",
+        "no_active_elections": "Nu există tururi de scrutin active.",
+        "ended_title": "Închise",
+        "no_ended_elections": "Nu există tururi de scrutin închise.",
+        "no_elections": "Nu există tururi de scrutin.",
+        "future_title": "Viitoare"
       },
 
       "vote": {

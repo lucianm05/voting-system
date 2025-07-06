@@ -1,6 +1,7 @@
 import Election from '#models/election'
 import CandidatesService from '#services/candidates_service'
 import CitizensService from '#services/citizens_service'
+import ElectionsService from '#services/elections_service'
 import { Routes } from '#shared/constants/routes'
 import { createElectionValidator } from '#validators/elections'
 import type { HttpContext } from '@adonisjs/core/http'
@@ -14,8 +15,18 @@ export default class ElectionController {
 
   async renderCitizensIndex({ inertia }: HttpContext) {
     const elections = await Election.query().orderBy('createdAt', 'asc')
+    const [activeElections, futureElections, endedElections] = await Promise.all([
+      ElectionsService.findActiveElections(),
+      ElectionsService.findFutureElections(),
+      ElectionsService.findEndedElections(),
+    ])
 
-    return inertia.render(Routes.citizen.elections.index.view, { elections })
+    return inertia.render(Routes.citizen.elections.index.view, {
+      elections,
+      activeElections,
+      futureElections,
+      endedElections,
+    })
   }
 
   async renderVote({ params, session, inertia }: HttpContext) {

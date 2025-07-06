@@ -90,6 +90,11 @@ export const Routes = {
         relativePath: '/elections/:id/vote',
         view: 'citizen/elections/vote',
       },
+      results: {
+        absolutePath: '/citizen/elections/:id/results',
+        relativePath: '/elections/:id/results',
+        view: 'citizen/elections/results',
+      },
     },
 
     myVote: {

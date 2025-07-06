@@ -2,30 +2,45 @@ import Election from '#models/election'
 import { Text, Title } from '@mantine/core'
 import { ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
-import { ElectionCard } from '~/app/features/citizen/dashboard/elections/components/election_card'
+import { ElectionsSection } from '~/app/features/citizen/dashboard/elections/components/elections_section'
 import { CitizenDashboardLayout } from '~/app/features/citizen/dashboard/layout'
 
 interface Props {
-  elections?: Election[]
+  activeElections?: Election[]
+  futureElections?: Election[]
+  endedElections?: Election[]
 }
 
-function CitizenElections({ elections }: Props) {
+function CitizenElections({ activeElections, futureElections, endedElections }: Props) {
   const { t } = useTranslation()
 
   return (
-    <main>
-      <Title order={1}>{t('citizen.dashboard.elections.title')}</Title>
-      {!elections && <Text>{t('citizen.dashboard.elections.no_active_elections')}</Text>}
+    <main className="space-y-8">
+      <div>
+        <Title order={1}>{t('citizen.dashboard.elections.title')}</Title>
+        <Text>
+          {!activeElections?.length && !endedElections?.length && !futureElections?.length
+            ? t('citizen.dashboard.elections.no_elections')
+            : t('citizen.dashboard.elections.description')}
+        </Text>
+      </div>
 
-      {elections && (
-        <ol className="mt-4 md:mt-6 flex flex-col gap-y-4 gap-x-4 md:grid md:grid-cols-[repeat(auto-fit,25rem)]">
-          {elections.map((election) => (
-            <li key={election.id}>
-              <ElectionCard {...election} />
-            </li>
-          ))}
-        </ol>
-      )}
+      <div className="space-y-12">
+        <ElectionsSection
+          title={t('citizen.dashboard.elections.active_title')}
+          elections={activeElections}
+        />
+
+        <ElectionsSection
+          title={t('citizen.dashboard.elections.future_title')}
+          elections={futureElections}
+        />
+
+        <ElectionsSection
+          title={t('citizen.dashboard.elections.ended_title')}
+          elections={endedElections}
+        />
+      </div>
     </main>
   )
 }

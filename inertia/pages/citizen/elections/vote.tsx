@@ -22,7 +22,7 @@ function ElectionVote({ election, candidates }: Props) {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
-    console.log('submitting vote...')
+
     post(Routes.citizen.elections.vote.absolutePath, {
       onSuccess: () => {
         notifications.show({

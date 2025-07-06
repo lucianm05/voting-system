@@ -1,3 +1,5 @@
+import { Dayjs } from 'dayjs'
+
 export type ValueOf<T extends object> = T[keyof T]
 
 export interface Locality {
@@ -22,3 +24,5 @@ export interface BaseDTO {
   createdAt: string
   updatedAt: string
 }
+
+export type DayjsCompatibleDate = Dayjs | Date | string

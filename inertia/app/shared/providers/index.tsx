@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react'
 import { I18nextProvider } from 'react-i18next'
-import { DayjsProvider } from '~/app/shared/providers/days-provider'
+import { DayjsProvider } from '~/app/shared/providers/dayjs-provider'
 import { MantineProvider } from '~/app/shared/providers/mantine-provider'
 import i18n from '~/i18n'
 

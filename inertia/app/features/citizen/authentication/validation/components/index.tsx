@@ -94,7 +94,7 @@ export function CitizenAuthenticationValidation() {
 
       <div
         className={cn(
-          'py-8 flex flex-col space-y-6 min-h-screen items-center',
+          'py-8 flex flex-col space-y-4 min-h-screen items-center',
           isStarted ? 'justify-between' : 'justify-center'
         )}
       >

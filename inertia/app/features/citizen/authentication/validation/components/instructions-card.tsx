@@ -11,8 +11,8 @@ export function InstructionsCard({ onStart }: Props) {
 
   return (
     <CardWithLogo>
-      <div className="px-4 py-4 space-y-6 md:px-8">
-        <div className="space-y-6">
+      <div className="px-4 py-4 space-y-4 md:px-8">
+        <div className="space-y-2">
           <Title size="xl">{t('citizen.authentication.validation.title')}</Title>
           <div className="space-y-2">
             <Text size="sm">{t('citizen.authentication.validation.description_1')}</Text>

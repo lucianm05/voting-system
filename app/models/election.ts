@@ -1,5 +1,6 @@
 import type { ElectionType } from '#shared/constants/elections'
 import { BaseModel, beforeCreate, column } from '@adonisjs/lucid/orm'
+import dayjs from 'dayjs'
 import { DateTime } from 'luxon'
 import { randomUUID } from 'node:crypto'
 
@@ -17,13 +18,13 @@ export default class Election extends BaseModel {
 
   @column({
     consume: (value: string) => new Date(value),
-    prepare: (value: Date) => value.toISOString(),
+    prepare: (value: Date) => dayjs(value, { utc: true }).toISOString(),
   })
   declare dateStart: Date
 
   @column({
     consume: (value: string) => new Date(value),
-    prepare: (value: Date) => value.toISOString(),
+    prepare: (value: Date) => dayjs(value, { utc: true }).toISOString(),
   })
   declare dateEnd: Date
 
