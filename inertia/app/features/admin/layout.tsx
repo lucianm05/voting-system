@@ -5,8 +5,8 @@ import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLogoutForm } from '~/app/features/admin/logout'
 import { Users, Vote } from '~/app/shared/components/icons'
-import { Link } from '~/app/shared/ui/link'
-import { LogoWithTitle } from '~/app/shared/ui/logo'
+import { Link } from '~/app/shared/components/ui/link'
+import { LogoWithTitle } from '~/app/shared/components/ui/logo'
 
 export function AdminLayout({ children }: PropsWithChildren) {
   const { t } = useTranslation()

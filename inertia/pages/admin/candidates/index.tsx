@@ -7,8 +7,8 @@ import { ReactElement, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
 import { Plus } from '~/app/shared/components/icons'
+import { ButtonLink } from '~/app/shared/components/ui/link'
 import { useElectionIdParam } from '~/app/shared/hooks/url_params/use_election_id_param'
-import { ButtonLink } from '~/app/shared/ui/link'
 
 interface Props {
   elections: Election[]

@@ -17,6 +17,8 @@ export function shuffle<T>(input: T[]) {
 }
 
 export function removeDiacritics(text: string): string {
+  if (!text) return ''
+
   return text.normalize('NFD').replace(/[\u0300-\u036f]/g, '')
 }
 

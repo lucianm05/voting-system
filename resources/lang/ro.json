@@ -144,7 +144,8 @@
         "ended_title": "Închise",
         "no_ended_elections": "Nu există tururi de scrutin închise.",
         "no_elections": "Nu există tururi de scrutin.",
-        "future_title": "Viitoare"
+        "future_title": "Viitoare",
+        "election_not_active": "Turul de scrutin nu este activ."
       },
 
       "vote": {

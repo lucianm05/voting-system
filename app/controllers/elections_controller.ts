@@ -2,9 +2,11 @@ import Election from '#models/election'
 import CandidatesService from '#services/candidates_service'
 import CitizensService from '#services/citizens_service'
 import ElectionsService from '#services/elections_service'
+import { FlashMessageTypes } from '#shared/constants/flash_messages'
 import { Routes } from '#shared/constants/routes'
+import { isElectionActive } from '#shared/functions/elections'
 import { createElectionValidator } from '#validators/elections'
-import type { HttpContext } from '@adonisjs/core/http'
+import { type HttpContext } from '@adonisjs/core/http'
 
 export default class ElectionController {
   async renderAdminIndex({ inertia }: HttpContext) {
@@ -29,10 +31,20 @@ export default class ElectionController {
     })
   }
 
-  async renderVote({ params, session, inertia }: HttpContext) {
+  async renderVote({ params, session, inertia, response, i18n }: HttpContext) {
     const { id } = params
 
     const election = await Election.findOrFail(id)
+
+    if (!isElectionActive(election)) {
+      session.flash('election_not_active', {
+        type: FlashMessageTypes.warning,
+        message: i18n.t('citizen.dashboard.elections.election_not_active'),
+      })
+
+      return response.redirect().toPath(Routes.citizen.elections.index.absolutePath)
+    }
+
     const citizenLocation = await CitizensService.sessionData.getLocation(session)
     const candidates = await CandidatesService.findElectionCandidates({ election, citizenLocation })
 

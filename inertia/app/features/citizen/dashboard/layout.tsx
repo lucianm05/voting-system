@@ -5,13 +5,16 @@ import { useDisclosure } from '@mantine/hooks'
 import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { Check, Vote } from '~/app/shared/components/icons'
-import { Link } from '~/app/shared/ui/link'
-import { LogoWithTitle } from '~/app/shared/ui/logo'
+import { Link } from '~/app/shared/components/ui/link'
+import { LogoWithTitle } from '~/app/shared/components/ui/logo'
+import { useFlashNotification } from '~/app/shared/hooks/use_flash_notification'
 
 export function CitizenDashboardLayout({ children }: PropsWithChildren) {
   const { t } = useTranslation()
   const route = usePage()
   const [opened, { toggle }] = useDisclosure()
+
+  useFlashNotification()
 
   return (
     <AppShell

@@ -1,6 +1,6 @@
 import Candidate from '#models/candidate'
 import Election from '#models/election'
-import { isElection } from '#shared/functions/elections'
+import { isElection, isElectionActive } from '#shared/functions/elections'
 import { removeDiacritics } from '#shared/functions/index'
 import { CitizenLocation } from '#shared/types/index'
 
@@ -52,6 +52,8 @@ export default class CandidatesService {
       citizenLocation,
     })
 
-    return candidates.find((c) => c.id === candidate.id)
+    return Boolean(
+      isElectionActive(candidate.election) && candidates.find((c) => c.id === candidate.id)
+    )
   }
 }

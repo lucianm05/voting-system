@@ -1,21 +1,15 @@
 import Election from '#models/election'
 import { Routes } from '#shared/constants/routes'
-import { isFuture, isPast, isPresent } from '#shared/functions/dates'
+import { isElectionActive, isElectionFuture, isElectionPast } from '#shared/functions/elections'
 import { getRoute } from '#shared/functions/routes'
 import { Badge, Card, Text } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
 import { Countdown } from '~/app/shared/components/ui/countdown'
-import { ButtonLink } from '~/app/shared/ui/link'
+import { ButtonLink } from '~/app/shared/components/ui/link'
 
-export function ElectionCard({
-  id,
-  name,
-  description,
-  electionType,
-  dateStart,
-  dateEnd,
-}: Election) {
+export function ElectionCard(election: Election) {
   const { t } = useTranslation()
+  const { id, name, description, electionType, dateStart } = election
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className="space-y-4 md:space-y-6">
@@ -31,15 +25,15 @@ export function ElectionCard({
         </Text>
       </div>
 
-      {isPresent(dateStart, dateEnd) && (
+      {isElectionActive(election) && (
         <ButtonLink href={getRoute(Routes.citizen.elections.vote.absolutePath, { id })}>
           {t('common.vote')}
         </ButtonLink>
       )}
 
-      {isFuture(dateStart) && <Countdown endDate={dateStart} className="w-full" />}
+      {isElectionFuture(election) && <Countdown endDate={dateStart} className="w-full" />}
 
-      {isPast(dateEnd) && (
+      {isElectionPast(election) && (
         <ButtonLink href={getRoute(Routes.citizen.elections.results.absolutePath, { id })}>
           {t('common.view_results')}
         </ButtonLink>

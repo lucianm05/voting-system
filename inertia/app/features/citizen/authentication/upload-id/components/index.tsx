@@ -9,10 +9,10 @@ import { useTranslation } from 'react-i18next'
 import { useCitizenAuthenticationContext } from '~/app/features/citizen/authentication/providers'
 import { Props } from '~/app/features/citizen/authentication/types'
 import { useDetectFaceInImage } from '~/app/features/face_api/hooks/use_detect_face_in_image'
+import { CardWithLogo } from '~/app/shared/components/ui/card-with-logo'
 import { cn } from '~/app/shared/functions'
 import { flattenFileRejections } from '~/app/shared/functions/files'
 import { useLocalFileURL } from '~/app/shared/hooks/use_local_file_url'
-import { CardWithLogo } from '~/app/shared/ui/card-with-logo'
 
 export function CitizenAuthenticationUploadID() {
   const { t } = useTranslation()

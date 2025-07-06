@@ -8,8 +8,8 @@ import { FormEvent, ReactNode } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
 import { Save } from '~/app/shared/components/icons'
+import { DateTimePicker } from '~/app/shared/components/ui/date-time-picker'
 import { toLocalTimezone } from '~/app/shared/functions'
-import { DateTimePicker } from '~/app/shared/ui/date-time-picker'
 
 function AdminElectionCreate() {
   const { t } = useTranslation()

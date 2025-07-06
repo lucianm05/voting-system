@@ -1,3 +1,4 @@
+import { FlashMessageTypes } from '#shared/constants/flash_messages'
 import { Dayjs } from 'dayjs'
 
 export type ValueOf<T extends object> = T[keyof T]
@@ -26,3 +27,10 @@ export interface BaseDTO {
 }
 
 export type DayjsCompatibleDate = Dayjs | Date | string
+
+export type FlashMessageType = ValueOf<typeof FlashMessageTypes>
+
+export interface FlashMessage {
+  type: FlashMessageType
+  message: string
+}

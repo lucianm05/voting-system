@@ -1,6 +1,6 @@
 import { Button, Text, Title } from '@mantine/core'
 import { useTranslation } from 'react-i18next'
-import { CardWithLogo } from '~/app/shared/ui/card-with-logo'
+import { CardWithLogo } from '~/app/shared/components/ui/card-with-logo'
 
 interface Props {
   onStart: () => void
