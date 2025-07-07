@@ -42,9 +42,9 @@ export const Routes = {
         alias: 'admin.candidates.create.index',
         view: 'admin/candidates/create',
       },
-      edit: {
-        absolutePath: '/admin/candidates/:id/edit',
-        relativePath: '/candidates/:id/edit',
+      id: {
+        absolutePath: '/admin/candidates/:id',
+        relativePath: '/candidates/:id',
         view: 'admin/candidates/create',
       },
     },

@@ -22,19 +22,17 @@ const TypeToTitleMap = {
 export function useFlashNotification() {
   const { t } = useTranslation()
   const page = usePage<{ flashMessages: Record<string, FlashMessage> }>()
-  const { flashMessages } = page.props
 
   useEffect(() => {
+    const { flashMessages } = page.props
     const messages = Object.values(flashMessages ?? {}).filter((flash) => Boolean(flash.type))
 
-    if (messages.length) {
-      messages.forEach((flash) => {
-        notifications.show({
-          title: t(TypeToTitleMap[flash.type]),
-          color: TypeToColorMap[flash.type],
-          message: flash.message,
-        })
+    messages.forEach((flash) => {
+      notifications.show({
+        title: t(TypeToTitleMap[flash.type]),
+        color: TypeToColorMap[flash.type],
+        message: flash.message,
       })
-    }
-  }, [flashMessages])
+    })
+  }, [page.props.flashMessages])
 }

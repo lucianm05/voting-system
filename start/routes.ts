@@ -47,7 +47,10 @@ router
       'renderAdminIndex',
     ])
     router.get(Routes.admin.candidates.create.relativePath, [CandidatesController, 'renderCreate'])
+    router.get(Routes.admin.candidates.id.relativePath, [CandidatesController, 'renderEdit'])
     router.post(Routes.admin.candidates.create.relativePath, [CandidatesController, 'create'])
+    router.put(Routes.admin.candidates.id.relativePath, [CandidatesController, 'edit'])
+    router.delete(Routes.admin.candidates.id.relativePath, [CandidatesController, 'delete'])
   })
   .prefix(Routes.admin.index.absolutePath)
   .use(middleware.adminAuth())

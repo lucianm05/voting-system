@@ -56,7 +56,7 @@
 
   "elections": {
     "title": "Tururi de scrutin",
-    "delete_confirm_message": "Sunteți sigur că doriți să ștergeți turul de scrutin?",
+    "delete_confirm_message": "Sunteți sigur că doriți să ștergeți turul de scrutin {{x}}?",
     "election_created_successfully": "Turul de scrutin a fost adăugat!",
     "election_updated_successfully": "Turul de scrutin a fost actualizat!",
     "election_deleted_successfully": "Turul de scrutin a fost șters!"
@@ -91,7 +91,11 @@
       "election_id": {
         "placeholder": "Alegeri prezindențiale 2025"
       }
-    }
+    },
+    "delete_confirm_message": "Sunteți sigur că doriți să ștergeți candidatul {{x}}?",
+    "candidate_created_successfully": "Candidatul a fost adăugat!",
+    "candidate_updated_successfully": "Candidatul a fost actualizat!",
+    "candidate_deleted_successfully": "Candidatul a fost șters!"
   },
 
   "new_candidate": {
@@ -113,8 +117,7 @@
       "county": {
         "placeholder": "Alegeți județul"
       }
-    },
-    "candidate_created_successfully": "Candidatul a fost adăugat!"
+    }
   },
 
   "citizen": {

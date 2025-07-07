@@ -76,7 +76,9 @@ function AdminElections({ elections }: Props) {
         onClose={() => setElectionToDelete(null)}
         centered
       >
-        <Text size="sm">{t('elections.delete_confirm_message')}</Text>
+        <Text size="sm">
+          {t('elections.delete_confirm_message', { x: electionToDelete?.name })}
+        </Text>
 
         <div className="flex items-center justify-end space-x-3 mt-6">
           <Button variant="outline" onClick={() => setElectionToDelete(null)} disabled={isDeleting}>

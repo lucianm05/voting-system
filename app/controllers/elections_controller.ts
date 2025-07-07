@@ -89,7 +89,7 @@ export default class ElectionController {
     const payload = await request.validateUsing(createElectionValidator)
     await Election.create(payload)
 
-    session.flash('edit_election', {
+    session.flash('create_election', {
       type: FlashMessageTypes.success,
       message: i18n.t('elections.election_created_successfully'),
     })

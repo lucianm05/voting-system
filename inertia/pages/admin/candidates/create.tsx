@@ -1,10 +1,12 @@
+import Candidate from '#models/candidate'
 import Election from '#models/election'
 import { CandidateTypes } from '#shared/constants/candidates'
+import { Routes } from '#shared/constants/routes'
 import { isElection } from '#shared/functions/elections'
+import { getRoute } from '#shared/functions/routes'
 import { County, Locality } from '#shared/types/index'
 import { router, useForm, usePage } from '@inertiajs/react'
 import { Button, Select, Text, TextInput, Title } from '@mantine/core'
-import { notifications } from '@mantine/notifications'
 import { FormEvent, ReactElement, useEffect, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
@@ -14,24 +16,25 @@ import { useElectionIdParam } from '~/app/shared/hooks/url_params/use_election_i
 
 interface Props {
   elections: Election[]
+  candidate?: Candidate
   counties?: County[]
   localities?: Locality[]
 }
 
-function AdminCandidateCreate({ elections, counties, localities }: Props) {
+function AdminCandidateCreate({ elections, candidate, counties, localities }: Props) {
   const { t } = useTranslation()
 
   const page = usePage()
   const { electionId, setElectionId } = useElectionIdParam()
   const { autoCode, setAutoCode } = useAutoCodeParam()
 
-  const { data, setData, post, errors, processing } = useForm<{
-    name: string
-    type: string
-    electionId: string
-    county?: string | null
-    locality?: string | null
-  }>({ name: '', type: '', electionId: electionId || '', county: autoCode })
+  const { data, setData, post, put, errors, processing } = useForm({
+    name: candidate?.name,
+    type: candidate?.type,
+    electionId: candidate?.electionId || electionId || '',
+    county: candidate?.county || autoCode,
+    locality: candidate?.locality,
+  })
 
   const { needsCounties, needsLocalities } = useMemo(() => {
     const election = getElection(data.electionId)
@@ -81,7 +84,7 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
   }
 
   function getElection(id: string) {
-    const election = elections.find((e) => e.id === id)
+    const election = elections?.find((e) => e.id === id)
     if (!election) return null
 
     return { ...election, is: isElection(election) }
@@ -97,7 +100,7 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
 
     setData('electionId', value)
     setElectionId(value, {
-      only: fetchCounties ? ['counties'] : undefined,
+      only: fetchCounties ? ['counties'] : [],
       preserveState: true,
       preserveScroll: true,
     })
@@ -113,17 +116,14 @@ function AdminCandidateCreate({ elections, counties, localities }: Props) {
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    post(page.url, {
+    if (candidate) {
+      put(getRoute(Routes.admin.candidates.id.absolutePath, { id: candidate.id }))
+      return
+    }
+
+    post(Routes.admin.candidates.create.absolutePath, {
       only: determineResources(),
-      preserveScroll: true,
-      preserveState: true,
-      preserveUrl: true,
       onSuccess: () => {
-        notifications.show({
-          title: t('common.success'),
-          message: t('new_candidate.candidate_created_successfully'),
-          color: 'green',
-        })
         setData('name', '')
       },
     })

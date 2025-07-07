@@ -3,8 +3,8 @@ import Election from '#models/election'
 import { Routes } from '#shared/constants/routes'
 import { SearchParams } from '#shared/constants/search_params'
 import { getRoute } from '#shared/functions/routes'
-import { Button, Select, Table, TableData, Title } from '@mantine/core'
-import { ReactElement, useMemo } from 'react'
+import { Button, Modal, Select, Table, TableData, Text, Title } from '@mantine/core'
+import { ReactElement, useMemo, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
 import { Pencil, Plus, Trash } from '~/app/shared/components/icons'
@@ -19,6 +19,8 @@ interface Props {
 function AdminCandidates({ elections, candidates }: Props) {
   const { t } = useTranslation()
   const { electionId, setElectionId } = useElectionIdParam()
+  const [candidateToDelete, setCandidateToDelete] = useState<Candidate | null>(null)
+  const [isDeleting, setIsDeleting] = useState(false)
 
   const tableData = useMemo<TableData>(() => {
     return {
@@ -30,13 +32,18 @@ function AdminCandidates({ elections, candidates }: Props) {
         candidate.locality,
         <div className="flex items-center justify-center">
           <ButtonLink
-            href={getRoute(Routes.admin.candidates.edit.absolutePath, { id: candidate.id })}
+            href={getRoute(Routes.admin.candidates.id.absolutePath, { id: candidate.id })}
             variant="transparent"
             size="compact-sm"
           >
             <Pencil width={20} height={20} />
           </ButtonLink>
-          <Button variant="transparent" size="compact-sm" color="red">
+          <Button
+            variant="transparent"
+            size="compact-sm"
+            color="red"
+            onClick={() => setCandidateToDelete(candidate)}
+          >
             <Trash width={20} height={20} />
           </Button>
         </div>,
@@ -72,6 +79,44 @@ function AdminCandidates({ elections, candidates }: Props) {
       <div className="overflow-x-auto">
         <Table data={tableData} className="mt-6" />
       </div>
+
+      <Modal
+        title={t('common.are_you_sure')}
+        opened={Boolean(candidateToDelete)}
+        onClose={() => setCandidateToDelete(null)}
+        centered
+      >
+        <Text size="sm">
+          {t('candidates.delete_confirm_message', { x: candidateToDelete?.name })}
+        </Text>
+
+        <div className="flex items-center justify-end space-x-3 mt-6">
+          <Button
+            variant="outline"
+            onClick={() => setCandidateToDelete(null)}
+            disabled={isDeleting}
+          >
+            {t('common.cancel')}
+          </Button>
+          {candidateToDelete && (
+            <ButtonLink
+              href={{
+                url: getRoute(Routes.admin.candidates.id.absolutePath, {
+                  id: candidateToDelete.id,
+                }),
+                method: 'delete',
+              }}
+              onStart={() => setIsDeleting(true)}
+              onSuccess={() => setCandidateToDelete(null)}
+              onFinish={() => setIsDeleting(false)}
+              color="red"
+              disabled={isDeleting}
+            >
+              {t('common.confirm')}
+            </ButtonLink>
+          )}
+        </div>
+      </Modal>
     </>
   )
 }
