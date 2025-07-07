@@ -37,7 +37,10 @@ router
     router
       .on(Routes.admin.elections.create.relativePath)
       .renderInertia(Routes.admin.elections.create.view)
+    router.get(Routes.admin.elections.id.relativePath, [ElectionsController, 'renderEdit'])
     router.post(Routes.admin.elections.create.relativePath, [ElectionsController, 'create'])
+    router.put(Routes.admin.elections.id.relativePath, [ElectionsController, 'edit'])
+    router.delete(Routes.admin.elections.id.relativePath, [ElectionsController, 'delete'])
 
     router.get(Routes.admin.candidates.index.relativePath, [
       CandidatesController,

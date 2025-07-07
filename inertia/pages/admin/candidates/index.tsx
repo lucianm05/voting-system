@@ -2,11 +2,12 @@ import Candidate from '#models/candidate'
 import Election from '#models/election'
 import { Routes } from '#shared/constants/routes'
 import { SearchParams } from '#shared/constants/search_params'
-import { Select, Table, TableData, Title } from '@mantine/core'
+import { getRoute } from '#shared/functions/routes'
+import { Button, Select, Table, TableData, Title } from '@mantine/core'
 import { ReactElement, useMemo } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLayout } from '~/app/features/admin/layout'
-import { Plus } from '~/app/shared/components/icons'
+import { Pencil, Plus, Trash } from '~/app/shared/components/icons'
 import { ButtonLink } from '~/app/shared/components/ui/link'
 import { useElectionIdParam } from '~/app/shared/hooks/url_params/use_election_id_param'
 
@@ -21,13 +22,24 @@ function AdminCandidates({ elections, candidates }: Props) {
 
   const tableData = useMemo<TableData>(() => {
     return {
-      head: ['Index', t('common.name'), t('common.type'), t('common.county'), t('common.locality')],
-      body: candidates.map((candidate, index) => [
-        index + 1,
+      head: [t('common.name'), t('common.type'), t('common.county'), t('common.locality')],
+      body: candidates.map((candidate) => [
         candidate.name,
         t(`common.${candidate.type}`),
         candidate.county,
         candidate.locality,
+        <div className="flex items-center justify-center">
+          <ButtonLink
+            href={getRoute(Routes.admin.candidates.edit.absolutePath, { id: candidate.id })}
+            variant="transparent"
+            size="compact-sm"
+          >
+            <Pencil width={20} height={20} />
+          </ButtonLink>
+          <Button variant="transparent" size="compact-sm" color="red">
+            <Trash width={20} height={20} />
+          </Button>
+        </div>,
       ]),
     }
   }, [candidates])
@@ -57,7 +69,9 @@ function AdminCandidates({ elections, candidates }: Props) {
         className="mt-6"
       />
 
-      <Table data={tableData} className="mt-6" />
+      <div className="overflow-x-auto">
+        <Table data={tableData} className="mt-6" />
+      </div>
     </>
   )
 }

@@ -23,6 +23,11 @@ export const Routes = {
         alias: 'admin.elections.create.index',
         view: 'admin/elections/create',
       },
+      id: {
+        absolutePath: '/admin/elections/:id',
+        relativePath: '/elections/:id',
+        view: 'admin/elections/create',
+      },
     },
     candidates: {
       index: {
@@ -35,6 +40,11 @@ export const Routes = {
         absolutePath: '/admin/candidates/create',
         relativePath: '/candidates/create',
         alias: 'admin.candidates.create.index',
+        view: 'admin/candidates/create',
+      },
+      edit: {
+        absolutePath: '/admin/candidates/:id/edit',
+        relativePath: '/candidates/:id/edit',
         view: 'admin/candidates/create',
       },
     },

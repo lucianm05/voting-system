@@ -3,6 +3,7 @@ import { FlashMessage } from '#shared/types/index'
 import { usePage } from '@inertiajs/react'
 import { notifications } from '@mantine/notifications'
 import { useEffect } from 'react'
+import { useTranslation } from 'react-i18next'
 
 const TypeToColorMap = {
   [FlashMessageTypes.error]: 'red',
@@ -11,16 +12,28 @@ const TypeToColorMap = {
   [FlashMessageTypes.warning]: 'yellow',
 } as const
 
+const TypeToTitleMap = {
+  [FlashMessageTypes.error]: 'common.error',
+  [FlashMessageTypes.info]: 'common.info',
+  [FlashMessageTypes.success]: 'common.success',
+  [FlashMessageTypes.warning]: 'common.warning',
+} as const
+
 export function useFlashNotification() {
+  const { t } = useTranslation()
   const page = usePage<{ flashMessages: Record<string, FlashMessage> }>()
   const { flashMessages } = page.props
 
   useEffect(() => {
-    const messages = Object.values(flashMessages ?? {})
+    const messages = Object.values(flashMessages ?? {}).filter((flash) => Boolean(flash.type))
 
     if (messages.length) {
       messages.forEach((flash) => {
-        notifications.show({ message: flash.message, color: TypeToColorMap[flash.type] })
+        notifications.show({
+          title: t(TypeToTitleMap[flash.type]),
+          color: TypeToColorMap[flash.type],
+          message: flash.message,
+        })
       })
     }
   }, [flashMessages])

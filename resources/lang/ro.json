@@ -9,7 +9,9 @@
     "date_end": "Dată de sfârșit",
     "submit": "Trimite",
     "success": "Succes",
-    "error": "Error",
+    "error": "Eroare",
+    "info": "Informație",
+    "warning": "Atenție",
     "type": "Tip",
     "election": "Tur de scrutin",
     "independent": "Independent",
@@ -46,11 +48,18 @@
     "validity": "Valabilitate",
     "next_step": "Pasul următor",
     "view_results": "Vezi rezultate",
-    "days_hours_minutes_seconds": "{{days}}z {{hours}}h {{minutes}}m {{seconds}}s"
+    "days_hours_minutes_seconds": "{{days}}z {{hours}}h {{minutes}}m {{seconds}}s",
+    "cancel": "Anulează",
+    "confirm": "Confirmă",
+    "are_you_sure": "Sunteți sigur?"
   },
 
   "elections": {
-    "title": "Tururi de scrutin"
+    "title": "Tururi de scrutin",
+    "delete_confirm_message": "Sunteți sigur că doriți să ștergeți turul de scrutin?",
+    "election_created_successfully": "Turul de scrutin a fost adăugat!",
+    "election_updated_successfully": "Turul de scrutin a fost actualizat!",
+    "election_deleted_successfully": "Turul de scrutin a fost șters!"
   },
 
   "new_election": {
@@ -72,8 +81,7 @@
       "date_end": {
         "placeholder": "4 Mai 2025"
       }
-    },
-    "election_created_successfully": "Turul de scrutin a fost adăugat!"
+    }
   },
 
   "candidates": {

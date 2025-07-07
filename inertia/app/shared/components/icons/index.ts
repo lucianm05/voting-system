@@ -1,5 +1,7 @@
 export { default as Check } from './check'
+export { default as Pencil } from './pencil'
 export { default as Plus } from './plus'
 export { default as Save } from './save'
+export { default as Trash } from './trash'
 export { default as Users } from './users'
 export { default as Vote } from './vote'

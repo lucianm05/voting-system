@@ -16,6 +16,13 @@ export default class ElectionController {
     return inertia.render(Routes.admin.elections.index.view, { elections })
   }
 
+  async renderEdit({ params, inertia }: HttpContext) {
+    const { id } = params
+    const election = await Election.findOrFail(id)
+
+    return inertia.render(Routes.admin.elections.id.view, { election })
+  }
+
   async renderCitizensIndex({ inertia }: HttpContext) {
     const elections = await Election.query().orderBy('createdAt', 'asc')
     const [activeElections, futureElections, endedElections] = await Promise.all([
@@ -78,14 +85,39 @@ export default class ElectionController {
   /**
    * Handle form submission for the create action
    */
-  async create({ request, response }: HttpContext) {
+  async create({ request, response, session, i18n }: HttpContext) {
     const payload = await request.validateUsing(createElectionValidator)
-    await Election.create({
-      name: payload.name,
-      description: payload.description,
-      electionType: payload.electionType,
-      dateStart: payload.dateStart,
-      dateEnd: payload.dateEnd,
+    await Election.create(payload)
+
+    session.flash('edit_election', {
+      type: FlashMessageTypes.success,
+      message: i18n.t('elections.election_created_successfully'),
+    })
+
+    return response.redirect().toRoute(Routes.admin.elections.index.absolutePath)
+  }
+
+  async edit({ params, request, response, session, i18n }: HttpContext) {
+    const { id } = params
+    const payload = await request.validateUsing(createElectionValidator)
+    await Election.updateOrCreate({ id }, { ...payload })
+
+    session.flash('edit_election', {
+      type: FlashMessageTypes.success,
+      message: i18n.t('elections.election_updated_successfully'),
+    })
+
+    return response.redirect().toRoute(Routes.admin.elections.index.absolutePath)
+  }
+
+  async delete({ params, response, session, i18n }: HttpContext) {
+    const { id } = params
+
+    await Election.query().delete().where({ id })
+
+    session.flash('delete_election', {
+      type: FlashMessageTypes.success,
+      message: i18n.t('elections.election_deleted_successfully'),
     })
 
     return response.redirect().toRoute(Routes.admin.elections.index.absolutePath)

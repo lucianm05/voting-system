@@ -1,16 +1,21 @@
 import { Routes } from '#shared/constants/routes'
 import { usePage } from '@inertiajs/react'
-import { AppShell } from '@mantine/core'
+import { AppShell, Burger } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks'
 import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
 import { AdminLogoutForm } from '~/app/features/admin/logout'
 import { Users, Vote } from '~/app/shared/components/icons'
 import { Link } from '~/app/shared/components/ui/link'
 import { LogoWithTitle } from '~/app/shared/components/ui/logo'
+import { useFlashNotification } from '~/app/shared/hooks/use_flash_notification'
 
 export function AdminLayout({ children }: PropsWithChildren) {
   const { t } = useTranslation()
   const route = usePage()
+  const [opened, { toggle }] = useDisclosure()
+
+  useFlashNotification()
 
   return (
     <AppShell
@@ -19,9 +24,11 @@ export function AdminLayout({ children }: PropsWithChildren) {
       navbar={{
         width: 300,
         breakpoint: 'sm',
+        collapsed: { mobile: !opened },
       }}
     >
       <AppShell.Header className="flex items-center space-x-3 px-4">
+        <Burger opened={opened} onClick={toggle} hiddenFrom="md" size="sm" />
         <LogoWithTitle />
       </AppShell.Header>
 
