@@ -15,6 +15,12 @@ export default class extends BaseSeeder {
       throw new Error('ADMIN_PASSWORD env is not set.')
     }
 
+    const exists = await Admin.findBy({ email })
+    if (exists) {
+      console.log('Admin exists, skipping...')
+      return
+    }
+
     await Admin.create({
       email,
       password,
