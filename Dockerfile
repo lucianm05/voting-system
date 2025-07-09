@@ -33,4 +33,4 @@ COPY --from=build /app/build /app
 
 EXPOSE 3333
 
-CMD ["node", "./bin/server.js"]
+CMD ["npm", "run", "start"]
