@@ -3,13 +3,13 @@ FROM node:22.16.0-alpine3.22 AS base
 # All deps stage
 FROM base AS deps
 WORKDIR /app
-ADD package.json pnpm-lock.json ./
+ADD package.json pnpm-lock.yaml ./
 RUN npm ci
 
 # Production only deps stage
 FROM base AS production-deps
 WORKDIR /app
-ADD package.json pnpm-lock.json ./
+ADD package.json pnpm-lock.yaml ./
 RUN npm ci --omit=dev
 
 # Build stage
