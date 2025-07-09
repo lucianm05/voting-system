@@ -2,162 +2,185 @@
   "app_title": "Romanian Voting",
 
   "common": {
-    "add": "Adăugați",
-    "name": "Nume",
-    "description": "Descriere",
-    "date_start": "Dată de început",
-    "date_end": "Dată de sfârșit",
-    "submit": "Trimite",
-    "success": "Succes",
+    "add": "Add",
+    "name": "Name",
+    "description": "Description",
+    "date_start": "Start date",
+    "date_end": "End date",
+    "submit": "Submit",
+    "success": "Success",
     "error": "Error",
-    "type": "Tip",
-    "election": "Tur de scrutin",
+    "info": "Info",
+    "warning": "Warning",
+    "type": "Type",
+    "election": "Election round",
     "independent": "Independent",
-    "party": "Partid",
-    "save": "Salvează",
-    "send": "Trimite",
+    "party": "Party",
+    "save": "Save",
+    "send": "Send",
     "email": "Email",
-    "password": "Parolă",
-    "login": "Intră în cont",
-    "logout": "Ieși din cont",
-    "elections": "Tururi de scrutin",
-    "candidates": "Candidați",
-    "candidate": "Candidat",
-    "drag_image_here_or_press_to_select_file": "Trageți imaginea aici sau faceți clic pentru a selecta un fișier",
-    "only_images_are_allowed": "Sunt permise doar imagini",
-    "only_one_image_allowed": "Este permisă o singură imagine",
-    "no_file_added": "Nicio fotografie atașată",
-    "start": "Începeți",
-    "election_type": "Tipul alegerilor",
+    "password": "Password",
+    "login": "Log in",
+    "logout": "Log out",
+    "elections": "Elections",
+    "candidates": "Candidates",
+    "candidate": "Candidate",
+    "drag_image_here_or_press_to_select_file": "Drag image here or click to select a file",
+    "only_images_are_allowed": "Only images are allowed",
+    "only_one_image_allowed": "Only one image is allowed",
+    "no_file_added": "No photo attached",
+    "start": "Start",
+    "election_type": "Election type",
     "election_types": {
-      "local": "Locale",
-      "county": "Județene",
-      "parliamentary": "Parlamentare",
-      "presidential": "Prezidențiale",
-      "euro": "Europarlamentare"
+      "local": "Local",
+      "county": "County",
+      "parliamentary": "Parliamentary",
+      "presidential": "Presidential",
+      "euro": "European Parliament"
     },
-    "locality": "Localitate",
-    "county": "Județ",
-    "vote": "Votează",
+    "locality": "Locality",
+    "county": "County",
+    "vote": "Vote",
     "cnp": "CNP",
-    "address": "Adresă",
-    "firstName": "Nume",
-    "lastName": "Prenume",
-    "validity": "Valabilitate",
-    "next_step": "Pasul următor",
-    "view_results": "Vezi rezultate",
-    "days_hours_minutes_seconds": "{{days}}z {{hours}}h {{minutes}}m {{seconds}}s"
+    "address": "Address",
+    "firstName": "First name",
+    "lastName": "Last name",
+    "validity": "Validity",
+    "next_step": "Next step",
+    "view_results": "View results",
+    "days_hours_minutes_seconds": "{{days}}d {{hours}}h {{minutes}}m {{seconds}}s",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "are_you_sure": "Are you sure?"
   },
 
   "elections": {
-    "title": "Tururi de scrutin"
+    "title": "Elections",
+    "delete_confirm_message": "Are you sure you want to delete the election {{x}}?",
+    "election_created_successfully": "The election was successfully added!",
+    "election_updated_successfully": "The election was successfully updated!",
+    "election_deleted_successfully": "The election was successfully deleted!"
   },
 
   "new_election": {
-    "title": "Tur de scrutin nou",
-    "description": "Adăugați un tur nou de scrutin",
+    "title": "New Election",
+    "description": "Add a new election",
     "fields": {
       "name": {
-        "placeholder": "2025 - Alegeri prezindențiale tur 1"
+        "placeholder": "2025 - Presidential Elections Round 1"
       },
       "description": {
-        "placeholder": "Alegerea următorului președinte al României"
+        "placeholder": "Election of the next president of Romania"
       },
       "election_type": {
-        "placeholder": "Locale"
+        "placeholder": "Local"
       },
       "date_start": {
-        "placeholder": "4 Mai 2025"
+        "placeholder": "May 4, 2025"
       },
       "date_end": {
-        "placeholder": "4 Mai 2025"
-      }
-    },
-    "election_created_successfully": "Turul de scrutin a fost adăugat!"
-  },
-
-  "candidates": {
-    "title": "Candidați",
-    "select_election": "Alegeți turul de scrutin",
-    "fields": {
-      "election_id": {
-        "placeholder": "Alegeri prezindențiale 2025"
+        "placeholder": "May 4, 2025"
       }
     }
   },
 
-  "new_candidate": {
-    "title": "Candidat nou",
-    "description": "Adăugați un candidat nou pentru un tur de scrutin",
+  "candidates": {
+    "title": "Candidates",
+    "select_election": "Select election",
     "fields": {
-      "name": {
-        "placeholder": "Popescu Ion"
-      },
-      "type": {
-        "placeholder": "Alegeți tipul candidatului"
-      },
       "election_id": {
-        "placeholder": "Alegeți turul de scrutin"
-      },
-      "locality": {
-        "placeholder": "Alegeți localitatea"
-      },
-      "county": {
-        "placeholder": "Alegeți județul"
+        "placeholder": "2025 Presidential Elections"
       }
     },
-    "candidate_created_successfully": "Candidatul a fost adăugat!"
+    "delete_confirm_message": "Are you sure you want to delete candidate {{x}}?",
+    "candidate_created_successfully": "Candidate was successfully added!",
+    "candidate_updated_successfully": "Candidate was successfully updated!",
+    "candidate_deleted_successfully": "Candidate was successfully deleted!"
+  },
+
+  "new_candidate": {
+    "title": "New Candidate",
+    "description": "Add a new candidate to an election",
+    "fields": {
+      "name": {
+        "placeholder": "Ion Popescu"
+      },
+      "type": {
+        "placeholder": "Select candidate type"
+      },
+      "election_id": {
+        "placeholder": "Select election"
+      },
+      "locality": {
+        "placeholder": "Select locality"
+      },
+      "county": {
+        "placeholder": "Select county"
+      }
+    }
   },
 
   "citizen": {
     "authentication": {
       "upload_ci": {
-        "title": "Autentificați-vă cu cartea de identitate (buletin)",
-        "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei video.",
-        "description_2": "Camera video va fi folosită pentru a valida identitatea dumneavoastră.",
-        "info_extracted_from_ci": "Informații extrase din cartea de identitate:"
+        "title": "Authenticate with your ID card",
+        "description_1": "Upload a photo of your ID card and allow access to your camera.",
+        "description_2": "The camera will be used to validate your identity.",
+        "info_extracted_from_ci": "Information extracted from ID:"
       },
       "validation": {
-        "title": "Validarea identității",
-        "description_1": "Pentru asta, trebuie să acordați permisiuni pentru accesarea camerei video a dispozitivului.",
-        "description_2": "Pe ecran vor apărea instrucțiuni pe care trebuie să le urmați."
+        "title": "Identity validation",
+        "description_1": "To do this, you must allow access to your device's camera.",
+        "description_2": "Instructions will appear on screen for you to follow."
       },
       "errors": {
-        "face_not_found": "Nu a fost găsită nicio față în imaginea încărcată. Vă rugăm să încercați din nou cu o imagine clară, bine luminată, iar cartea de identitate să fie încadrată cât mai bine."
+        "face_not_found": "No face was found in the uploaded image. Please try again with a clear, well-lit photo, and make sure your ID card is fully visible."
       },
       "liveness_challenges": {
-        "head_right": "Întoarceți capul spre stânga",
-        "head_left": "Întoarceți capul spre dreapta",
-        "open_mouth": "Țineți gura deschisă",
-        "face_match": "Priviți spre camera video",
-        "done": "Ați fost verificat cu success!"
+        "head_right": "Turn your head to the left",
+        "head_left": "Turn your head to the right",
+        "open_mouth": "Keep your mouth open",
+        "face_match": "Look into the camera",
+        "done": "You have been successfully verified!"
       }
     },
 
     "dashboard": {
       "elections": {
-        "title": "Tururi de scrutin",
-        "description": "Mai jos puteți vedea tururile de scrutin active și pe cele închise.",
+        "title": "Elections",
+        "description": "Below you can see active and closed election rounds.",
         "active_title": "Active",
-        "no_active_elections": "Nu există tururi de scrutin active.",
-        "ended_title": "Închise",
-        "no_ended_elections": "Nu există tururi de scrutin închise.",
-        "no_elections": "Nu există tururi de scrutin.",
-        "future_title": "Viitoare",
-        "election_not_active": "Turul de scrutin nu este activ.",
-        "verify_vote": "Verifică votul"
+        "no_active_elections": "There are no active elections.",
+        "ended_title": "Closed",
+        "no_ended_elections": "There are no closed elections.",
+        "no_elections": "There are no elections.",
+        "future_title": "Upcoming",
+        "election_not_active": "The election is not active.",
+        "verify_vote": "Verify vote"
       },
 
       "vote": {
-        "description": "Alege candidatul preferat și trimite votul pentru acesta.",
-        "voted_successfully": "Votul a fost înregistrat cu success!"
+        "description": "Choose your preferred candidate and submit your vote.",
+        "voted_successfully": "Your vote has been successfully recorded!"
       },
 
       "verify_vote": {
-        "title": "Verifică votul",
-        "voted_candidate": "Candidat votat",
-        "none": "Nu există",
-        "limit_exceeded": "Numărul maxim de verificări a fost atins."
+        "title": "Verify Vote",
+        "voted_candidate": "Voted candidate",
+        "none": "None",
+        "limit_exceeded": "You cannot verify your vote because the maximum number of verifications has been reached."
+      },
+
+      "statistics": {
+        "title": "Statistics for the election {{electionName}}",
+        "votes_distribution": "Vote distribution",
+        "votes_distribution_percentage": "Vote distribution (percentage)",
+        "all_votes": "All votes",
+        "registered_votes": "Registered votes (counted)",
+        "revoked_votes": "Revoked votes (recast)",
+        "vote_results": "Vote results",
+        "votes": "Votes",
+        "number_of_votes": "Number of votes"
       }
     }
   }

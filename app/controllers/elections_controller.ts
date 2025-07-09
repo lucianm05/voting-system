@@ -82,6 +82,14 @@ export default class ElectionController {
     return inertia.render(Routes.citizen.elections.verifyVote.view, { election, candidate })
   }
 
+  async renderResults({ params, inertia }: HttpContext) {
+    const { id } = params
+    const election = await Election.findOrFail(id)
+    const statistics = await ElectionsService.generateStatistics(election)
+
+    return inertia.render(Routes.citizen.elections.results.view, { election, statistics })
+  }
+
   /**
    * Handle form submission for the create action
    */

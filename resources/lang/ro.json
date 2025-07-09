@@ -169,6 +169,18 @@
         "voted_candidate": "Candidat votat",
         "none": "Nu există",
         "limit_exceeded": "Nu puteți verifica votul deoarece numărul maxim de verificări a fost atins."
+      },
+
+      "statistics": {
+        "title": "Statistici aferente turului de scrutin {{electionName}}",
+        "votes_distribution": "Distribuția voturilor",
+        "votes_distribution_percentage": "Distribuția voturilor (procentual)",
+        "all_votes": "Toate voturile",
+        "registered_votes": "Voturi înregistrate (numărate)",
+        "revoked_votes": "Voturi revocate (reexprimate)",
+        "vote_results": "Rezultatele votului",
+        "votes": "Voturi",
+        "number_of_votes": "Număr de voturi"
       }
     }
   }

@@ -4,7 +4,7 @@ import { defineConfig, formatters, loaders } from '@adonisjs/i18n'
 const i18nConfig = defineConfig({
   defaultLocale: 'ro',
   formatter: formatters.icu(),
-  supportedLocales: ['ro', 'en'],
+  supportedLocales: ['ro'],
   loaders: [
     /**
      * The fs loader will read translations from the

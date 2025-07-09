@@ -1,3 +1,4 @@
+import Result from '#models/result'
 import { FlashMessageTypes } from '#shared/constants/flash_messages'
 import { Dayjs } from 'dayjs'
 
@@ -33,4 +34,11 @@ export type FlashMessageType = ValueOf<typeof FlashMessageTypes>
 export interface FlashMessage {
   type: FlashMessageType
   message: string
+}
+
+export interface ElectionStatistics {
+  allVotes: number
+  registeredVotes: number
+  revokedVotes: number
+  results: Result[]
 }
