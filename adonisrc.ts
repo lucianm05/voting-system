@@ -38,7 +38,7 @@ export default defineConfig({
     () => import('@adonisjs/lucid/database_provider'),
     () => import('@adonisjs/auth/auth_provider'),
     () => import('@adonisjs/inertia/inertia_provider'),
-    () => import('@adonisjs/i18n/i18n_provider')
+    () => import('@adonisjs/i18n/i18n_provider'),
   ],
 
   /*
@@ -49,7 +49,11 @@ export default defineConfig({
   | List of modules to import before starting the application.
   |
   */
-  preloads: [() => import('#start/routes'), () => import('#start/kernel'), () => import('#start/validator')],
+  preloads: [
+    () => import('#start/routes'),
+    () => import('#start/kernel'),
+    () => import('#start/validator'),
+  ],
 
   /*
   |--------------------------------------------------------------------------
@@ -87,20 +91,15 @@ export default defineConfig({
   */
   metaFiles: [
     {
-      pattern: 'resources/views/**/*.edge',
+      pattern: 'resources/**',
       reloadServer: false,
     },
     {
       pattern: 'public/**',
       reloadServer: false,
     },
-    {
-      pattern: 'resources/lang/**/*.{json,yaml,yml}',
-      reloadServer: false,
-    }
   ],
 
-  assetsBundler: false,
   hooks: {
     onBuildStarting: [() => import('@adonisjs/vite/build_hook')],
   },

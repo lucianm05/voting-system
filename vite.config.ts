@@ -24,8 +24,4 @@ export default defineConfig({
       '~/': `${getDirname(import.meta.url)}/inertia/`,
     },
   },
-
-  optimizeDeps: {
-    exclude: ['lucide-react'],
-  },
 })
