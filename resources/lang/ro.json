@@ -126,6 +126,7 @@
         "title": "Autentificați-vă cu cartea de identitate (buletin)",
         "description_1": "Încărcați o poză cu cartea de identitate (buletinul) și acordați permisiune pentru utilizarea camerei video.",
         "description_2": "Camera video va fi folosită pentru a valida identitatea dumneavoastră.",
+        "description_3": "Imaginile încărcate nu sunt salvate, iar datele sunt stocate într-un mod sigur, pentru a vă proteja identitatea.",
         "info_extracted_from_ci": "Informații extrase din cartea de identitate:"
       },
       "validation": {

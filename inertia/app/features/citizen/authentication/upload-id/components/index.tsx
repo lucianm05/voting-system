@@ -118,6 +118,7 @@ export function CitizenAuthenticationUploadID() {
             <div className="space-y-2">
               <Text size="sm">{t('citizen.authentication.upload_ci.description_1')}</Text>
               <Text size="sm">{t('citizen.authentication.upload_ci.description_2')}</Text>
+              <Text size="sm">{t('citizen.authentication.upload_ci.description_3')}</Text>
             </div>
           </div>
 
