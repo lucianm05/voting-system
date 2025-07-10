@@ -4,7 +4,7 @@ import { usePage } from '@inertiajs/react'
 import { Avatar, Button, Center, Skeleton, Text, Title } from '@mantine/core'
 import { Dropzone, FileRejection, FileWithPath } from '@mantine/dropzone'
 import { notifications } from '@mantine/notifications'
-import { FormEvent, useEffect, useRef } from 'react'
+import { FormEvent, useEffect, useRef, useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import { useCitizenAuthenticationContext } from '~/app/features/citizen/authentication/providers'
 import { Props } from '~/app/features/citizen/authentication/types'
@@ -19,9 +19,7 @@ export function CitizenAuthenticationUploadID() {
   const { form } = useCitizenAuthenticationContext()
   const { data, setData, post, get, processing, setError, errors } = form
 
-  const {
-    props: { ocrData },
-  } = usePage<Props>()
+  const page = usePage<Props>()
 
   const imageRef = useRef<HTMLImageElement | null>(null)
   const imageUrl = useLocalFileURL({ file: data.file })
@@ -30,6 +28,14 @@ export function CitizenAuthenticationUploadID() {
   const descriptorUnavailable = Boolean(imageUrl && detectFace.descriptor === undefined)
   const hasErrors = Object.values(errors).some(Boolean)
   const isDisabled = Boolean(!data.file || hasErrors || processing || descriptorUnavailable)
+
+  const [ocrData, setOcrData] = useState<Props['ocrData'] | null>(page.props.ocrData || null)
+
+  useEffect(() => {
+    if (page.props.ocrData) {
+      setOcrData(page.props.ocrData)
+    }
+  }, [page.props.ocrData])
 
   useEffect(() => {
     function analyzeDescriptor() {
@@ -62,6 +68,7 @@ export function CitizenAuthenticationUploadID() {
 
     resetErrors()
     setData('file', file)
+    setOcrData(null)
   }
 
   function onReject(fileRejections: FileRejection[]) {

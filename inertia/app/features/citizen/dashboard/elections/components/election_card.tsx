@@ -14,12 +14,10 @@ export function ElectionCard(election: Election) {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder className="space-y-4 md:space-y-6">
       <div>
-        <div className="flex items-center justify-between mb-1">
-          <Text>{name}</Text>
-
+        <div className="mb-2 md:mb-4">
           <Badge>{t(`common.election_types.${electionType}`)}</Badge>
         </div>
-
+        <Text>{name}</Text>
         <Text size="sm" c="gray">
           {description}
         </Text>

@@ -23,20 +23,22 @@ export default class ElectionController {
     return inertia.render(Routes.admin.elections.id.view, { election })
   }
 
-  async renderCitizensIndex({ inertia }: HttpContext) {
-    const elections = await Election.query().orderBy('createdAt', 'asc')
-    const [activeElections, futureElections, endedElections] = await Promise.all([
-      ElectionsService.findActiveElections(),
-      ElectionsService.findFutureElections(),
-      ElectionsService.findEndedElections(),
-    ])
+  async renderCitizenActive({ inertia }: HttpContext) {
+    const elections = await ElectionsService.findActiveElections()
 
-    return inertia.render(Routes.citizen.elections.index.view, {
-      elections,
-      activeElections,
-      futureElections,
-      endedElections,
-    })
+    return inertia.render(Routes.citizen.elections.active.view, { elections })
+  }
+
+  async renderCitizenEnded({ inertia }: HttpContext) {
+    const elections = await ElectionsService.findEndedElections()
+
+    return inertia.render(Routes.citizen.elections.ended.view, { elections })
+  }
+
+  async renderCitizenFuture({ inertia }: HttpContext) {
+    const elections = await ElectionsService.findFutureElections()
+
+    return inertia.render(Routes.citizen.elections.future.view, { elections })
   }
 
   async renderVote({ params, session, inertia, response, i18n }: HttpContext) {

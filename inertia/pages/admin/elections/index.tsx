@@ -39,7 +39,7 @@ function AdminElections({ elections }: Props) {
             variant="transparent"
             size="compact-sm"
           >
-            <Pencil width={20} height={20} />
+            <Pencil className="size-5" />
           </ButtonLink>
           <Button
             variant="transparent"
@@ -47,7 +47,7 @@ function AdminElections({ elections }: Props) {
             color="red"
             onClick={() => setElectionToDelete(election)}
           >
-            <Trash width={20} height={20} />
+            <Trash className="size-5" />
           </Button>
         </div>,
       ]),

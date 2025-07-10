@@ -95,6 +95,21 @@ export const Routes = {
         relativePath: '/elections',
         view: 'citizen/elections/index',
       },
+      active: {
+        absolutePath: '/citizen/elections/active',
+        relativePath: '/elections/active',
+        view: 'citizen/elections/active',
+      },
+      ended: {
+        absolutePath: '/citizen/elections/ended',
+        relativePath: '/elections/ended',
+        view: 'citizen/elections/ended',
+      },
+      future: {
+        absolutePath: '/citizen/elections/future',
+        relativePath: '/elections/future',
+        view: 'citizen/elections/future',
+      },
       vote: {
         absolutePath: '/citizen/elections/:id/vote',
         relativePath: '/elections/:id/vote',

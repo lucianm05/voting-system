@@ -1,4 +1,7 @@
+export { default as Calendar } from './calendar'
+export { default as ChartBar } from './chart_bar'
 export { default as Check } from './check'
+export { default as Hourglass } from './hourglass'
 export { default as Pencil } from './pencil'
 export { default as Plus } from './plus'
 export { default as Save } from './save'

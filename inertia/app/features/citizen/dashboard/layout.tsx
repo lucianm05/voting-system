@@ -4,7 +4,7 @@ import { AppShell, Burger } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks'
 import { PropsWithChildren } from 'react'
 import { useTranslation } from 'react-i18next'
-import { Vote } from '~/app/shared/components/icons'
+import { Calendar, ChartBar, Hourglass, Vote } from '~/app/shared/components/icons'
 import { Link } from '~/app/shared/components/ui/link'
 import { LogoWithTitle } from '~/app/shared/components/ui/logo'
 import { useFlashNotification } from '~/app/shared/hooks/use_flash_notification'
@@ -37,8 +37,32 @@ export function CitizenDashboardLayout({ children }: PropsWithChildren) {
             label={t('common.elections')}
             leftSection={<Vote />}
             active={route.url.includes(Routes.citizen.elections.index.relativePath)}
-            className="font-medium"
-          />
+            className="font-medium rounded-t rounded-bl transition-colors"
+            defaultOpened
+            childrenOffset={48}
+          >
+            <Link
+              href={Routes.citizen.elections.active.absolutePath}
+              label={t('citizen.dashboard.elections.active_title')}
+              active={route.url.includes(Routes.citizen.elections.active.relativePath)}
+              leftSection={<Hourglass className="size-5" />}
+              className="font-medium rounded-b transition-colors"
+            />
+            <Link
+              href={Routes.citizen.elections.ended.absolutePath}
+              label={t('citizen.dashboard.elections.ended_title')}
+              active={route.url.includes(Routes.citizen.elections.ended.relativePath)}
+              leftSection={<ChartBar className="size-5" />}
+              className="font-medium rounded transition-colors"
+            />
+            <Link
+              href={Routes.citizen.elections.future.absolutePath}
+              label={t('citizen.dashboard.elections.future_title')}
+              active={route.url.includes(Routes.citizen.elections.future.relativePath)}
+              leftSection={<Calendar className="size-5" />}
+              className="font-medium rounded transition-colors"
+            />
+          </Link>
         </div>
       </AppShell.Navbar>
 

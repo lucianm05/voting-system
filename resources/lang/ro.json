@@ -149,12 +149,13 @@
       "elections": {
         "title": "Tururi de scrutin",
         "description": "Mai jos puteți vedea tururile de scrutin active și pe cele închise.",
-        "active_title": "Active",
-        "no_active_elections": "Nu există tururi de scrutin active.",
-        "ended_title": "Închise",
-        "no_ended_elections": "Nu există tururi de scrutin închise.",
         "no_elections": "Nu există tururi de scrutin.",
+        "active_title": "Active",
+        "active_description": "Mai jos puteți vedea tururile de scrutin active, în cadrul cărora puteți vota și verifica votul înregistrat.",
+        "ended_title": "Închise",
+        "ended_description": "Mai jos puteți vedea tururile de scrutin închise, rezultatele acestora și statistici.",
         "future_title": "Viitoare",
+        "future_description": "Mai jos puteți vedea tururile de scrutin viitoare.",
         "election_not_active": "Turul de scrutin nu este activ.",
         "verify_vote": "Verifică votul"
       },

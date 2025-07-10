@@ -1,22 +1,19 @@
-import * as React from 'react'
-
-const SvgIcon = (props: React.SVGProps<SVGSVGElement>) => (
+import type { SVGProps } from 'react'
+const SvgPencil = (props: SVGProps<SVGSVGElement>) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
-    width="24"
-    height="24"
+    width="1.5em"
+    height="1.5em"
     fill="none"
     stroke="currentColor"
     strokeLinecap="round"
     strokeLinejoin="round"
-    strokeWidth="2"
-    className="lucide lucide-square-pen-icon lucide-square-pen"
+    strokeWidth={2}
+    className="pencil_svg__lucide pencil_svg__lucide-pencil-icon pencil_svg__lucide-pencil"
     viewBox="0 0 24 24"
     {...props}
   >
-    <path d="M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
-    <path d="M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z"></path>
+    <path d="M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497zM15 5l4 4" />
   </svg>
 )
-
-export default SvgIcon
+export default SvgPencil

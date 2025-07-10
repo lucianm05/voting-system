@@ -83,9 +83,20 @@ router
 
     router
       .group(() => {
-        router.get(Routes.citizen.elections.index.relativePath, [
+        router
+          .on(Routes.citizen.elections.index.relativePath)
+          .redirectToPath(Routes.citizen.elections.active.absolutePath)
+        router.get(Routes.citizen.elections.active.relativePath, [
           ElectionsController,
-          'renderCitizensIndex',
+          'renderCitizenActive',
+        ])
+        router.get(Routes.citizen.elections.ended.relativePath, [
+          ElectionsController,
+          'renderCitizenEnded',
+        ])
+        router.get(Routes.citizen.elections.future.relativePath, [
+          ElectionsController,
+          'renderCitizenFuture',
         ])
         router.get(Routes.citizen.elections.vote.relativePath, [ElectionsController, 'renderVote'])
         router.get(Routes.citizen.elections.verifyVote.relativePath, [
