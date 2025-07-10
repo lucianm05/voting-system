@@ -1,6 +1,6 @@
 import Citizen from '#models/citizen'
 import CitizensService from '#services/citizens_service'
-import DocumentAIService from '#services/document_ai'
+import DocumentAIService from '#services/document_ai_service'
 import { CitizenAuthSteps } from '#shared/constants/citizens'
 import { Routes } from '#shared/constants/routes'
 import { attemptAuthenticationValidator, identityCardValidator } from '#validators/citizens'

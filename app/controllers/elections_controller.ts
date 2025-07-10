@@ -5,7 +5,7 @@ import ElectionsService from '#services/elections_service'
 import VotesService from '#services/votes_service'
 import { FlashMessageTypes } from '#shared/constants/flash_messages'
 import { Routes } from '#shared/constants/routes'
-import { isElectionActive } from '#shared/functions/elections'
+import { isElectionActive, isElectionPast } from '#shared/functions/elections'
 import { createElectionValidator } from '#validators/elections'
 import { type HttpContext } from '@adonisjs/core/http'
 
@@ -84,9 +84,19 @@ export default class ElectionController {
     return inertia.render(Routes.citizen.elections.verifyVote.view, { election, candidate })
   }
 
-  async renderResults({ params, inertia }: HttpContext) {
+  async renderResults({ params, inertia, response, session, i18n }: HttpContext) {
     const { id } = params
     const election = await Election.findOrFail(id)
+
+    if (!isElectionPast(election)) {
+      session.flash('results_not_ready', {
+        type: FlashMessageTypes.warning,
+        message: i18n.t('election_not_closed'),
+      })
+
+      return response.redirect().toPath(Routes.citizen.elections.active.absolutePath)
+    }
+
     const statistics = await ElectionsService.generateStatistics(election)
 
     return inertia.render(Routes.citizen.elections.results.view, { election, statistics })
