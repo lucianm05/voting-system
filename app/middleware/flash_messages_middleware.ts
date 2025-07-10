@@ -7,6 +7,8 @@ export default class FlashMessagesMiddleware {
 
     inertia.share({ flashMessages: messages.all() })
 
+    session.flashMessages.clear()
+
     return next()
   }
 }
