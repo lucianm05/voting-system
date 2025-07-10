@@ -52,7 +52,7 @@ export default class ElectionController {
         message: i18n.t('citizen.dashboard.elections.election_not_active'),
       })
 
-      return response.redirect().toPath(Routes.citizen.elections.index.absolutePath)
+      return response.redirect().toPath(Routes.citizen.elections.active.absolutePath)
     }
 
     const citizenLocation = await CitizensService.sessionData.getLocation(session)
@@ -76,7 +76,7 @@ export default class ElectionController {
         message: i18n.t('citizen.dashboard.verify_vote.limit_exceeded'),
       })
 
-      return response.redirect().toRoute(Routes.citizen.elections.index.absolutePath)
+      return response.redirect().toRoute(Routes.citizen.elections.active.absolutePath)
     }
 
     const candidate = await VotesService.verifyVote({ citizen, electionId: election.id })

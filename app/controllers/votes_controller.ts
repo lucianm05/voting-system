@@ -22,6 +22,6 @@ export default class VotesController {
 
     await VotesService.registerVote({ candidate, citizen })
 
-    return response.redirect(Routes.citizen.elections.index.absolutePath)
+    return response.redirect(Routes.citizen.elections.active.absolutePath)
   }
 }

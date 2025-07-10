@@ -3,9 +3,9 @@ import type { NextFn } from '@adonisjs/core/types/http'
 
 export default class FlashMessagesMiddleware {
   async handle({ session, inertia }: HttpContext, next: NextFn) {
-    const messages = session.flashMessages || []
+    const messages = session.flashMessages.all() || []
 
-    inertia.share({ flashMessages: messages.all() })
+    inertia.share({ flashMessages: messages })
 
     session.flashMessages.clear()
 
