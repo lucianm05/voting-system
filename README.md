@@ -1,6 +1,8 @@
 # 🗳️ Internet Voting System
 
-This project is a fully functional web application designed to support **secure** and **anonymous** democratic voting for Romania over the internet. It was developed as part of my master’s thesis _“Internet Voting System for Democratic Elections”_. It was developed for academic purposes. The system architecture, security mechanisms, and database design are focused on ensuring transparency, data integrity, and voter privacy in online democratic elections.
+This project was developed as part of my master’s thesis _“Internet Voting System for Democratic Elections”_. It was developed for academic purposes. The system architecture, security mechanisms, and database design are focused on ensuring transparency, data integrity, and voter privacy in online democratic elections.
+
+**It is not intended to be used in production, as more precautions must be taken to ensure a safe space for democratic elections.**
 
 ---
 
